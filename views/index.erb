@@ -37,13 +37,18 @@
             text-align: center;
             line-height: 32px;
         }
+        .map{
+            width: 100%;
+            margin-left: 0px;
+            margin-right: 0px; 
+        }
     </style>
     <script src="js/jquery-2.1.1.min.js"></script>
     <script src="js/main.js"></script>
     <script src="tuktuk/tuktuk.js"></script>
 </head>
 <body data-tuktuk="boxes">
-    <aside id="timetable" class="absolute bck light column_4 active">
+    <aside id="timetable" class="absolute bck light column_3 active">
         <div>
         <header class="bck dark">
             <div class="session on-left">
@@ -69,41 +74,43 @@
         </article>
         </div>
     </aside>
-    <aside class="column_4">
-        <header class="bck theme">
-        </header>
-        <article class="bck dark scroll">
-        </article>
-        <footer class="bck dark text center">
-            Handcrafted by <a href="http://tapquo.com" class="color theme text bold">tapquo</a>
-        </footer>
-    </aside>
+
     <section>
         <header>
             <h3 class="align center text thin">Transit<span class="tag bck theme">NEW!</span></h3>
         </header>
         <article class="padding scroll">
             <div class="margin-bottom align center">
-                <h4 class="text book inline"><span class="icon star color theme "></span>Map</h4>
                 <nav>
                     <a href="#" id="locateMe" class="button theme small"><span class="icon hand-up"></span>Locate me!</a>
                     <a href="#" class="button small"><span class="icon search"></span>Search</a>
                 </nav>
             </div>
             <div class="inside">
-                <div id="map-canvas" class="column_8 bck light"></div>
+                <div id="map-canvas" class="column_9 light map"></div>
             </div>
         </article>
-
-        <footer class="bck light">
-            <nav class="align center text bold" data-tuktuk="menu">
-                <a href="#" class="active">Settings</a>
-                <a href="#">Contact</a>
-                <a href="#">About us</a>
-            </nav>
+        <footer class="bck light text center">
+            Made By <a href="http://github.com/muit" class="color theme text bold">Muit</a>
         </footer>
     </section>
 
+    <div id="controlmenu" data-tuktuk="modal" data-modal="confirm" class="side column_3">
+        <header class="bck theme">
+            <strong>Transit</strong>
+            <a href="#" id="closecontrolaside" data-box="close" class="on-right text big icon remove color white"></a>
+        </header>
+        <article class="bck dark scroll">
+            <nav class="align center text bold" data-tuktuk="menu">
+                <a href="#" class="active">Settings</a><br>
+                <a href="#">Contact</a><br>
+                <a href="#">About us</a><br>
+            </nav>
+        </article>
+        <footer class="bck dark text center">
+            Handcrafted by <a href="http://tapquo.com" class="color theme text bold">tapquo</a>
+        </footer>
+    </div>
     <script>
         TukTuk.Modal.loading();
         setTimeout( TukTuk.Modal.hide, 1000);

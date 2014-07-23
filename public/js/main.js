@@ -7,6 +7,8 @@ $( document ).ready(function() {
 
         if($(event.target).attr('id') == "locateMe")
             MapSystem.locateMe();
+        if($(event.target).attr('id') == "closecontrolaside")
+            $("#controlmenu").removeClass("active");
     });
     /*
     Marker Click event:

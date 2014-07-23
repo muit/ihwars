@@ -10,4 +10,5 @@ group :development do
   gem 'terminal-notifier-guard'
   gem 'guard-bundler'
   gem 'guard-rspec'
+  gem 'json'
 end
