@@ -11,4 +11,6 @@ group :development do
   gem 'guard-bundler'
   gem 'guard-rspec'
   gem 'json'
+  gem 'sqlite3'
+  gem 'activerecord', '~> 4.1.4'
 end
