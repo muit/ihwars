@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="tuktuk/tuktuk.theme.default.css">
     <link rel="stylesheet" href="tuktuk/tuktuk.icons.css">
     <style>
+        .map {
+            height: 384px;
+            margin-bottom: 2.5em;
+            text-align: center;
+            line-height: 384px;
+        }
         .thumb {
             height: 96px;
             margin-bottom: 2.5em;
@@ -17,32 +23,80 @@
             height: 220px;
             line-height: 220px;
         }
+        .timetable{
+            background-color: rgba(0, 0, 0, 0.2);
+            padding-top: 0.25em;
+            padding-bottom:  0.25em;
+        }
+        .timetablevalue{
+            margin-top : 0.25em;
+            height: 32px;
+            margin-bottom: 0.25em;
+            text-align: center;
+            line-height: 32px;
+        }
     </style>
     <script src="js/main.js"></script>
     <script src="js/jquery-2.1.1.min.js"></script>
     <script src="tuktuk/tuktuk.js"></script>
 </head>
 <body data-tuktuk="boxes">
+    <aside id="timetable" class="absolute bck light column_4 active">
+        <div>
+        <header class="bck dark">
+            <div class="session on-left">
+                <strong><a href="#" class="color theme">TimeTable:</a></strong>
+            </div>
+            <a href="#" id="closeaside" data-box="close" class="on-right text big icon remove color white"></a>
+        </header>
+        <article class="bck light scroll">
+
+            <div class="margin-left margin-right">
+                <h4 class="text bold color theme inline">Station Name</h4>
+                <span class="margin-left tag bck color inline text bold">pro</span>
+            </div>
+            <hr>
+            <div class="timetable inline">
+                <div class="column_4 timetablevalue bck light">tablevalue</div>
+                <div class="column_4 timetablevalue bck light">tablevalue</div>
+                <div class="column_4 timetablevalue bck light">tablevalue</div>
+                <div class="column_4 timetablevalue bck light">tablevalue</div>
+                <div class="column_4 timetablevalue bck light">tablevalue</div>
+                <div class="column_4 timetablevalue bck light">tablevalue</div>
+            </div>
+        </article>
+        </div>
+    </aside>
+    <aside class="column_4">
+        <header class="bck theme">
+        </header>
+        <article class="bck dark scroll">
+        </article>
+        <footer class="bck dark text center">
+            Handcrafted by <a href="http://tapquo.com" class="color theme text bold">tapquo</a>
+        </footer>
+    </aside>
     <section>
         <header>
-            <h3 class="on-left text thin">Web Application <span class="tag bck theme">NEW!</span></h3>
+            <h3 class="align center text thin">Transit<span class="tag bck theme">NEW!</span></h3>
+			<!--
             <nav class="on-right">
                 <button class="tiny">tiny</button>
                 <button class="small">small</button>
                 <button class="">normal</button>
             </nav>
+			-->
         </header>
         <article class="padding scroll">
             <div class="margin-bottom">
-                <h4 class="text book inline"><span class="icon star color theme "></span> Featured</h4>
+                <h4 class="text book inline"><span class="icon star color theme "></span>Map</h4>
                 <nav class="inline on-right">
                     <a href="#" class="button small"><span class="icon search"></span>Search</a>
                     <a href="#" class="button theme small"><span class="icon envelope"></span>Send</a>
                 </nav>
             </div>
             <div class="inline">
-                <div class="column_4 thumb bck light">thumb</div>
-                <div class="column_4 thumb bck light">thumb</div>
+                <div class="align center column_10 map bck light">google-map</div>
             </div>
 
             <div class="margin-bottom">
@@ -83,6 +137,9 @@
         </footer>
     </section>
 
-
+    <script>
+        TukTuk.Modal.loading();
+        setTimeout( TukTuk.Modal.hide, 1000);
+    </script>
 </body>
 </html>
