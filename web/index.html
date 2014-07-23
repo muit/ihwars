@@ -1,17 +1,19 @@
 <!doctype html>
+<meta charset="UTF-8">
 <html>
 <head>
     <title>Transit</title>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="tuktuk/tuktuk.css">
     <link rel="stylesheet" href="tuktuk/tuktuk.theme.default.css">
     <link rel="stylesheet" href="tuktuk/tuktuk.icons.css">
     <style>
-        .map {
+        #map-canvas {
             height: 384px;
             margin-bottom: 2.5em;
             text-align: center;
-            line-height: 384px;
         }
         .thumb {
             height: 96px;
@@ -36,8 +38,8 @@
             line-height: 32px;
         }
     </style>
-    <script src="js/main.js"></script>
     <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/main.js"></script>
     <script src="tuktuk/tuktuk.js"></script>
 </head>
 <body data-tuktuk="boxes">
@@ -57,12 +59,12 @@
             </div>
             <hr>
             <div class="timetable inline">
-                <div class="column_4 timetablevalue bck light">tablevalue</div>
-                <div class="column_4 timetablevalue bck light">tablevalue</div>
-                <div class="column_4 timetablevalue bck light">tablevalue</div>
-                <div class="column_4 timetablevalue bck light">tablevalue</div>
-                <div class="column_4 timetablevalue bck light">tablevalue</div>
-                <div class="column_4 timetablevalue bck light">tablevalue</div>
+                <div class="column_3 timetablevalue bck light">tablevalue</div>
+                <div class="column_3 timetablevalue bck light">tablevalue</div>
+                <div class="column_3 timetablevalue bck light">tablevalue</div>
+                <div class="column_3 timetablevalue bck light">tablevalue</div>
+                <div class="column_3 timetablevalue bck light">tablevalue</div>
+                <div class="column_3 timetablevalue bck light">tablevalue</div>
             </div>
         </article>
         </div>
@@ -79,60 +81,25 @@
     <section>
         <header>
             <h3 class="align center text thin">Transit<span class="tag bck theme">NEW!</span></h3>
-			<!--
-            <nav class="on-right">
-                <button class="tiny">tiny</button>
-                <button class="small">small</button>
-                <button class="">normal</button>
-            </nav>
-			-->
         </header>
         <article class="padding scroll">
-            <div class="margin-bottom">
+            <div class="margin-bottom align center">
                 <h4 class="text book inline"><span class="icon star color theme "></span>Map</h4>
-                <nav class="inline on-right">
+                <nav>
+                    <a href="#" id="locateMe" class="button theme small"><span class="icon hand-up"></span>Locate me!</a>
                     <a href="#" class="button small"><span class="icon search"></span>Search</a>
-                    <a href="#" class="button theme small"><span class="icon envelope"></span>Send</a>
                 </nav>
             </div>
-            <div class="inline">
-                <div class="align center column_10 map bck light">google-map</div>
-            </div>
-
-            <div class="margin-bottom">
-                <h4 class="text book inline"><span class="icon group color theme"></span> Friends</h4>
-                <nav class="inline on-right">
-                    <a href="#" class="button  small"><span class="icon search"></span>Search</a>
-                </nav>
-            </div>
-
-            <div class="inline">
-                <div class="column_2 thumb bck light">thumb</div>
-                <div class="column_2 thumb bck light">thumb</div>
-                <div class="column_2 thumb bck light">thumb</div>
-                <div class="column_2 thumb bck light">thumb</div>
-                <div class="column_2 thumb bck light">thumb</div>
-                <div class="column_2 thumb bck light">thumb</div>
-                <div class="column_2 thumb bck light">thumb</div>
-                <div class="column_2 thumb bck light">thumb</div>
-                <div class="column_2 thumb bck light">thumb</div>
-                <div class="column_2 thumb bck light">thumb</div>
-                <div class="column_2 thumb bck light">thumb</div>
+            <div class="inside">
+                <div id="map-canvas" class="column_8 bck light"></div>
             </div>
         </article>
 
         <footer class="bck light">
-            <nav class="on-left text bold" data-tuktuk="menu">
-                <a href="#" class="active">Shots<small>(100)</small></a>
-                <a href="#">Projects<small>(3)</small></a>
-                <a href="#">Likes<small>(192)</small></a>
-                <a href="#">Tags<small>(160)</small></a>
-            </nav>
-
-            <nav class="on-right">
-                <button class="tiny">tiny</button>
-                <button class="small">small</button>
-                <button class="">normal</button>
+            <nav class="align center text bold" data-tuktuk="menu">
+                <a href="#" class="active">Settings</a>
+                <a href="#">Contact</a>
+                <a href="#">About us</a>
             </nav>
         </footer>
     </section>
