@@ -1,7 +1,6 @@
 require "sinatra"
 require "sinatra/reloader" if development?
 require "json"
-require "activerecord"
 
 require 'date'
 set :port, 3000
@@ -11,7 +10,13 @@ get "/" do
   erb :index
 end
 
-
-#get "/pos?:lat,:lon" do
-
-#//DATABASE////////
+post "/getStationData" do
+  #AJAX-js <=> POST station petition
+  if(params[:station_id])
+    id = params[:station_id]
+  else
+    lat = params[:latitude]
+    lon = params[:longitude]
+  end
+  #Return station object whit all the info
+end
