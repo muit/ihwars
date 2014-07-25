@@ -9,7 +9,10 @@ class DBRetriever
   end
   def get
     @adaptor
-  end
+end
+
+
+
 end
 
 class DBAdaptor
@@ -22,3 +25,4 @@ end
 #Tables
 class Station < Activerecord::Base
 end
+
