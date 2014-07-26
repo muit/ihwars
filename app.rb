@@ -3,6 +3,8 @@ require "sinatra/reloader" if development?
 require "json"
 
 require_relative "lib/db.rb"
+require_relative "lib/parser.rb"
+
 set :port, 3000
 set :bind, '0.0.0.0'
 
@@ -15,16 +17,16 @@ post "/getStationData" do
   #AJAX-js <=> POST station petition
   id = params[:station_id]
   name = params[:station_name]
-  
+
   if id != nil
     station = db.get.StationById(id)
-    JSON.stringify(station)
+    return JSON.stringify(station)
   else if name != nil
     station = db.get.StationByName(name)
-    JSON.stringify(station)
-  else
-    "404 ERROR: Data provided corrupted"
+    return JSON.stringify(station)
   end
+  
+  "404 ERROR: Data provided corrupted"
 end
 
 post "/getNearStations" do

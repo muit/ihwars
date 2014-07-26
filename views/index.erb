@@ -29,6 +29,7 @@
             background-color: rgba(0, 0, 0, 0.2);
             padding-top: 0.25em;
             padding-bottom:  0.25em;
+            width: 100%;
         }
         .timetablevalue{
             margin-top : 0.25em;
@@ -44,6 +45,13 @@
             width: 100%;
             margin-left: 0px;
             margin-right: 0px; 
+        }
+
+        .buttonsMenu{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width:100%;
         }
     </style>
     <script src="js/jquery-2.1.1.min.js"></script>
@@ -67,21 +75,26 @@
             </div>
             <hr>
             <div class="timetable inline">
-                <div class="column_3 timetablevalue bck light">tablevalue</div>
-                <div class="column_3 timetablevalue bck light">tablevalue</div>
-                <div class="column_3 timetablevalue bck light">tablevalue</div>
-                <div class="column_3 timetablevalue bck light">tablevalue</div>
-                <div class="column_3 timetablevalue bck light">tablevalue</div>
-                <div class="column_3 timetablevalue bck light">tablevalue</div>
+                <div class="anchor timetablevalue bck light">tablevalue</div>
+                <div class="anchor timetablevalue bck light">tablevalue</div>
+                <div class="anchor timetablevalue bck light">tablevalue</div>
+                <div class="anchor timetablevalue bck light">tablevalue</div>
+                <div class="anchor timetablevalue bck light">tablevalue</div>
+                <div class="anchor timetablevalue bck light">tablevalue</div>
             </div>
         </article>
         </div>
     </aside>
 
     <section>
-        <header>
+        <header class = "align center">
+            <div id="buttonsmenu">
+                <button id="asidebutton" class="on-left theme small icon arrow-right"></button>
+                <button id="menuasidebutton" class="on-right small icon flag"></button>
+            </div>
             <h3 class="align center text thin">Transit<span class="tag bck theme">NEW!</span></h3>
         </header>
+
         <article class="padding scroll">
             <div class="margin-bottom align center">
                 <nav>
@@ -93,6 +106,7 @@
                 <div id="map-canvas" class="column_9 light map"></div>
             </div>
         </article>
+
         <footer class="bck light text center">
             Made By <a href="http://github.com/muit" class="color theme text bold">Muit</a>
         </footer>
@@ -101,7 +115,7 @@
     <div id="controlmenu" data-tuktuk="modal" data-modal="confirm" class="side column_3">
         <header class="bck theme">
             <strong>Transit</strong>
-            <a href="#" id="closecontrolaside" data-box="close" class="on-right text big icon remove color white"></a>
+            <a href="#" id="closemenuaside" data-box="close" class="on-right text big icon remove color white"></a>
         </header>
         <article class="bck dark scroll">
             <nav class="align center text bold" data-tuktuk="menu">

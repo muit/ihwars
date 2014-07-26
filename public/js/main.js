@@ -1,22 +1,33 @@
 $( document ).ready(function() {
-    MapSystem.loadMap();
+    if(window.google)
+        MapSystem.loadMap();
+    else
+        Util.createNotification("", "Error", "Google Maps doesn´t work! Make sure you have internet.");
 
     $("body").bind('click', function(event) {
-        if($(event.target).attr('id') == "closeaside")
+
+        switch($(event.target).attr('id')){
+
+        case "closeaside":
             $("#timetable").removeClass("active");
-
-        if($(event.target).attr('id') == "locateMe")
-            MapSystem.locateMe();
-        if($(event.target).attr('id') == "closecontrolaside")
+            break;
+        case "closemenuaside":
             $("#controlmenu").removeClass("active");
+            break;
+        case "asidebutton":
+            $("#timetable").addClass("active");
+            break;
+        case "menuasidebutton":
+            $("#controlmenu").addClass("active");
+            break;
+        case "locateMe":
+            if(window.google) 
+                MapSystem.locateMe();
+            else
+                Util.createNotification("", "Error", "Google Maps doesn´t work! Make sure you have internet.");
+            break;
+        }
     });
-    /*
-    Marker Click event:
-        Add Station Data to '#timetable'
-        $("#timetable").addClass("active");
-    */
-
-    
 });
 
 var MapSystem = {
@@ -36,11 +47,13 @@ mapOptions);
             var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
             if(this.me)
                 this.me.close();
+
             this.me = new google.maps.InfoWindow({
                 map: map,
                 position: pos,
                 content: 'Hey, I´m here!'
             });
+
             map.setCenter(pos);
             map.setOptions({zoom: 15});
         }, function() {
@@ -86,10 +99,10 @@ var Util = {
     },
 
     Trigger: function(){
-        state = true;
-        get = function(){
-            var rstate = state;
-            state = false;
+        this.state = true;
+        this.get = function(){
+            var rstate = this.state;
+            this.state = false;
             return rstate;
         }
     }
