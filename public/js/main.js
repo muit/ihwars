@@ -72,14 +72,14 @@ var Util = {
             },5000);
         }
         else{
-            Notification.requestPermission();
-
-            if(Notification.permission == "granted"){
-                var n = new Notification(title, {icon: img, body: content});
-                setTimeout(function(){
-                    n.close();
-                },5000);
-            }
+            Notification.requestPermission(function(){
+                if(Notification.permission == "granted"){
+                    var n = new Notification(title, {icon: img, body: content});
+                    setTimeout(function(){
+                       n.close();
+                    },5000);
+                }
+            });
         }
     },
 

@@ -21,7 +21,8 @@ post "/getStationData" do
   if id != nil
     station = db.get.StationById(id)
     return JSON.stringify(station)
-  else if name != nil
+  end
+  if name != nil
     station = db.get.StationByName(name)
     return JSON.stringify(station)
   end

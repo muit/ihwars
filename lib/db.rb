@@ -1,6 +1,4 @@
 
-require "activerecord"
-
 #//DATABASE////////
 
 class DBRetriever
@@ -10,10 +8,6 @@ class DBRetriever
   def get
     @adaptor
   end
-end
-
-
-
 end
 
 class DBAdaptor
@@ -46,5 +40,5 @@ class DBAdaptorFake
 end
 
 #Tables
-class Station < Activerecord::Base
-end
+#class Station < Activerecord::Base
+#end
