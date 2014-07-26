@@ -11,13 +11,25 @@ get "/" do
 end
 
 post "/getStationData" do
+  db = DBRetriever.new(DBAdaptorFake)
   #AJAX-js <=> POST station petition
-  if(params[:station_id])
-    id = params[:station_id]
+  id = params[:station_id]
+  name = params[:station_name]
+  
+  if id != nil
+    station = db.get.StationById(id)
+    JSON.stringify(station)
+  else if name != nil
+    station = db.get.StationByName(name)
+    JSON.stringify(station)
   else
-    lat = params[:latitude]
-    lon = params[:longitude]
+    "404 ERROR: Data provided corrupted"
   end
-  ""
-  #Return station object whit all the info
+end
+
+post "/getNearStations" do
+  lat = params[:latitude]
+  lon = params[:longitude]
+
+  JSON.stringify([])
 end
