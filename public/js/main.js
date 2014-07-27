@@ -53,6 +53,38 @@ $( document ).ready(function() {
     });
 });
 
+var StationUpdate = {
+    updateStationInfo: function(){
+        this.showLoading(true);
+
+        $.post('/getStationData', { station_name: "station"}, 
+        function(data){
+            var object = JSON.parse(data);
+
+            var htmlData = "";
+            for(var i = 0, len = object.times.length; i < len; i++)
+                htmlData += "<div class='anchor timetablevalue bck light'>"+objects.times[i]+"</div>"
+
+            Util.getId("timetable").innerHTML = htmlData;
+            this.showLoading(false);
+        },
+        function(error){
+            this.showLoading(false);
+            Util.getId("timetable").innerHTML = "<div class='anchor timetablevalue bck light'>"+"Error Downloading Data"+"</div>";
+        });
+    },
+
+    showLoading = function(value){
+        if(value){
+            $("#loadStationData").css("display", "block");
+            $("#loadStationData").css("background-color", "rgba(0,0,0,0.8)");
+        }else{ 
+            $("#loadStationData").css("display", "none");
+            $("#loadStationData").css("background-color", "rgba(0,0,0,0.0)");
+        }
+    },
+}
+
 var MapSystem = {
     me: undefined,
     loadMap: function(){

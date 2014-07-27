@@ -73,3 +73,7 @@ body {
     margin-right: -15px;
     width: 65px;
 }
+
+#loadStationData{
+    background-image: url(../img/load.gif);
+}
