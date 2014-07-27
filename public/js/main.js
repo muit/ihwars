@@ -28,6 +28,29 @@ $( document ).ready(function() {
             break;
         }
     });
+    $("body").bind('mouseover', function(event) {
+
+        switch($(event.target).attr('id')){
+        case "asidebutton":
+            $("#asidebutton").addClass("active");
+            break;
+        case "menuasidebutton":
+            $("#menuasidebutton").addClass("active");
+            break;
+        }
+    });
+
+    $("body").bind('mouseout', function(event) {
+
+        switch($(event.target).attr('id')){
+        case "asidebutton":
+            $("#asidebutton").removeClass("active");
+            break;
+        case "menuasidebutton":
+            $("#menuasidebutton").removeClass("active");
+            break;
+        }
+    });
 });
 
 var MapSystem = {

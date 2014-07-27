@@ -5,83 +5,25 @@
     <title>Transit</title>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="tuktuk/tuktuk.css">
     <link rel="stylesheet" href="tuktuk/tuktuk.theme.default.css">
     <link rel="stylesheet" href="tuktuk/tuktuk.icons.css">
-    <style>
-        body {
-            background: #000 url(img/bg.jpg) no-repeat center center fixed; 
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-            box-shadow: inset 0 0 20px black;
-        }
-        #title{
-            color: white;
-            text-shadow: 1px 1px 5px white;
-        }
-        #map-canvas {
-            background-color: #000;
-            opacity: 0.7;
-            height: 384px;
-            margin-bottom: 2.5em;
-            text-align: center;
-        }
-        .thumb {
-            height: 96px;
-            margin-bottom: 2.5em;
-            text-align: center;
-            line-height: 96px;
-        }
-        .column_4.thumb {
-            height: 220px;
-            line-height: 220px;
-        }
-        .timetable{
-            background-color: rgba(0, 0, 0, 0.2);
-            padding-top: 0.25em;
-            padding-bottom:  0.25em;
-            width: 100%;
-        }
-        .timetablevalue{
-            margin-top : 0.25em;
-            height: 32px;
-            margin-bottom: 0.25em;
-            text-align: center;
-            line-height: 32px;
-             
-            margin-left: 0.25em;
-            margin-right: 0.25em;
-        }
-        .map{
-            width: 100%;
-            margin-left: 0px;
-            margin-right: 0px;
-        }
-
-        .buttonsMenu{
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            width:100%;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
+    
     <script src="js/jquery-2.1.1.min.js"></script>
     <script src="js/main.js"></script>
     <script src="tuktuk/tuktuk.js"></script>
 </head>
 <body data-tuktuk="boxes">
-    <aside id="timetable" class="absolute bck light column_3">
+    <aside id="timetable" class="absolute bck light column_4" style="opacity: 0.95;">
         <div>
-        <header class="bck dark">
+        <header class="bck theme" style="opacity: 1;">
             <div class="session on-left">
-                <strong><a href="#" class="color theme">Time Table:</a></strong>
+                <strong>Time Table</strong>
             </div>
             <a href="#" id="closeaside" data-box="close" class="on-right text big icon remove color white"></a>
         </header>
-        <article class="bck light scroll">
+        <article class="bck dark scroll">
 
             <div class="margin-left margin-right">
                 <h4 class="text bold color theme inline">Station Name</h4>
@@ -126,7 +68,7 @@
         </footer>
     </section>
 
-    <div id="controlmenu" data-tuktuk="modal" data-modal="confirm" class="side column_3">
+    <div id="controlmenu" data-tuktuk="modal" data-modal="confirm" class="side column_3" style="opacity: 0.95;">
         <header class="bck theme">
             <strong>Transit</strong>
             <a href="#" id="closemenuaside" data-box="close" class="on-right text big icon remove color white"></a>
