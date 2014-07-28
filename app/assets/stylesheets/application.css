@@ -14,7 +14,7 @@
  *= require_self
  */
 body {
-    background: #000 url("/assets/bg.jpg") no-repeat center center fixed; 
+    background: #000 image-url('bg.jpg') no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -90,5 +90,5 @@ body {
 }
 
 #loadStationData{
-    background-image: url("/assets/load.gif");
+    background-image: image-url('load.gif');
 }
