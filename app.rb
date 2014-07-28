@@ -5,9 +5,6 @@ require "json"
 require_relative "lib/db.rb"
 require_relative "lib/parser.rb"
 
-set :port, 3000
-set :bind, '0.0.0.0'
-
 get "/" do
   erb :index
 end
