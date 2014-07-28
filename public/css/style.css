@@ -12,7 +12,7 @@ body {
 }
 #map-canvas {
     background-color: #000;
-    opacity: 0.8;
+    opacity: 0.9;
     height: 384px;
     margin-bottom: 2.5em;
     text-align: center;

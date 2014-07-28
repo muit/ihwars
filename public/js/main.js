@@ -74,7 +74,7 @@ var StationUpdate = {
         });
     },
 
-    showLoading = function(value){
+    showLoading: function(value){
         if(value){
             $("#loadStationData").css("display", "block");
             $("#loadStationData").css("background-color", "rgba(0,0,0,0.8)");
