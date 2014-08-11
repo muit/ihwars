@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+ /*
 body {
     background: #000 url("bg.jpg") no-repeat center center fixed; 
     -webkit-background-size: cover;
@@ -92,3 +93,4 @@ body {
 #loadStationData{
     background-image: url("load.gif");
 }
+*/
