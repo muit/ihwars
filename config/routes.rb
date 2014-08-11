@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  get '/' => "welcome#index"
-  resources :project => "welcome"
-  get '/project/:project_id/entries' => "entries#index"
-  get '/project/:project_id/entries/new' => "entries#new"
-  post '/project/:project_id/entries/new' => "entries#create"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
