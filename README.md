@@ -1,12 +1,12 @@
-Transit
+IH Wars
 =======
-WebApp that receives information about the public transport nearby, and shows it to the user.
+Web based game about mentors and students battles.
 
 Tecnologies: 
 
--JavaScript
+-HTML5 & JavaScript & CSS3
 -TukTuk
--Google Maps API & Google Transit API
+-Atoms
 -Rails
 
-Project not started yet.
+Project started
