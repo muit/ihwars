@@ -32,6 +32,7 @@ body > footer img {
 }
 .baseData {
     opacity: 1;
+    border-radius: 2px;
     -webkit-transition: opacity 0.5s;
     -moz-transition: opacity 0.5s;
     -o-transition: opacity 0.5s;
