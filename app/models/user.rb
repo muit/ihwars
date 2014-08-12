@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	has_one :base
+	has_many :bases
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

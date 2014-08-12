@@ -4,16 +4,15 @@ class CreateBuildings < ActiveRecord::Migration
       t.integer :type_id
       t.string :name
 
-      #Here insert what to produce(symbol string)
+      # Here insert what to produce(symbol string)
       t.string :product_model
 
-      #Seconds to the new production
+      # Basic production
       t.integer :production_speed
 
-      #Future combat columns
-      #(Buildings can be destroyed)
+      # Future combat columns
+      # (Buildings can be destroyed)
       t.integer :armor
-
     end
   end
 end

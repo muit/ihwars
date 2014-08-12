@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140812074908) do
+ActiveRecord::Schema.define(version: 20140812100107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,10 +21,11 @@ ActiveRecord::Schema.define(version: 20140812074908) do
     t.integer "resources"
   end
 
-  create_table "building_stacks", force: true do |t|
-    t.integer "base_id"
-    t.integer "type_id"
-    t.integer "amount"
+  create_table "building_units", force: true do |t|
+    t.integer  "type_id"
+    t.integer  "level"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "buildings", force: true do |t|
