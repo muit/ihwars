@@ -26,3 +26,18 @@ body > footer img {
     top: 5px;
     left: 2px; 
 }
+
+.baseDataBox {
+    opacity: 0.7;
+    background-color: rgb(30,30,30);
+}
+.baseData {
+    opacity: 1;
+    -webkit-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    transition: opacity 1s;
+}
+.baseData:hover {
+    opacity: 0.6;
+}
