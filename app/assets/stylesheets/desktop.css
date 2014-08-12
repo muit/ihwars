@@ -28,16 +28,26 @@ body > footer img {
 }
 
 .baseDataBox {
-    opacity: 0.7;
     background-color: rgb(30,30,30);
 }
 .baseData {
     opacity: 1;
-    -webkit-transition: opacity 1s;
-    -moz-transition: opacity 1s;
-    -o-transition: opacity 1s;
-    transition: opacity 1s;
+    -webkit-transition: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
+    transition: opacity 0.5s;
 }
 .baseData:hover {
-    opacity: 0.6;
+    opacity: 0.7;
+}
+
+.bck.grey{
+    background-color: rgb(200,200,200);
+}
+
+#mainSection{
+    height:auto;
+}
+#mainFooter{
+    margin-bottom: 0px;
 }
