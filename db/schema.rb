@@ -17,8 +17,7 @@ ActiveRecord::Schema.define(version: 20140812110258) do
   enable_extension "plpgsql"
 
   create_table "bases", force: true do |t|
-    t.string  "name"
-    t.integer "resources"
+    t.string "name"
   end
 
   create_table "building_units", force: true do |t|
