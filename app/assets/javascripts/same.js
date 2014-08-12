@@ -1,15 +1,18 @@
 var Base = {
+    size: 0,
+    
     createBase: function(name){
         $.get('/stations', {name: name}, 
             function(packet){
-                if(!packet.object.error)
-                {
-
-                }
+                if(packet.object.error)
+                    Visual.showAlert(true, msg);
+                else //If not error show the new Base
+                    Visual.createBase(name, );
             }, "json"
         );
-    }
+    },
 }
+
 
 var Util = {
     createNotification: function (img, title, content){

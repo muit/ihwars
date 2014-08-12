@@ -1,3 +1,4 @@
+<script>Base.size = <%= @bases.length%></script>
 <header class="padding-top bck dark">
     <div class="row">
         <div class="column_6">
@@ -19,7 +20,7 @@
 
 <section class="bck light">
     <div class="row text center">
-        <nav data-tuktuk="menu" class="column_12 padding text bold">
+        <nav id="base_list" data-tuktuk="menu" class="column_12 padding text bold">
             <% if @bases.length <= 0 %>
                 <a href="#" class='active'><span id='create_first_base' class='baseName icon plus-sign'></span>Crea una base!</a>
             <% else %>
@@ -68,7 +69,7 @@
   <header class="bck alert">
     <h4 class="text thin inline">Alert</h4>
   </header>
-  <article id="text" class="text big"></article>
+  <article id="alert-text" class="text big"></article>
   <footer>
     <button class="button large success on-right margin-bottom">
       <span id="alert_close" class="icon ok"></span>

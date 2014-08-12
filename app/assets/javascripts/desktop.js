@@ -16,9 +16,22 @@
 //= require same
 
 var Visual = {
-    showAlert: function(value){
+    showAlert: function(value, msg){
+        if(msg) $("#alert_text").html(msg);
         (value)? $("#alert").addClass("active") : $("#alert").removeClass("active");
     },
+
+    createBase: function(name, id){
+        this.Menu.addBase(name, Base.size);
+        Base.size++;
+        //Show Base Info <--Here
+    },
+    Menu: {
+        addBase: function(name, id){
+
+            $("#base_list").append("<a href='#'><span id='base_name_"+id+"' class='baseName icon building'></span>"+name+"<small></small></a>");
+        },
+    }
 }
 
 $( document ).ready(function() {
