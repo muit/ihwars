@@ -16,12 +16,33 @@
 //= require same
 
 var Visual = {
-    showAlert: function(value, msg){
+    showAlert: function(value, msg, timeout){
+        if(!timeout) var timeout = false;
         if(msg) $("#alert_text").html(msg);
-        (value)? $("#alert").addClass("active") : $("#alert").removeClass("active");
+
+        if(value)
+            $("#alert").addClass("active");
+        else
+            $("#alert").removeClass("active");
+        if(timeout){
+            setTimeOut(function(){
+                $("#alert").removeClass("active");
+            }, 3000);
+        }
     },
 
-    createBase: function(name, id){
+    createModalForm: function(msg, success){
+        $("#formModal").addClass("active");
+        $("#formModal_buttonOK").bind('click', function(event){
+            $("#formModal").removeClass("active");
+            success($("#formModal_text").html());
+        });
+        $("#formModal_buttonNOT").bind('click', function(event){
+            $("#formModal").removeClass("active");
+        });
+    },
+
+    createBase: function(name){
         this.Menu.addBase(name, Base.size);
         Base.size++;
         //Show Base Info <--Here
@@ -41,6 +62,14 @@ $( document ).ready(function() {
         switch($(event.target).attr('id')){
         case "alert_close":
             Visual.showAlert(false);
+            break;
+        case "create_first_base":
+            Visual.createModalForm("Nombre de la nueva base?", function(name){
+                if(name == "")
+                    Visual.showAlert(true, "El nombre no puede estar vacio.", true);
+                else
+                    Base.createBase(name);
+            });
             break;
         }
     });
