@@ -1,7 +1,7 @@
 <header class="padding-top bck dark">
   <div class="row">
     <div class="column_6">
-      <h2 class="text italic bold">Profile Name
+      <h2 class="text italic bold"><%= current_user.name %>
         <span class="tag bck theme">Rank: #0</span>
       </h2>
     </div>
@@ -17,11 +17,11 @@
   </div>
 </header>
 
-<article class="bck light">
-  <div class="ranking_table column_12">
+<article class="bck light margin-top">
+  <div class="ranking_table column_12 margin-bottom bck ligth">
     <% @users.each do |a_user| %>
-      <div class="ranking_row column_10 offset_1">
-        <p><%= a_user.name %></p>
+      <div class="ranking_row column_8 offset_2 bck grey margin-bottom padding-top padding-bottom">
+        <h5 class="text bold color theme margin-left"><a href="#"><%= a_user.name %></a></h5>
       </div>
     <% end %>
   </div>

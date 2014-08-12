@@ -52,3 +52,7 @@ body > footer img {
 #mainFooter{
     margin-bottom: 0px;
 }
+
+.ranking_row {
+    border-radius: 2px;
+}
