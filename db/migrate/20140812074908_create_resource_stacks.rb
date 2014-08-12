@@ -4,8 +4,6 @@ class CreateResourceStacks < ActiveRecord::Migration
     	t.integer :base_id
     	t.integer :type_id
     	t.integer :amount
-
-      t.timestamps
     end
   end
 end
