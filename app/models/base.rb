@@ -1,4 +1,5 @@
 class Base < ActiveRecord::Base
-  belongs_to :entityStack
-  belongs_to :buildingStack
+  has_many :entityStack
+  has_many :buildingStack
+  belongs_to :user
 end
