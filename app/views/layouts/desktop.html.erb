@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Zaphir</title>
+  <%= stylesheet_link_tag    'desktop' %>
+  <%= javascript_include_tag 'desktop' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<!-- Necessary for devise gem -->
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<%= yield %>
+
+</body>
+</html>
