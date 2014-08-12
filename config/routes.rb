@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root 'main#index'
 
   get "/base" => "base#index"
+  get "/rank" => "rank#rank"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

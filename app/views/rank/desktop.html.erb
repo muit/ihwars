@@ -1,0 +1,29 @@
+<header class="padding-top bck dark">
+  <div class="row">
+    <div class="column_6">
+      <h2 class="text italic bold">Profile Name
+        <span class="tag bck theme">Rank: #0</span>
+      </h2>
+    </div>
+    <div class="column_4">
+      <h6 class="text italic">
+        <span id="total_resources_money" class="icon money"> 120002</span>&nbsp&nbsp&nbsp&nbsp
+        <span id="total_resources_petrol" class="icon tint"> 10002 </span>
+      </h6>
+    </div>
+    <nav class="column_2  text right bold">
+      <a data-method='delete' href="/users/sign_out" class="button small dark">Log Out</a>
+    </nav>
+  </div>
+</header>
+
+<article class="bck light">
+  <div class="ranking_table column_12">
+    <% @users.each do |a_user| %>
+      <div class="ranking_row column_10 offset_1">
+        <p><%= a_user.name %></p>
+      </div>
+    <% end %>
+  </div>
+</article>
+
