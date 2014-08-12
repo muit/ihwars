@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140812110258) do
+ActiveRecord::Schema.define(version: 20140812161258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20140812110258) do
     t.string  "name"
     t.integer "damage"
     t.integer "armor"
+    t.integer "range"
   end
 
   create_table "entity_stacks", force: true do |t|

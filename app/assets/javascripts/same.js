@@ -2,10 +2,10 @@ var Base = {
     size: 0,
 
     createBase: function(name){
-        $.get('/stations', {name: name}, 
+        $.get('/base/create', {name: name}, 
             function(packet){
                 if(packet.object.error)
-                    Visual.showAlert(true, msg);
+                    Visual.showAlert(true, msg, true);
                 else //If not error show the new Base
                     Visual.createBase(name);
             }, "json"

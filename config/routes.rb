@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   root 'main#index'
 
   get "/base" => "base#index"
+  get "/base/create" => "base#create"
+
   get "/rank" => "rank#rank"
 
   # Example of regular route:

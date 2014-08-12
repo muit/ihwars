@@ -25,7 +25,7 @@ var Visual = {
         else
             $("#alert").removeClass("active");
         if(timeout){
-            setTimeOut(function(){
+            setTimeout(function(){
                 $("#alert").removeClass("active");
             }, 3000);
         }
