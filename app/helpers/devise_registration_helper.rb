@@ -1,0 +1,2 @@
+module DeviseRegistrationHelper
+end
