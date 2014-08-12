@@ -12,4 +12,16 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require_tree ./mobile
+//= require same
+
+var Visual = {
+    showStationTimes: function(times){
+    },
+    clearTimes: function(){
+    },
+    showLoading: function(value){
+    },
+    showLoadingInfo: function(value){
+    },
+}
