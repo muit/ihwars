@@ -2,8 +2,7 @@ class CreateBuildings < ActiveRecord::Migration
   def change
     create_table :buildings do |t|
       t.integer :type_id
-      t.string :name_es
-      t.string :name_en
+      t.string :name
 
       #Here insert what to produce(symbol string)
       t.string :product_model
