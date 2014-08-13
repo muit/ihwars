@@ -1,8 +1,8 @@
 <article class="bck light margin-top">
   <div class="ranking_table column_12 margin-bottom bck ligth">
-    <% @rank.each do |an_user_rank, index| %>
+    <% @ranks.each_with_index do |an_user_rank, index| %>
       <div class="ranking_row column_8 offset_2 bck grey margin-bottom padding-top padding-bottom">
-        <h5 class="text bold color theme margin-left"><%= index %>. <a href="#"><%= an_user_rank.user.name %></a></h5>
+        <h5 class="text bold color theme margin-left"><%= index + 1 %>. <a href="#"><%= an_user_rank.user.name %></a></h5>
         <h6><%= an_user_rank.total_resources %></h6>
       </div>
     <% end %>

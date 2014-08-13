@@ -1,4 +1,6 @@
 class RankController < ApplicationController
+	before_action :authenticate_user!
+
 	def rank
 		# FIXME: no defined order. Decide and implement an order
 		# FIXME: don't show all users, only the nearest ones
