@@ -17,6 +17,7 @@ module Zaphir
     # config.time_zone = 'Central Time (US & Canada)'
 
     config.autoload_paths << Rails.root.join('lib')
+    config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
     config.after_initialize do
       LoadSys.new
     end
