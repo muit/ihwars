@@ -22,7 +22,7 @@
     <div class="row text center">
         <nav id="base_list" data-tuktuk="menu" class="column_12 padding text bold">
             <% if @bases.length <= 0 %>
-                <a href="#" class='active'><span id='create_first_base' class='baseName icon plus-sign'></span>Crea una base!</a>
+                <a id='create_first_base' href="#" class='active'><span class='baseName icon plus-sign'></span>Crea una base!</a>
             <% else %>
                 <% @bases.each_with_index do |base, index| %>
                     <%= "<a href='#'><span id='base_name_#{index}' class='baseName icon building'></span>#{base.name}<small>(1)</small></a>" %>
@@ -71,26 +71,26 @@
   </header>
   <article id="alert-text" class="text big"></article>
   <footer>
-    <button class="button large success on-right margin-bottom">
-      <span id="alert_close" class="icon ok"></span>
+    <button id="alert_close" class="button large success on-right margin-bottom">
+      <span class="icon ok"></span>
     </button>
   </footer>
 </div>
-<div data-tuktuk="modal" data-modal="prompt" class="column_5">
+<div id="formModal" data-tuktuk="modal" data-modal="prompt" class="column_5">
   <header class="bck alert">
     <h4 class="text thin inline">Alert</h4>
   </header>
   <article class="text big">
     <form>
-      <label for="content" id="text"></label>
-      <input type="text" id="content">
+      <label for="formModal_text" id="text"></label>
+      <input type="text" id="formModal_text">
     </form>
   </article>
   <footer>
-    <button class="button large alert on-right margin-bottom">
+    <button id="formModal_buttonNOT" class="button large alert on-right margin-bottom">
       <span class="icon remove"></span>
     </button>
-    <button class="button large success on-right margin-bottom margin-right">
+    <button id="formModal_buttonOK" class="button large success on-right margin-bottom margin-right">
       <span class="icon ok"></span>
     </button>
   </footer>

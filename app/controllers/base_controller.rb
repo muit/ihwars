@@ -10,7 +10,7 @@ class BaseController < ApplicationController
     end
   end
 
-  def createBase
+  def create
     if (current_user.bases.length < Config.maxBases)
       current_user.bases.create(params[:name]);
       answerObject = {error: false, msg: ""}
