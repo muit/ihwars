@@ -1,4 +1,4 @@
-class Factory < Building_Unit
+class Factory < BuildingUnit
   def initialize
   end
 end

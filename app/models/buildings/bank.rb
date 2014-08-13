@@ -1,4 +1,4 @@
-class Bank < Building_Unit
+class Bank < BuildingUnit
   def initialize
   end
 end

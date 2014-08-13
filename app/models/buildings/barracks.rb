@@ -1,4 +1,4 @@
-class Barracks < Building_Unit
+class Barracks < BuildingUnit
   def initialize
   end
 end

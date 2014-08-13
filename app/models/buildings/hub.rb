@@ -1,4 +1,4 @@
-class Hub < Building_Unit
+class Hub < BuildingUnit
   def initialize
   end
 end

@@ -1,4 +1,4 @@
-class Laboratory < Building_Unit
+class Laboratory < BuildingUnit
   def initialize
   end
 end
