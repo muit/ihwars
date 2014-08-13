@@ -1,4 +1,9 @@
 class Bank < BuildingUnit
-  def initialize
+  def create(arguments)
+    super(type_id: 0, )
   end
+end
+
+def create(arguments)
+  super(type_id: 0, arguments)
 end

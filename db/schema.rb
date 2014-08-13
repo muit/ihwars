@@ -17,12 +17,8 @@ ActiveRecord::Schema.define(version: 20140813102624) do
   enable_extension "plpgsql"
 
   create_table "bases", force: true do |t|
-<<<<<<< HEAD
     t.string  "name"
     t.integer "user_id"
-=======
-    t.string "name"
->>>>>>> 5b50f5441694012cc6943a5eb0d4473c20d84d3f
   end
 
   create_table "building_units", force: true do |t|
