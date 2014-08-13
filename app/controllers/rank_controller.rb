@@ -2,7 +2,8 @@ class RankController < ApplicationController
 	def rank
 		# FIXME: no defined order. Decide and implement an order
 		# FIXME: don't show all users, only the nearest ones
-		@users = User.all
+		@profile_id = current_user.id
+		@ranks = UserRank.order('total_resources')
 
 		if mobile_device?
       render :mobile, layout: "mobile"

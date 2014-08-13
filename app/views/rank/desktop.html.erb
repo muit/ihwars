@@ -1,27 +1,9 @@
-<header class="padding-top bck dark">
-  <div class="row">
-    <div class="column_6">
-      <h2 class="text italic bold"><%= current_user.name %>
-        <span class="tag bck theme">Rank: #0</span>
-      </h2>
-    </div>
-    <div class="column_4">
-      <h6 class="text italic">
-        <span id="total_resources_money" class="icon money"> 120002</span>&nbsp&nbsp&nbsp&nbsp
-        <span id="total_resources_petrol" class="icon tint"> 10002 </span>
-      </h6>
-    </div>
-    <nav class="column_2  text right bold">
-      <a data-method='delete' href="/users/sign_out" class="button small dark">Log Out</a>
-    </nav>
-  </div>
-</header>
-
 <article class="bck light margin-top">
   <div class="ranking_table column_12 margin-bottom bck ligth">
-    <% @users.each do |a_user| %>
+    <% @rank.each do |an_user_rank, index| %>
       <div class="ranking_row column_8 offset_2 bck grey margin-bottom padding-top padding-bottom">
-        <h5 class="text bold color theme margin-left"><a href="#"><%= a_user.name %></a></h5>
+        <h5 class="text bold color theme margin-left"><%= index %>. <a href="#"><%= an_user_rank.user.name %></a></h5>
+        <h6><%= an_user_rank.total_resources %></h6>
       </div>
     <% end %>
   </div>

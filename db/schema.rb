@@ -11,14 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140812161258) do
+ActiveRecord::Schema.define(version: 20140813085255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bases", force: true do |t|
-    t.string  "name"
-    t.integer "resources"
+    t.string "name"
   end
 
   create_table "building_units", force: true do |t|
@@ -60,6 +59,17 @@ ActiveRecord::Schema.define(version: 20140812161258) do
     t.integer "type_id"
     t.string  "name"
   end
+
+  create_table "user_ranks", force: true do |t|
+    t.integer "user_id"
+    t.integer "total_resources"
+    t.integer "total_money"
+    t.integer "total_materials"
+  end
+
+  add_index "user_ranks", ["total_materials"], name: "index_user_ranks_on_total_materials", using: :btree
+  add_index "user_ranks", ["total_money"], name: "index_user_ranks_on_total_money", using: :btree
+  add_index "user_ranks", ["total_resources"], name: "index_user_ranks_on_total_resources", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
