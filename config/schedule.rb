@@ -18,3 +18,7 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+
+every 1.days, :at => '8:00 am' do
+  runner "UserRank.update_user_ranks"
+end

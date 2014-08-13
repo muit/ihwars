@@ -1,9 +1,6 @@
 class Bank < BuildingUnit
   def create(arguments)
-    super(type_id: 0, )
+    arguments[:type_id] = 6
+    super(arguments)
   end
-end
-
-def create(arguments)
-  super(type_id: 0, arguments)
 end
