@@ -41,7 +41,7 @@ end
 # gem 'debugger', group: [:development, :test]
 
 group :development do
-	gem 'pry'
+	gem 'pry-rails', '~> 0.3.2'
 end
 
 gem 'devise'
