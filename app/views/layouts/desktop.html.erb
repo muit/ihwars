@@ -11,15 +11,16 @@
 <body>
 	<header class="padding-top bck dark">
 	    <div class="row">
-	        <div class="column_5">
-	            <h2 class="text italic bold">Profile Name
+	        <div class="column_6">
+	            <h2 class="text italic bold"><%= current_user.name %>
 	            <span class="tag bck theme">Rank: #0</span>
 	            </h2>
 	        </div>
-	        <div class="column_5">
+	        <div class="column_4">
 	            <h6 class="text italic">
-	                <span id="total_resources_money" class="icon money column_2 text center"> 120002</span>
-	                <span id="total_resources_petrol" class="icon tint column_2 text center"> 10002 </span>
+	                <span id="total_resources_money" class="margin-right icon money text center"> <%= get_current_user_resource(0) %></span>
+	                <span id="total_resources_materials" class="margin-right icon tint text center"> <%= get_current_user_resource(1) %></span>
+	                <span id="total_resources_ping" class="icon tasks text center"> <%= get_current_user_resource(2) %></span>
 	            </h6>
 	        </div>
 	        <nav class="column_2 text right bold">

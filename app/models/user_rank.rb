@@ -14,16 +14,14 @@ class UserRank < ActiveRecord::Base
 	end
 
 	def reset
-		total_resources = 0
-		total_materials = 0
-		total_money = 0
+		self.total_resources = 0
+		self.total_materials = 0
+		self.total_money = 0
 	end
 
-	private
-
 	def add_resource_stacks(resource_stacks)
-		total_money += resource_stacks[0]
-		total_materials += resource_stacks[1]
-		total_resources += total_money + total_materials
+		self.total_money += resource_stacks[0].amount
+		self.total_materials += resource_stacks[1].amount
+		self.total_resources += total_money + total_materials
 	end
 end
