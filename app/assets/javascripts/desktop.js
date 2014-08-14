@@ -55,7 +55,7 @@ var Visual = {
                 return id;
         }
         return 0;
-    }
+    },
 
     Menu: {
         addBase: function(name, id){
