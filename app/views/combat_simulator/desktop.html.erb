@@ -1,20 +1,24 @@
 <section class="column_12 padding">
-	<form action="/simulator/run" method="post" class="column_12">
-		<div class="column_6 padding-top padding-bottom">
+	<form action="/simulator/run" method="post" class="column_11 offset_1">
+		<div class="column_5 padding-top padding-bottom">
 			<h3>Your units</h3>
 			<% Cache.entities.each do |an_entity| %>
-				<label for="ally_<%= an_entity.type_id %>"></label>
-				<input type="number" name="ally_<%= an_entity.type_id %>">
+				<label for="ally_<%= an_entity[:type_id] %>"><%= an_entity[:name] %></label>
+				<input type="number" name="ally_<%= an_entity[:type_id] %>" value="0">
 				<br>
 			<% end %>
 		</div>
-		<div class="column_6 padding-top padding-bottom">
+		<div class="column_5 padding-top padding-bottom">
 			<h3>Enemy units</h3>
 			<% Cache.entities.each do |an_entity| %>
-				<label for="enemy_<%= an_entity.type_id %>"></label>
-				<input type="number" name="enemy_<%= an_entity.type_id %>">
+				<label for="enemy_<%= an_entity[:type_id] %>"><%= an_entity[:name] %></label>
+				<input type="number" name="enemy_<%= an_entity[:type_id] %>" value="0">
 				<br>
 			<% end %>
+		</div>
+		<div>
+			<button class="column_2 button ligth" type="reset" value="Reset">Reset</button>
+			<button class="column_2 button theme" type="submit" value="Submit">Simulate</button>
 		</div>
 	</form>
 </section>
