@@ -19,7 +19,7 @@ module Zaphir
     config.autoload_paths << Rails.root.join('lib')
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
     config.after_initialize do
-      LoadSys.new
+      LoadSys.new if ENV['DISABLE_INITIALIZER_FROM_RAKE'] 
     end
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.

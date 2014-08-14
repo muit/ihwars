@@ -11,27 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140813102624) do
+ActiveRecord::Schema.define(version: 20140813085255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bases", force: true do |t|
-    t.string  "name"
     t.integer "user_id"
+    t.string  "name"
   end
 
   create_table "building_units", force: true do |t|
     t.integer  "type_id"
     t.integer  "level"
+    t.time     "finish_building"
+    t.integer  "base_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "base_id"
   end
 
   create_table "buildings", force: true do |t|
     t.integer "type_id"
     t.string  "name"
+    t.integer "construction_time"
     t.string  "product_model"
     t.integer "production_speed"
     t.integer "armor"
@@ -74,6 +76,7 @@ ActiveRecord::Schema.define(version: 20140813102624) do
   add_index "user_ranks", ["total_resources"], name: "index_user_ranks_on_total_resources", using: :btree
 
   create_table "users", force: true do |t|
+    t.string   "name"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -86,7 +89,6 @@ ActiveRecord::Schema.define(version: 20140813102624) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
