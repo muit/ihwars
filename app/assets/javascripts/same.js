@@ -5,7 +5,7 @@ var Base = {
         $.get('/base/create', {name: name}, 
             function(packet){
                 if(packet.object.error)
-                    Visual.showAlert(true, msg, true);
+                    Visual.showAlert(true, packet.object.msg, true);
                 else //If not error show the new Base
                     Visual.createBase(name);
             }, "json"
