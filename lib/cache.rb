@@ -4,6 +4,7 @@ class Cache
     #Entity adapter
     attr_accessor :entities
     def loadEntities
+      puts "Loading Entity Types from database..."
       @entities = Entity.all.map{|entity| entity.attributes}
     end
     def selectEntity(argument, value)
@@ -18,6 +19,7 @@ class Cache
     #Building adapter
     attr_accessor :buildings
     def loadBuildings
+      puts "Loading Building Types from database..."
       @buildings = Building.all.map{|building| building.attributes}
     end
     def selectBuilding(argument, value)

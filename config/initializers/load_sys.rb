@@ -1,0 +1,1 @@
+LoadSys.new if File.basename($0)!="rake"
