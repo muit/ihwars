@@ -57,6 +57,17 @@ var Visual = {
         return 0;
     },
 
+    showAllTypes: function(value){
+        if(value){
+            $(".baseDataTitle").addClass("hidden");
+            $(".baseData").addClass("hidden");
+        }
+        else{
+            $(".baseDataTitle").removeClass("hidden");
+            $(".baseData").removeClass("hidden");
+        }
+    },
+
     Menu: {
         addBase: function(name, id){
 
@@ -88,9 +99,10 @@ $( document ).ready(function() {
             $("#flash_notice").remove()
             break;
         }
+        if($(event.target).hasClass("baseData"))
+            Visual.showAllTypes(true);
     });
     $("body").bind('mouseover', function(event) {
-
         switch($(event.target).attr('id')){
         }
     });

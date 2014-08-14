@@ -20,15 +20,39 @@
     <div class="baseDataBox row">
         <% if @bases.length > 0 %>
         <div class="column_6 padding-top padding-bottom">
-            <h4 class="text italic bold color theme margin-left">Edificios:</h4>
+            <h4 class="baseDataTitle text italic bold color theme margin-left">Edificios:</h4>
             <% Cache.buildings.each do |building| %>
-              <a id="building_type_<%= building[:type_id] %>" href="#"><div class="baseData column_5 bck grey margin-bottom padding"><%= building[:name] %></div></a>
+              <a id="building_type_<%= building[:type_id] %>" href="#">
+              <div class="baseData column_5 bck grey margin-bottom padding">
+                <%= building[:name] %>
+                <div class="on-right">
+                  <% units = @bases.first.building_units.where(:type_id => building[:type_id]) %>
+                  <% if units != nil %>
+                    <%= units.length %>
+                  <% else %>
+                    0
+                  <% end %>
+                </div>
+              </div>
+              </a>
             <% end %>
         </div>
         <div class="column_6 padding-top padding-bottom">
-            <h4 class="text italic bold color theme margin-left">Unidades:</h4>
+            <h4 class="baseDataTitle text italic bold color theme margin-left">Unidades:</h4>
             <% Cache.entities.each do |entity| %>
-            <a id="entity_type_<%= entity[:type_id] %>" href="#"><div class="baseData column_5 bck grey margin-bottom padding"><%= entity[:name] %></div></a>
+              <a id="entity_type_<%= entity[:type_id] %>" href="#">
+              <div class="baseData column_5 bck grey margin-bottom padding">
+                <%= entity[:name] %>
+                <div class="on-right">
+                  <% stack = @bases.first.entity_stacks.where(:type_id => entity[:type_id])[0] %>
+                  <% if stack != nil %>
+                    <%= stack.amount  %>
+                  <% else %>
+                    0
+                  <% end %>
+                </div>
+              </div>
+              </a>
             <% end %>
         </div>
         <% end %>

@@ -33,13 +33,30 @@ body > footer img {
 .baseData {
     opacity: 1;
     border-radius: 2px;
-    -webkit-transition: opacity 0.5s;
-    -moz-transition: opacity 0.5s;
-    -o-transition: opacity 0.5s;
-    transition: opacity 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
 }
-.baseData:hover {
+.baseData.hidden{
+
+    opacity: 0;
+    margin-left: -1em;
+}
+.baseData:hover:not(.hidden) {
     opacity: 0.7;
+}
+
+.baseDataTitle {
+    opacity: 1;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.baseDataTitle.hidden{
+    opacity: 0;
+    margin-left: -1em;
 }
 
 .bck.grey{

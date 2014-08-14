@@ -24,7 +24,7 @@ class BaseController < ApplicationController
     render :json => Packet.new(Opcode.BASE_CREATE, answerObject)
   end
   def build
-    if ()
+    if isValidBuildingId?(params[:id])
       current_user.bases.create(params[:name]);
       answerObject = {error: false, msg: ""}
     else
@@ -34,8 +34,11 @@ class BaseController < ApplicationController
   end
 
   private
-  def isValidName?(name)
+  def isValidBaseName?(name)
     mapsWithSameName = current_user.bases.map {|base| base.name == name}
     (name!="" && mapsWithSameName.length <= 0)
+  end
+  def isValidBuildingId?(id)
+    Cache.building(id) != nil
   end
 end
