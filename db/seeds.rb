@@ -15,13 +15,13 @@ Resource.create(type_id: 2, name: "ping")
 
 ## Buildings: 6 types
 # Basic building. Appears by default when a base is created
-Building.create(type_id: 0, name: "hub", armor: 10000) # Almost infinity. This cannot be destroyed
+Building.create(type_id: 0, construction_time: 300, name: "hub", armor: 10000) # Almost infinity. This cannot be destroyed
 # Resource-production Buildings
-Building.create(type_id: 1, name: "server", armor: 800)
-Building.create(type_id: 2, name: "bank", armor: 1000)
-Building.create(type_id: 3, name: "factory", armor: 1000)
-Building.create(type_id: 4, name: "barracks", armor: 2000)
-Building.create(type_id: 5, name: "laboratory", armor: 700)
+Building.create(type_id: 1, construction_time: 86400, name: "server", armor: 800)
+Building.create(type_id: 2, construction_time: 1800, name: "bank", armor: 1000)
+Building.create(type_id: 3, construction_time: 900, name: "factory", armor: 1000)
+Building.create(type_id: 4, construction_time: 1800, name: "barracks", armor: 2000)
+Building.create(type_id: 5, construction_time: 86400, name: "laboratory", armor: 700)
 
 ##Entities: 7 types
 Entity.create(type_id: 0, name: "Alumno Básico", damage: 10, armor: 10, range: 5)

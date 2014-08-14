@@ -4,6 +4,9 @@ class CreateBuildings < ActiveRecord::Migration
       t.integer :type_id
       t.string :name
 
+      # Amount of time to finish the building
+      t.integer :construction_time
+
       # Here insert what to produce(symbol string)
       t.string :product_model
 

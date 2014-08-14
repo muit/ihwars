@@ -7,6 +7,7 @@ class CreateEntities < ActiveRecord::Migration
       #Future combat columns
       t.integer :damage
       t.integer :armor
+      t.integer :range
     end
   end
 end
