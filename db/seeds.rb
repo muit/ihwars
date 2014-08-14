@@ -27,7 +27,7 @@ Building.create(type_id: 5, construction_time: 86400, name: "laboratory", armor:
 Entity.create(type_id: 0, name: "Alumno Básico", damage: 10, armor: 10, range: 5)
 Entity.create(type_id: 1, name: "Alumno Experimentado", damage: 15, armor: 30, range: 8)
 Entity.create(type_id: 2, name: "Mentor con Látigo", damage: 35, armor: 50, range: 10)
-Entity.create(type_id: 3, name: "Mentor con Escopeta", damage: 30, armor: 30, range: 100)
+Entity.create(type_id: 3, name: "Mentor con Escopeta", damage: 10, armor: 5, range: 100)
 Entity.create(type_id: 4, name: "Profesor de Testing", damage: 45, armor: 60, range: 10)
 Entity.create(type_id: 5, name: "Profesor Trabuquero", damage: 30, armor: 40, range: 35)
 Entity.create(type_id: 6, name: "Lady Muriel", damage: 100, armor: 500, range: 5)
