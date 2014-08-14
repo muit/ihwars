@@ -4,7 +4,7 @@ class Cache
     #Entity adapter
     attr_accessor :entities
     def loadEntities
-      puts "Loading Entity Types from database..."
+      puts "    Loading Entity Types from database..."
       @entities = Entity.all.map{|entity| entity.attributes}
       @entities.map{|entity| entity.symbolize_keys!()}
     end
@@ -20,7 +20,7 @@ class Cache
     #Building adapter
     attr_accessor :buildings
     def loadBuildings
-      puts "Loading Building Types from database..."
+      puts "    Loading Building Types from database..."
       @buildings = Building.all.map{|building| building.attributes}
       @buildings.map{|building| building.symbolize_keys!()}
     end

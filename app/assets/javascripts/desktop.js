@@ -35,7 +35,7 @@ var Visual = {
         $("#formModal").addClass("active");
         $("#formModal_buttonOK").bind('click', function(event){
             $("#formModal").removeClass("active");
-            success($("#formModal_text").html());
+            success(formModal_text.value);
         });
         $("#formModal_buttonNOT").bind('click', function(event){
             $("#formModal").removeClass("active");
@@ -73,7 +73,7 @@ $( document ).ready(function() {
         case "alert_close":
             Visual.showAlert(false);
             break;
-        case "create_first_base":
+        case "create_base":
             Visual.createModalForm("Nombre de la nueva base?", function(name){
                 if(name == "")
                     Visual.showAlert(true, "El nombre no puede estar vacio.", true);

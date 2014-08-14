@@ -1,37 +1,35 @@
 <script>Base.size = <%= @bases.length%></script>
 
-<section class="bck light">
+<section class="bck grey margin-top margin-bottom">
     <div class="row text center">
         <nav id="base_list" data-tuktuk="menu" class="column_12 padding text bold">
             <% if @bases.length <= 0 %>
-                <a id='create_first_base' href="#" class='active'><span class='baseName icon plus-sign'></span>Crea una base!</a>
+                <a id='create_base' href="#" class='active'><span class='baseName icon plus-sign'></span>Crea una base!</a>
             <% else %>
                 <% @bases.each_with_index do |base, index| %>
-                    <%= "<a href='#'><span id='base_name_#{index}' class='baseName icon building'></span>#{base.name}<small>(1)</small></a>" %>
+                    <a id='base_name_<%= index %>' class='<%= "active" if index == 0 %>' href='#'><span  class='baseName icon building'></span><%= base.name %><small>(1)</small></a>
                 <% end %>
-                <%= "<a href='#'><span id='create_base' class='baseName icon plus-sign'></span>New Base</a>" %>
+                <a id='create_base' href='#'><span class='baseName icon plus-sign'></span>Nueva Base</a>
             <% end %>
         </nav>
     </div>
 </section>
 
 
-<section id="mainSection" class="margin-bottom bck light padding-bottom">
+<section id="mainSection" class="padding-left padding-right">
     <div class="baseDataBox row">
-        <% if @bases.length <= 0 %>
+        <% if @bases.length > 0 %>
         <div class="column_6 padding-top padding-bottom">
             <h4 class="text italic bold color theme margin-left">Edificios:</h4>
-            <a href="#"><div class="baseData column_5 bck grey margin-bottom padding-top padding-bottom">thumb</div></a>
-            <a href="#"><div class="baseData column_5 bck grey margin-bottom padding-top padding-bottom">thumb</div></a>
-            <a href="#"><div class="baseData column_5 bck grey margin-bottom padding-top padding-bottom">thumb</div></a>
-            <a href="#"><div class="baseData column_5 bck grey margin-bottom padding-top padding-bottom">thumb</div></a>
+            <% Cache.buildings.each do |building| %>
+              <a id="building_type_<%= building[:type_id] %>" href="#"><div class="baseData column_5 bck grey margin-bottom padding"><%= building[:name] %></div></a>
+            <% end %>
         </div>
         <div class="column_6 padding-top padding-bottom">
             <h4 class="text italic bold color theme margin-left">Unidades:</h4>
-            <a href="#"><div class="baseData column_5 bck grey margin-bottom padding-top padding-bottom">thumb</div></a>
-            <a href="#"><div class="baseData column_5 bck grey margin-bottom padding-top padding-bottom">thumb</div></a>
-            <a href="#"><div class="baseData column_5 bck grey margin-bottom padding-top padding-bottom">thumb</div></a>
-            <a href="#"><div class="baseData column_5 bck grey margin-bottom padding-top padding-bottom">thumb</div></a>
+            <% Cache.entities.each do |entity| %>
+            <a id="entity_type_<%= entity[:type_id] %>" href="#"><div class="baseData column_5 bck grey margin-bottom padding"><%= entity[:name] %></div></a>
+            <% end %>
         </div>
         <% end %>
     </div>
@@ -50,11 +48,11 @@
 </div>
 <div id="formModal" data-tuktuk="modal" data-modal="prompt" class="column_5">
   <header class="bck notice color white">
-    <h4 class="text inline">Alert</h4>
+    <h4 class="text inline">Nombre de la base?</h4>
   </header>
   <article class="text big">
     <form>
-      <label for="formModal_text" id="text"></label>
+      <label id="text"></label>
       <input type="text" id="formModal_text">
     </form>
   </article>

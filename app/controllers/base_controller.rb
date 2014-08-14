@@ -1,8 +1,7 @@
 class BaseController < ApplicationController
   #before_action :authenticate_user!
   def index
-    @bases = []
-    #@bases = current_user.bases
+    @bases = current_user.bases
     if mobile_device?
       render :mobile, layout: "mobile"
     else
@@ -11,12 +10,17 @@ class BaseController < ApplicationController
   end
 
   def create
-    if (current_user.bases.length < Config.maxBases)
-      current_user.bases.create(params[:name]);
-      answerObject = {error: false, msg: ""}
-    else
+    puts "Creando Base a #{current_user.name}"
+    #Settings.maxBases
+    if current_user.bases.count >= 5
       answerObject = {error: true, msg: "Maximum bases reached."}
+    elsif !isValidName?(params[:name])
+      answerObject = {error: true, msg: "That name may be reapeated or is empty."}
+    else
+      current_user.bases.create(name: params[:name]);
+      answerObject = {error: false, msg: ""}
     end
+
     render :json => Packet.new(Opcode.BASE_CREATE, answerObject)
   end
   def build
@@ -27,5 +31,11 @@ class BaseController < ApplicationController
       answerObject = {error: true, msg: "Maximum bases reached."}
     end
     render :json => Packet.new(Opcode.BASE_CREATE, answerObject)
+  end
+
+  private
+  def isValidName?(name)
+    mapsWithSameName = current_user.bases.map {|base| base.name == name}
+    (name!="" && mapsWithSameName.length <= 0)
   end
 end
