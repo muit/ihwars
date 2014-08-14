@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 
   get "/rank" => "rank#rank"
 
+  get "/simulator" => "simulator#simulator"
+  post "/simulator/run" => "simulator#run"
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

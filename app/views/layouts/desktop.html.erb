@@ -9,31 +9,55 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<header class="padding-top bck dark">
+	<!-- Necessary for devise gem -->
+	<% if alert.present? %>
+		<section id="flash_alert" class="bck alert padding">
+			<h6 class="alert inline"><%= alert %></h6>
+			<button id="remove_flash_alert" class="transparent tiny on-right inline icon remove"></button>
+		</section>
+	<% end %>
+
+	<% if notice.present? %>
+		<section id="flash_notice" class="bck success padding">
+			<h6 class="notice inline"><%= notice %></h6>
+			<button id="remove_flash_success" class="transparent tiny on-right inline icon remove"></button>
+		</section>
+	<% end %>
+
+	<header class="padding-top padding-bottom bck dark">
+		<% if user_signed_in? %>
 	    <div class="row">
-	        <div class="column_6">
-	            <h2 class="text italic bold"><%= current_user.name %>
-	            <span class="tag bck theme">Rank: #0</span>
-	            </h2>
-	        </div>
-	        <div class="column_4">
-	            <h6 class="text italic">
-	                <span id="total_resources_money" class="margin-right icon money text center"> <%= get_current_user_resource(0) %></span>
-	                <span id="total_resources_materials" class="margin-right icon tint text center"> <%= get_current_user_resource(1) %></span>
-	                <span id="total_resources_ping" class="icon tasks text center"> <%= get_current_user_resource(2) %></span>
-	            </h6>
-	        </div>
-	        <nav class="column_2 text right bold">
-	            <a data-method='delete' href="/users/sign_out" class="button small dark">Log Out</a>
-	        </nav>
+	      <div class="column_6">
+	        <h3 class="text italic bold"><%= current_user.name %>
+	        	<span class="tag bck theme">Rank: #0</span>
+	        </h3>
+	      </div>
+	      <div class="column_4">
+	        <h6 class="text italic">
+	          <span id="total_resources_money" class="margin-right icon money text center"> <%= get_current_user_resource(0) %></span>
+	          <span id="total_resources_materials" class="margin-right icon tint text center"> <%= get_current_user_resource(1) %></span>
+	          <span id="total_resources_ping" class="icon tasks text center"> <%= get_current_user_resource(2) %></span>
+	        </h6>
+	    	</div>
+	      <nav class="column_2 text right bold">
+	        <a data-method='delete' href="/users/sign_out" class="button small dark">Log Out</a>
+	      </nav>
 	    </div>
+    <% else %>
+    	<div class="row">
+	      <div class="column_8">
+	        <h4 class="text bold">You are not logged in</h4>
+	      </div>
+	      <nav class="access_account_buttons column_4 text right bold">
+	        <a href="/users/sign_in" class="button small dark">Log in</a>
+	        <a href="/users/sign_up" class="button small theme">Register</a>
+	      </nav>
+	    </div>
+    <% end %>
 	</header>
 
-	<!-- Necessary for devise gem -->
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
-
-	<%= yield %>
-
+	<article>
+		<%= yield %>
+	</article>
 </body>
 </html>
