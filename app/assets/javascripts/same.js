@@ -11,6 +11,16 @@ var Base = {
             }, "json"
         );
     },
+    createBuilding: function(building_tupe, base_id){
+        $.get('/base/build', {type_id: building_type, actualBase: base_id}, 
+            function(packet){
+                if(packet.object.error)
+                    Visual.showAlert(true, msg, true);
+                else{} //If not error show the new Building Construction
+            }, "json"
+        );
+    }
+
 }
 
 

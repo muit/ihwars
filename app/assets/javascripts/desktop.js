@@ -47,6 +47,16 @@ var Visual = {
         Base.size++;
         //Show Base Info <--Here
     },
+
+    baseSelected: function(){
+        for(var id = 0; id < Base.size; id++)
+        {
+            if($("base_name_"+id).hasClass("active"))
+                return id;
+        }
+        return 0;
+    }
+
     Menu: {
         addBase: function(name, id){
 
