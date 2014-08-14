@@ -71,6 +71,12 @@ $( document ).ready(function() {
                     Base.createBase(name);
             });
             break;
+        case "remove_flash_alert":
+            $("#flash_alert").remove()
+            break;
+        case "remove_flash_success":
+            $("#flash_notice").remove()
+            break;
         }
     });
     $("body").bind('mouseover', function(event) {

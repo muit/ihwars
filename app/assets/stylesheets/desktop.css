@@ -56,3 +56,7 @@ body > footer img {
 .ranking_row {
     border-radius: 2px;
 }
+
+.access_accounts_buttons a {
+    display: inline-block;
+}

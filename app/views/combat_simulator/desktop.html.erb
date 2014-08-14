@@ -1,0 +1,20 @@
+<section class="column_12 padding">
+	<form action="/simulator/run" method="post" class="column_12">
+		<div class="column_6 padding-top padding-bottom">
+			<h3>Your units</h3>
+			<% Cache.entities.each do |an_entity| %>
+				<label for="ally_<%= an_entity.type_id %>"></label>
+				<input type="number" name="ally_<%= an_entity.type_id %>">
+				<br>
+			<% end %>
+		</div>
+		<div class="column_6 padding-top padding-bottom">
+			<h3>Enemy units</h3>
+			<% Cache.entities.each do |an_entity| %>
+				<label for="enemy_<%= an_entity.type_id %>"></label>
+				<input type="number" name="enemy_<%= an_entity.type_id %>">
+				<br>
+			<% end %>
+		</div>
+	</form>
+</section>
