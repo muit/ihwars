@@ -45,14 +45,6 @@ class BaseController < ApplicationController
     render :json => Packet.new(Opcode.BASE_INFO, answerObject)
   end
 
-  def buildingInfo
-    selectedbase = getBase(params[:actualBase]);
-    building_units = selectedBase.building_units.where(type_id: params[:type_id])
-    answerObject = {error: false, msg: "", buildings: building_units}
-
-    render :json => Packet.new(Opcode.BUILDING_INFO, answerObject)
-  end
-
   private
   def isValidBaseName?(name)
     sameNameBase = getBase(name)
@@ -60,9 +52,5 @@ class BaseController < ApplicationController
   end
   def isValidBuildingId?(id)
     Cache.building(id) != nil
-  end
-
-  def getBase(name)
-    current_user.bases.where(name: name).first;
   end
 end

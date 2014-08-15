@@ -13,4 +13,8 @@ class ApplicationController < ActionController::Base
       request.user_agent =~ /Mobile|webOS/
     end
   end
+  
+  def getBase(name)
+    current_user.bases.where(name: name).first;
+  end
 end

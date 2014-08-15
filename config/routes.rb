@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get "/base" => "base#index"
   get "/base/create" => "base#create"
+  get "/base/amounts" => "base#info"
+  get "/base/building/info" => "building#info"
 
   get "/rank" => "rank#rank"
 

@@ -22,19 +22,35 @@ var Base = {
         );
     },
 
-    getBaseData: function(baseName, success, error){
-        $.get('/base/info', {actualBase: baseName},
+    getBaseAmounts: function(baseName, success, error){
+        $.get('/base/amounts', {actualBase: baseName},
             function(packet){
                 if(packet.object.error == true)
                     error(packet.object.msg);
-                else
-                    success(packet.object.info);
+                else{
+                    entityAmount = packet.object.entityAmount;
+                    buildingAmount = packet.object.buildingAmount;
+                    success(entityAmount, buildingAmount);
+                }
             }, "json"
         );
     },
+
+    Building: {
+        getByType: function(baseName, type_id){
+            $.get('/base/building/info', 
+                {actualBase: baseName, type_id: type_id},
+                function(packet){
+                    if(packet.object.error == true)
+                        error(packet.object.msg);
+                    else{
+                        success(packet.object.buildings);
+                    }
+                }, "json"
+            );
+        },
+    },
 }
-
-
 
 var Util = {
     createNotification: function (img, title, content){
