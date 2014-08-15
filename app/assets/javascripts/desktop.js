@@ -58,20 +58,47 @@ var Visual = {
     },
 
     showAllTypes: function(value){
-        if(value){
+        if(!value){
             $(".baseDataTitle").addClass("hidden");
             $(".baseData").addClass("hidden");
+            setTimeout(function(){
+                $(".baseDataTitle").css("display", "none");
+                $(".baseData").css("display", "none");
+            }, 500);
         }
         else{
-            $(".baseDataTitle").removeClass("hidden");
-            $(".baseData").removeClass("hidden");
+            $(".baseDataTitle").css("display", "block");
+            $(".baseData").css("display", "block");
+            setTimeout(function(){
+                $(".baseDataTitle").removeClass("hidden");
+                $(".baseData").removeClass("hidden");
+            }, 500);
+        }
+    },
+
+    showInfoPanel: function(value, title){
+        if(!value){
+            $(".dataPanelTitle").addClass("hidden");
+            $(".dataPanel").addClass("hidden");
+            setTimeout(function(){
+                $(".dataPanelTitle").css("display", "none");
+                $(".dataPanel").css("display", "none");
+            }, 500);
+        }
+        else{
+            $(".dataPanelTitle").css("display", "block");
+            $(".dataPanel").css("display", "block");
+            $(".dataPanelTitle").html(title);
+            setTimeout(function(){
+                $(".dataPanelTitle").removeClass("hidden");
+                $(".dataPanel").removeClass("hidden");
+            }, 500);
         }
     },
 
     Menu: {
         addBase: function(name, id){
-
-            $("#base_list").append("<a href='#'><span id='base_name_"+id+"' class='baseName icon building'></span>"+name+"<small></small></a>");
+            $("#base_list").prepend("<a href='#'><span id='base_name_"+id+"' class='baseName icon building'></span>"+name+"<small></small></a>");
         },
     }
 }
@@ -79,13 +106,13 @@ var Visual = {
 $( document ).ready(function() {
     
     $("body").bind('click', function(event) {
-
         switch($(event.target).attr('id')){
         case "alert_close":
             Visual.showAlert(false);
             break;
         case "create_base":
             Visual.createModalForm("Nombre de la nueva base?", function(name){
+                console.log(name);
                 if(name == "")
                     Visual.showAlert(true, "El nombre no puede estar vacio.", true);
                 else
@@ -100,7 +127,7 @@ $( document ).ready(function() {
             break;
         }
         if($(event.target).hasClass("baseData"))
-            Visual.showAllTypes(true);
+            Visual.showAllTypes(false);
     });
     $("body").bind('mouseover', function(event) {
         switch($(event.target).attr('id')){
@@ -108,7 +135,6 @@ $( document ).ready(function() {
     });
 
     $("body").bind('mouseout', function(event) {
-
         switch($(event.target).attr('id')){
         }
     });

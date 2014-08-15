@@ -14,8 +14,8 @@ class BaseController < ApplicationController
     #Settings.maxBases
     if current_user.bases.count >= 5
       answerObject = {error: true, msg: "Maximum bases reached."}
-    elsif !isValidName?(params[:name])
-      answerObject = {error: true, msg: "That name may be reapeated or is empty."}
+    elsif !isValidBaseName?(params[:name])
+      answerObject = {error: true, msg: "That name may be repeated or is empty."}
     else
       current_user.bases.create(name: params[:name]);
       answerObject = {error: false, msg: ""}
@@ -35,7 +35,7 @@ class BaseController < ApplicationController
 
   private
   def isValidBaseName?(name)
-    mapsWithSameName = current_user.bases.map {|base| base.name == name}
+    mapsWithSameName = current_user.bases.select {|base| base.name == name}
     (name!="" && mapsWithSameName.length <= 0)
   end
   def isValidBuildingId?(id)

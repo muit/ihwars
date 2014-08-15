@@ -32,6 +32,7 @@ body > footer img {
 }
 .baseData {
     opacity: 1;
+    margin-left: 0em;
     border-radius: 2px;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
@@ -39,7 +40,6 @@ body > footer img {
     transition: all 0.5s;
 }
 .baseData.hidden{
-
     opacity: 0;
     margin-left: -1em;
 }
@@ -49,6 +49,7 @@ body > footer img {
 
 .baseDataTitle {
     opacity: 1;
+    margin-left: 0em;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     -o-transition: all 0.5s;
@@ -74,4 +75,20 @@ body > footer img {
 
 .access_accounts_buttons a {
     display: inline-block;
+}
+
+
+.dataPanel{
+    opacity: 1;
+    margin-left: 0em;
+    border-radius: 2px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.dataPanel.hidden{
+    display: none;
+    opacity: 0;
+    margin-left: -1em;
 }

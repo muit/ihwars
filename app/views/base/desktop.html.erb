@@ -7,7 +7,7 @@
                 <a id='create_base' href="#" class='active'><span class='baseName icon plus-sign'></span>Crea una base!</a>
             <% else %>
                 <% @bases.each_with_index do |base, index| %>
-                    <a id='base_name_<%= index %>' class='<%= "active" if index == 0 %>' href='#'><span  class='baseName icon building'></span><%= base.name %><small>(1)</small></a>
+                    <a id='base_name_<%= index %>' class='<%= "active" if index == 0 %>' href='#'><span class='baseName icon building'></span><%= base.name %><small>(1)</small></a>
                 <% end %>
                 <a id='create_base' href='#'><span class='baseName icon plus-sign'></span>Nueva Base</a>
             <% end %>
@@ -17,7 +17,7 @@
 
 
 <section id="mainSection" class="padding-left padding-right">
-    <div class="baseDataBox row">
+    <div class="baseDataBox row ">
         <% if @bases.length > 0 %>
         <div class="column_6 padding-top padding-bottom">
             <h4 class="baseDataTitle text italic bold color theme margin-left">Edificios:</h4>
@@ -56,6 +56,9 @@
             <% end %>
         </div>
         <% end %>
+        <div class="dataPanel hidden column_10 bck grey margin-left margin-right padding">
+          <h4 class="dataPanelTitle text italic bold color theme margin-left">Title:</h4>
+        </div>
     </div>
 </section>
 

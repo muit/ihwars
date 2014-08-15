@@ -12,5 +12,9 @@ class LoadSys
     Cache.loadBuildings
     Cache.loadEntities
     puts "***"
+
+    puts "***Loading Opcodes:"
+    Opcode.load
+    puts "***"
   end
 end

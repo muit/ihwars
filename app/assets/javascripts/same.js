@@ -4,7 +4,8 @@ var Base = {
     createBase: function(name){
         $.get('/base/create', {name: name}, 
             function(packet){
-                if(packet.object.error)
+                console.log(packet);
+                if(packet.object.error == true)
                     Visual.showAlert(true, packet.object.msg, true);
                 else //If not error show the new Base
                     Visual.createBase(name);
@@ -14,13 +15,16 @@ var Base = {
     createBuilding: function(building_tupe, base_id){
         $.get('/base/build', {type_id: building_type, actualBase: base_id}, 
             function(packet){
-                if(packet.object.error)
-                    Visual.showAlert(true, msg, true);
+                if(packet.object.error == true)
+                    Visual.showAlert(true, packer.object.msg, true);
                 else{} //If not error show the new Building Construction
             }, "json"
         );
-    }
+    },
 
+    getBaseData: function(id){
+        
+    }
 }
 
 
