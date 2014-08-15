@@ -126,8 +126,15 @@ $( document ).ready(function() {
             $("#flash_notice").remove()
             break;
         }
-        if($(event.target).hasClass("baseData"))
-            Visual.showAllTypes(false);
+        if($(event.target).hasClass("baseData")){
+            id = $(event.target).attr("id");
+            if(id.indexOf("building_type") != -1){
+                Visual.showAllTypes(false);
+                //getBuildingData
+                Visual.showInfoPanel(true);// , title);
+            }
+
+        }
     });
     $("body").bind('mouseover', function(event) {
         switch($(event.target).attr('id')){
