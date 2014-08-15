@@ -22,10 +22,18 @@ var Base = {
         );
     },
 
-    getBaseData: function(id){
-        
-    }
+    getBaseData: function(baseName, success, error){
+        $.get('/base/info', {actualBase: baseName},
+            function(packet){
+                if(packet.object.error == true)
+                    error(packet.object.msg);
+                else
+                    success(packet.object.info);
+            }, "json"
+        );
+    },
 }
+
 
 
 var Util = {

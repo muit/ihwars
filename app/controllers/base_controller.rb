@@ -20,9 +20,9 @@ class BaseController < ApplicationController
       current_user.bases.create(name: params[:name]);
       answerObject = {error: false, msg: ""}
     end
-
     render :json => Packet.new(Opcode.BASE_CREATE, answerObject)
   end
+
   def build
     if isValidBuildingId?(params[:id])
       current_user.bases.create(params[:name]);
@@ -33,12 +33,36 @@ class BaseController < ApplicationController
     render :json => Packet.new(Opcode.BASE_CREATE, answerObject)
   end
 
+  def info
+    selectedBase = getBase(params[:actualBase]);
+    #Get entities
+    entities = selectedBase.getEntities
+    entityHash = entities.map{|entity| {type_id: entity.type_id, amount: entity.amount}}
+    #Get buildings
+    buildings = selectedBase.getBuildingAmounts
+
+    answerObject = {entityAmount: entityHash, buildingAmount: buildings}
+    render :json => Packet.new(Opcode.BASE_INFO, answerObject)
+  end
+
+  def buildingInfo
+    selectedbase = getBase(params[:actualBase]);
+    building_units = selectedBase.building_units.where(type_id: params[:type_id])
+    answerObject = {error: false, msg: "", buildings: building_units}
+
+    render :json => Packet.new(Opcode.BUILDING_INFO, answerObject)
+  end
+
   private
   def isValidBaseName?(name)
-    mapsWithSameName = current_user.bases.select {|base| base.name == name}
-    (name!="" && mapsWithSameName.length <= 0)
+    sameNameBase = getBase(name)
+    (name!="" && sameNameBase != nil)
   end
   def isValidBuildingId?(id)
     Cache.building(id) != nil
+  end
+
+  def getBase(name)
+    current_user.bases.where(name: name).first;
   end
 end
