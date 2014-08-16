@@ -4,8 +4,21 @@ class Base < ActiveRecord::Base
   has_many :resource_stacks
   belongs_to :user
 
-  def getEntities
+  def self.create(arguments)
+    base = super(arguments)
+    puts "Creating base resources & entities"
+    ActiveRecord::Base.transaction do
+      Cache.resources.each do |resource|
+        base.resource_stacks.create(type_id: resource[:type_id], amount: 0)
+      end
+      Cache.entities.each do |entity|
+        base.entity_stacks.create(type_id: entity[:type_id], amount: 0)
+      end
+    end
+    base
+  end
 
+  def getEntities
     ActiveRecord::Base.transaction do
       Cache.entities.each do |entity|
         baseEntity = entity_stacks.where(type_id: entity[:type_id])[0]

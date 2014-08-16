@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20140813085255) do
     t.string  "name"
     t.integer "construction_time"
     t.string  "product_model"
-    t.integer "production_speed"
+    t.integer "productsxMinute"
     t.integer "armor"
   end
 

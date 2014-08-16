@@ -32,5 +32,32 @@ class Cache
       return nil if !@buildings
       @buildings.select{|building| building[:type_id] == type_id}[0]
     end
+
+    #Building adapter
+    attr_accessor :resources
+    def loadResources
+      puts "    Loading Resource Types from database..."
+      @resources = Resource.all.map{|resource| resource.attributes}
+      @resources.map{|resource| resource.symbolize_keys!()}
+    end
+    def selectBuilding(argument, value)
+      return nil if !@resources
+      @resources.select{|resource| resource[argument.to_sym] == value}[0]
+    end
+    def building(type_id)
+      return nil if !@resources
+      @resources.select{|resource| resource[:type_id] == type_id}[0]
+    end
+
+    #Building - Resource Links
+    attr_accessor :building_resources
+    def loadLinks
+      puts "    Loading Resource - Building links..."
+      @building_resources = [
+        {building_id: 2, resource_id: 0},
+        {building_id: 3, resource_id: 1},
+        {building_id: 1, resource_id: 2}
+      ]
+    end
   end
 end

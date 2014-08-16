@@ -1,5 +1,5 @@
 class BaseController < ApplicationController
-  #before_action :authenticate_user!
+  before_action :authenticate_user!
   def index
     @bases = current_user.bases
     if mobile_device?
@@ -10,26 +10,21 @@ class BaseController < ApplicationController
   end
 
   def create
-    puts "Creando Base a #{current_user.name}"
+    puts "Creating a #{current_user.name}´s base"
     #Settings.maxBases
     if current_user.bases.count >= 5
       answerObject = {error: true, msg: "Maximum bases reached."}
     elsif !isValidBaseName?(params[:name])
       answerObject = {error: true, msg: "That name may be repeated or is empty."}
     else
-      current_user.bases.create(name: params[:name]);
+      current_user.bases << Base.create(name: params[:name]);
       answerObject = {error: false, msg: ""}
     end
     render :json => Packet.new(Opcode.BASE_CREATE, answerObject)
   end
 
   def build
-    if isValidBuildingId?(params[:id])
-      current_user.bases.create(params[:name]);
-      answerObject = {error: false, msg: ""}
-    else
-      answerObject = {error: true, msg: "Maximum bases reached."}
-    end
+    
     render :json => Packet.new(Opcode.BASE_CREATE, answerObject)
   end
 
@@ -48,7 +43,8 @@ class BaseController < ApplicationController
   private
   def isValidBaseName?(name)
     sameNameBase = getBase(name)
-    (name!="" && sameNameBase != nil)
+    puts sameNameBase == nil
+    (name!="" && sameNameBase == nil)
   end
   def isValidBuildingId?(id)
     Cache.building(id) != nil
