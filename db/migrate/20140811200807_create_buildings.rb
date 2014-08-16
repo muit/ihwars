@@ -11,7 +11,7 @@ class CreateBuildings < ActiveRecord::Migration
       t.string :product_model
 
       # Basic production
-      t.integer :production_speed
+      t.integer :productsxMinute
 
       # Future combat columns
       # (Buildings can be destroyed)
