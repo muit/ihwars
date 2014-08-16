@@ -2,12 +2,14 @@
     <div class="row text center">
         <nav id="base_list" data-tuktuk="menu" class="column_12 padding text bold">
             <% if @bases.length <= 0 %>
-                <a id='create_base' href="#" class='active'><span class='baseName icon plus-sign'></span>Crea una base!</a>
+                <a id='create_base' class='baseName active' href="#"><span class='icon plus-sign'></span>Crea una base!</a>
             <% else %>
                 <% @bases.each_with_index do |base, index| %>
-                    <a id='base_name_<%= index %>' class='<%= "active" if index == 0 %>' href='#'><span class='baseName icon building'></span><%= base.name %><small>(1)</small></a>
+                    <a id='<%= index %>' class='baseName <%= "active" if index == 0 %>' href='#'><span class='icon building'></span><%= base.name %><small>(1)</small></a>
                 <% end %>
-                <a id='create_base' href='#'><span class='baseName icon plus-sign'></span>Nueva Base</a>
+                <% if @bases.length < Settings.maxBases %>
+                  <a id='create_base' class='baseName' href='#'><span class='icon plus-sign'></span>Nueva Base</a>
+                <% end %>
             <% end %>
         </nav>
     </div>

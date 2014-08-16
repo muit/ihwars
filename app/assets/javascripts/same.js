@@ -1,6 +1,18 @@
 var Base = {
     size: 0,
+    selectBase: function(id){
+        Visual.selectBase(id);
+        Visual.showAllTypes(false);
+        getBaseAmounts("Chompy", 
+            function(entityAmounts, buildingAmounts){
 
+            }, 
+            function(msg){
+                Visual.showAlert(msg);
+            }
+        );
+        Visual.showAllTypes(true);
+    }
     createBase: function(name){
         $.get('/base/create', {name: name}, 
             function(packet){

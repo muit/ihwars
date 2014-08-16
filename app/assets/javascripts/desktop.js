@@ -46,16 +46,23 @@ var Visual = {
     createBase: function(name){
         this.Menu.addBase(name, Base.size);
         Base.size++;
+        if (Base.size >= 5)
+            $("#create_base").remove();
         //Show Base Info <--Here
     },
 
     baseSelected: function(){
         for(var id = 0; id < Base.size; id++)
         {
-            if($("base_name_"+id).hasClass("active"))
+            if($(".baseName#"+id).hasClass("active"))
                 return id;
         }
         return 0;
+    },
+
+    baseSelect: function(id){
+        $(".baseName").removeClass("active");
+        $(".baseName#"+id).addClass("active");
     },
 
     showAllTypes: function(value){
@@ -96,7 +103,7 @@ var Visual = {
     },
     Menu: {
         addBase: function(name, id){
-            $("#base_list").prepend("<a href='#'><span id='base_name_"+id+"' class='baseName icon building'></span>"+name+"<small></small></a>");
+            $("#base_list").prepend("<a href='#'><span id='"+id+"' class='baseName icon building'></span>"+name+"<small></small></a>");
         },
     }
 }
