@@ -1,5 +1,3 @@
-<script>Base.size = <%= @bases.length%></script>
-
 <section class="bck grey margin-top margin-bottom">
     <div class="row text center">
         <nav id="base_list" data-tuktuk="menu" class="column_12 padding text bold">
@@ -18,47 +16,48 @@
 
 <section id="mainSection" class="padding-left padding-right">
     <div class="baseDataBox row ">
-        <% if @bases.length > 0 %>
-        <div class="column_6 padding-top padding-bottom">
-            <h4 class="baseDataTitle text italic bold color theme margin-left">Edificios:</h4>
-            <% Cache.buildings.each do |building| %>
-              <a id="building_type_<%= building[:type_id] %>" href="#">
-              <div class="baseData column_5 bck grey margin-bottom padding">
-                <%= building[:name] %>
-                <div class="on-right">
-                  <% units = @bases.first.building_units.where(:type_id => building[:type_id]) %>
-                  <% if units != nil %>
-                    <%= units.length %>
-                  <% else %>
-                    0
-                  <% end %>
-                </div>
+      <% if @bases.length > 0 %>
+      <div class="dataColumn column_6 padding-top padding-bottom">
+          <h4 class="baseDataTitle text italic bold color theme margin-left">Edificios:</h4>
+          <% Cache.buildings.each do |building| %>
+            <a href="#">
+            <div id="<%= building[:type_id] %>" class="buildingList baseData column_5 bck grey margin-bottom padding">
+              <%= building[:name] %>
+              <div class="on-right">
+                <% units = @bases.first.building_units.where(:type_id => building[:type_id]) %>
+                <% if units != nil %>
+                  <%= units.length %>
+                <% else %>
+                  0
+                <% end %>
               </div>
-              </a>
-            <% end %>
-        </div>
-        <div class="column_6 padding-top padding-bottom">
-            <h4 class="baseDataTitle text italic bold color theme margin-left">Unidades:</h4>
-            <% Cache.entities.each do |entity| %>
-              <a id="entity_type_<%= entity[:type_id] %>" href="#">
-              <div class="baseData column_5 bck grey margin-bottom padding">
-                <%= entity[:name] %>
-                <div class="on-right">
-                  <% stack = @bases.first.entity_stacks.where(:type_id => entity[:type_id])[0] %>
-                  <% if stack != nil %>
-                    <%= stack.amount  %>
-                  <% else %>
-                    0
-                  <% end %>
-                </div>
+            </div>
+            </a>
+          <% end %>
+      </div>
+      <div class="dataColumn column_6 padding-top padding-bottom">
+          <h4 class="baseDataTitle text italic bold color theme margin-left">Unidades:</h4>
+          <% Cache.entities.each do |entity| %>
+            <a href="#">
+            <div id="<%= entity[:type_id] %>" class="entityList baseData column_5 bck grey margin-bottom padding">
+              <%= entity[:name] %>
+              <div class="on-right">
+                <span class="icon add"></span>
+                <% stack = @bases.first.entity_stacks.where(:type_id => entity[:type_id])[0] %>
+                <% if stack != nil %>
+                  <%= stack.amount  %>
+                <% else %>
+                  0
+                <% end %>
               </div>
-              </a>
-            <% end %>
-        </div>
-        <% end %>
-        <div class="dataPanel hidden column_10 bck grey margin-left margin-right padding">
-          <h4 class="dataPanelTitle text italic bold color theme margin-left">Title:</h4>
-        </div>
+            </div>
+            </a>
+          <% end %>
+      </div>
+      <% end %>
+      <div class="dataPanel hidden column_10 bck grey margin padding">
+        <h4 class="dataPanelTitle text italic bold color theme margin-left">Title:</h4>
+      </div>
     </div>
 </section>
 
@@ -66,7 +65,7 @@
   <header class="bck alert">
     <h4 class="text thin inline">Alert</h4>
   </header>
-  <article id="alert-text" class="text big"></article>
+  <article id="alert_text" class="text big"></article>
   <footer>
     <button id="alert_close" class="button large success on-right margin-bottom">
       <span class="icon ok"></span>
@@ -110,3 +109,17 @@
 <div data-tuktuk="lock" data-loading="false">
   <div class="loading"></div>
 </div>
+
+<script>
+  Base.size = <%= @bases.length%>
+  Base.building_types = [
+  <% Cache.buildings.each do |building| %>
+    {type_id: <%=building[:type_id]%>, name: "<%=building[:name]%>"},
+  <% end %>
+  ]
+  Base.entity_types = [
+  <% Cache.entities.each do |entity| %>
+    {type_id: <%=entity[:type_id]%>, name: "<%=entity[:name]%>"},
+  <% end %>
+  ]
+</script>

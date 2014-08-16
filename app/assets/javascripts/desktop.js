@@ -27,7 +27,7 @@ var Visual = {
         if(timeout){
             setTimeout(function(){
                 $("#alert").removeClass("active");
-            }, 3000);
+            }, 4000);
         }
     },
 
@@ -36,6 +36,7 @@ var Visual = {
         $("#formModal_buttonOK").bind('click', function(event){
             $("#formModal").removeClass("active");
             success(formModal_text.value);
+            $("#formModal_buttonOK").unbind("click");
         });
         $("#formModal_buttonNOT").bind('click', function(event){
             $("#formModal").removeClass("active");
@@ -62,13 +63,11 @@ var Visual = {
             $(".baseDataTitle").addClass("hidden");
             $(".baseData").addClass("hidden");
             setTimeout(function(){
-                $(".baseDataTitle").css("display", "none");
-                $(".baseData").css("display", "none");
+                $(".dataColumn").css("display", "none");
             }, 500);
         }
         else{
-            $(".baseDataTitle").css("display", "block");
-            $(".baseData").css("display", "block");
+            $(".dataColumn").css("display", "block");
             setTimeout(function(){
                 $(".baseDataTitle").removeClass("hidden");
                 $(".baseData").removeClass("hidden");
@@ -95,7 +94,6 @@ var Visual = {
             }, 500);
         }
     },
-
     Menu: {
         addBase: function(name, id){
             $("#base_list").prepend("<a href='#'><span id='base_name_"+id+"' class='baseName icon building'></span>"+name+"<small></small></a>");
@@ -106,7 +104,8 @@ var Visual = {
 $( document ).ready(function() {
     
     $("body").bind('click', function(event) {
-        switch($(event.target).attr('id')){
+        var target = $(event.target);
+        switch(target.attr('id')){
         case "alert_close":
             Visual.showAlert(false);
             break;
@@ -126,14 +125,30 @@ $( document ).ready(function() {
             $("#flash_notice").remove()
             break;
         }
-        if($(event.target).hasClass("baseData")){
-            id = $(event.target).attr("id");
-            if(id.indexOf("building_type") != -1){
-                Visual.showAllTypes(false);
-                //getBuildingData
-                Visual.showInfoPanel(true);// , title);
+        if(target.hasClass("buildingList")){
+            var type_id = parseInt(target.attr('id'));
+            var buildingSelected = undefined;
+            for(var i = 0, len = Base.building_types.length; i < len; i++){
+                if(Base.building_types[i].type_id == type_id) 
+                    buildingSelected = Base.building_types[i];
             }
 
+            Visual.showAllTypes(false);
+            //getBuildingData
+            Visual.showInfoPanel(true, buildingSelected.name);// , title);
+        }
+
+        if(target.hasClass("entityList")){
+            var type_id = parseInt(target.attr('id'));
+            var entitySelected = undefined;
+            for(var i = 0, len = Base.entity_types.length; i < len; i++){
+                if(Base.entity_types[i].type_id == type_id) 
+                    entitySelected = Base.entity_types[i];
+            }
+
+            Visual.showAllTypes(false);
+            //getBuildingData
+            Visual.showInfoPanel(true, entitySelected.name);// , title);
         }
     });
     $("body").bind('mouseover', function(event) {
