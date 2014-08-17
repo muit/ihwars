@@ -3,9 +3,7 @@ class Resources
     puts "Updating Resources..."
     Base.all.each do |base|
       puts "    #{base.user.name}"
-      base.resource_stacks.all.each do |resource|
-        resource.amount +=
-      end
+      addResources(base)
     end
     puts "Resources updated successfully."
   end
