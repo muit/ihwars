@@ -34,10 +34,10 @@ body > footer img {
     opacity: 1;
     margin-left: 0em;
     border-radius: 2px;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    transition: all 0.5s;
+    -webkit-transition: all 0.25s;
+    -moz-transition: all 0.25s;
+    -o-transition: all 0.25s;
+    transition: all 0.25s;
 }
 .baseData.hidden{
     opacity: 0;
@@ -50,10 +50,10 @@ body > footer img {
 .baseDataTitle {
     opacity: 1;
     margin-left: 0em;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    transition: all 0.5s;
+    -webkit-transition: all 0.25s;
+    -moz-transition: all 0.25s;
+    -o-transition: all 0.25s;
+    transition: all 0.25s;
 }
 .baseDataTitle.hidden{
     opacity: 0;
@@ -81,10 +81,10 @@ body > footer img {
 .dataPanel{
     opacity: 1;
     border-radius: 2px;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    transition: all 0.5s;
+    -webkit-transition: all 0.25s;
+    -moz-transition: all 0.25s;
+    -o-transition: all 0.25s;
+    transition: all 0.25s;
 }
 .dataPanel.hidden{
     display: none;

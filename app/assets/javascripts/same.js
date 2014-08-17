@@ -1,18 +1,24 @@
 var Base = {
     size: 0,
-    selectBase: function(id){
-        Visual.selectBase(id);
+    selectBase: function(id, name){
+        Visual.baseSelect(id);
+        Visual.showInfoPanel(false);
         Visual.showAllTypes(false);
-        getBaseAmounts("Chompy", 
-            function(entityAmounts, buildingAmounts){
-
+        this.getBaseAmounts(name, 
+            function(entities, buildings){
+                Visual.deleteTypes();
+                for(var i = 0, len = entities.length; i < len; i++)
+                    Visual.createEntityType(entities[i].type_id, entities[i].name, entities[i].amount, true);
+                for(var i = 0, len = buildings.length; i < len; i++)
+                    Visual.createBuildingType(buildings[i].type_id, buildings[i].name, buildings[i].amount, true);
+                
+                Visual.showAllTypes(true);
             }, 
             function(msg){
                 Visual.showAlert(msg);
             }
         );
-        Visual.showAllTypes(true);
-    }
+    },
     createBase: function(name){
         $.get('/base/create', {name: name}, 
             function(packet){
@@ -40,9 +46,9 @@ var Base = {
                 if(packet.object.error == true)
                     error(packet.object.msg);
                 else{
-                    entityAmount = packet.object.entityAmount;
-                    buildingAmount = packet.object.buildingAmount;
-                    success(entityAmount, buildingAmount);
+                    entities = packet.object.entities;
+                    buildings = packet.object.buildings;
+                    success(entities, buildings);
                 }
             }, "json"
         );

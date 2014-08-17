@@ -65,20 +65,23 @@ var Visual = {
         $(".baseName#"+id).addClass("active");
     },
 
-    showAllTypes: function(value){
+    showAllTypes: function(value, hide){
+        if(!hide) hide = false;
         if(!value){
             $(".baseDataTitle").addClass("hidden");
             $(".baseData").addClass("hidden");
             setTimeout(function(){
-                $(".dataColumn").css("display", "none");
-            }, 500);
+                if(hide){
+                    $(".dataColumn").css("display", "none");
+                }
+            }, 250);
         }
         else{
             $(".dataColumn").css("display", "block");
             setTimeout(function(){
                 $(".baseDataTitle").removeClass("hidden");
                 $(".baseData").removeClass("hidden");
-            }, 500);
+            }, 250);
         }
     },
 
@@ -89,7 +92,7 @@ var Visual = {
             setTimeout(function(){
                 $(".dataPanelTitle").css("display", "none");
                 $(".dataPanel").css("display", "none");
-            }, 500);
+            }, 250);
         }
         else{
             $(".dataPanelTitle").css("display", "block");
@@ -98,8 +101,20 @@ var Visual = {
             setTimeout(function(){
                 $(".dataPanelTitle").removeClass("hidden");
                 $(".dataPanel").removeClass("hidden");
-            }, 500);
+            }, 250);
         }
+    },
+    deleteTypes: function(){
+        $(".buildingList").remove();
+        $(".entityList").remove();
+    },
+    createBuildingType: function(type_id, name, amount, hidden){
+        hideClass = (hidden)? "hidden" : "";
+        $(".dataColumn")[0].innerHTML += "<a href='#'><div id='"+type_id+"' class='buildingList baseData "+hideClass+" column_5 bck grey margin-bottom padding'>"+name+"<div class='on-right'>"+amount+"</div></div></a>";
+    },
+    createEntityType: function(type_id, name, amount, hidden){
+        hideClass = (hidden)? "hidden" : "";
+        $(".dataColumn")[1].innerHTML += "<a href='#'><div id='"+type_id+"' class='entityList baseData "+hideClass+" column_5 bck grey margin-bottom padding'>"+name+"<div class='on-right'>"+amount+"</div></div></a>";
     },
     Menu: {
         addBase: function(name, id){
@@ -144,8 +159,7 @@ $( document ).ready(function() {
             //getBuildingData
             Visual.showInfoPanel(true, buildingSelected.name);// , title);
         }
-
-        if(target.hasClass("entityList")){
+        else if(target.hasClass("entityList")){
             var type_id = parseInt(target.attr('id'));
             var entitySelected = undefined;
             for(var i = 0, len = Base.entity_types.length; i < len; i++){
@@ -153,9 +167,14 @@ $( document ).ready(function() {
                     entitySelected = Base.entity_types[i];
             }
 
-            Visual.showAllTypes(false);
+            Visual.showAllTypes(false, true);
             //getBuildingData
             Visual.showInfoPanel(true, entitySelected.name);// , title);
+        }
+        else if(target.hasClass("baseName")){
+            var id = parseInt(target.attr('id'));
+            var name = target.context.innerText.replace(/\(.*?\)/, '');
+            Base.selectBase(id, name);
         }
     });
     $("body").bind('mouseover', function(event) {

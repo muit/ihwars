@@ -40,11 +40,11 @@ class Cache
       @resources = Resource.all.map{|resource| resource.attributes}
       @resources.map{|resource| resource.symbolize_keys!()}
     end
-    def selectBuilding(argument, value)
+    def selectResource(argument, value)
       return nil if !@resources
       @resources.select{|resource| resource[argument.to_sym] == value}[0]
     end
-    def building(type_id)
+    def resource(type_id)
       return nil if !@resources
       @resources.select{|resource| resource[:type_id] == type_id}[0]
     end

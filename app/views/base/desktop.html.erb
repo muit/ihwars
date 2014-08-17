@@ -22,8 +22,7 @@
       <div class="dataColumn column_6 padding-top padding-bottom">
           <h4 class="baseDataTitle text italic bold color theme margin-left">Edificios:</h4>
           <% Cache.buildings.each do |building| %>
-            <a href="#">
-            <div id="<%= building[:type_id] %>" class="buildingList baseData column_5 bck grey margin-bottom padding">
+            <a href="#" id="<%= building[:type_id] %>" class="buildingList baseData column_5 bck grey margin-bottom padding">
               <%= building[:name] %>
               <div class="on-right">
                 <% units = @bases.first.building_units.where(:type_id => building[:type_id]) %>
@@ -33,15 +32,13 @@
                   0
                 <% end %>
               </div>
-            </div>
             </a>
           <% end %>
       </div>
       <div class="dataColumn column_6 padding-top padding-bottom">
           <h4 class="baseDataTitle text italic bold color theme margin-left">Unidades:</h4>
           <% Cache.entities.each do |entity| %>
-            <a href="#">
-            <div id="<%= entity[:type_id] %>" class="entityList baseData column_5 bck grey margin-bottom padding">
+            <a href="#" id="<%= entity[:type_id] %>" class="entityList baseData column_5 bck grey margin-bottom padding">
               <%= entity[:name] %>
               <div class="on-right">
                 <span class="icon add"></span>
@@ -52,7 +49,6 @@
                   0
                 <% end %>
               </div>
-            </div>
             </a>
           <% end %>
       </div>

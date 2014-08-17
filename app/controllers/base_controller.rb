@@ -32,11 +32,11 @@ class BaseController < ApplicationController
     selectedBase = getBase(params[:actualBase]);
     #Get entities
     entities = selectedBase.getEntities
-    entityHash = entities.map{|entity| {type_id: entity.type_id, amount: entity.amount}}
+    entityHash = entities.map{|entity| {type_id: entity.type_id, name: Cache.entity(entity.type_id)[:name], amount: entity.amount}}
     #Get buildings
     buildings = selectedBase.getBuildingAmounts
 
-    answerObject = {entityAmount: entityHash, buildingAmount: buildings}
+    answerObject = {entities: entityHash, buildings: buildings}
     render :json => Packet.new(Opcode.BASE_INFO, answerObject)
   end
 
