@@ -2,7 +2,7 @@ class Resources
   def initialize
     puts "Updating Resources..."
     Base.all.each do |base|
-      puts "    #{base.user.name}"
+      puts "    #{base.user.name}..."
       addResources(base)
     end
     puts "Resources updated successfully."
