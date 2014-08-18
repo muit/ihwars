@@ -2,30 +2,37 @@ require 'rails_helper'
 
 RSpec.describe Base, :type => :model do
 
-  before(:each) do
-  end 
 
-  it "can be created and it´s not nil" do
-    base = Base.create(name: "chompy")
+  describe 'creating a base' do
+    it "has a name" do
+      base = Base.create(name: "chompy")
+      expect(base.name).to eq('chompy')
+    end
 
-    expect(base).not_to eq(nil)
+    it 'cannot be created without a name' do
+      base = Base.new
+      expect(base.valid?).to eq(false)
+    end
+
+    it 'has a hub by default' do
+      base = Base.create(name: "chompy")
+
+      expect(base.hub).not_to be_nil
+    end
   end
 
-  it "adds entity_stacks when created" do
-    base = Base.create(name: "chompy")
+  #it "adds entity_stacks when created" do
+  #  base = Base.create(name: "chompy")
 
-    expect(base.entity_stacks.count).to eq(Entity.count)
-  end
+  #  expect(base.entity_stacks.count).to eq(Entity.count)
+  #end
 
-  it "adds resource_stacks when created" do
-    base = Base.create(name: "chompy")
+  #it "adds resource_stacks when created" do
+  #  base = Base.create(name: "chompy")
 
-    expect(base.resource_stacks.count).to eq(Resource.count)
-  end
+  #  expect(base.resource_stacks.count).to eq(Resource.count)
+  #end
 
-  it "adds Hub when created" do
-    base = Base.create(name: "chompy")
-
-    expect(base.building_units.where(type_id: 0)[0]).not_to be_nil
-  end
+  #it "adds Hub when created" do
+  #end
 end
