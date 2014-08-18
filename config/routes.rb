@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { registrations: 'devise_registrations' }
+  devise_for :users, :controllers => { :registrations => 'devise_registrations', :sessions => 'devise_sessions' }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get "/rank" => "rank#rank"
 
   get "/simulator" => "combat_simulator#simulator"
-  post "/simulator/run" => "combat_simulator#run"
+  post "/simulator/" => "combat_simulator#run"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -7,6 +7,7 @@ body .bck.dark{background-color:#222}
 body .bck.theme{background-color:#4bc613}
 body .bck.success{color: #4F8A10; background-color: #DFF2BF;}
 body .bck.alert{color: #D8000C; background-color: #FFBABA;}
+body .bck.cookies{color: #C60; background-color: #FFB;}
 body .bck.theme,body .bck.dark{color:#fff;}
 body .bck.theme a,body .bck.dark a{color:#fff;}
 body .bck.theme a:not(.button):hover,body .bck.dark a:not(.button):hover,body .bck.theme a:not(.button):active,body .bck.dark a:not(.button):active{color:#fff}
