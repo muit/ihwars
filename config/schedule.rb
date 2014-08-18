@@ -23,6 +23,6 @@ every 1.days, :at => '8:00 am' do
   runner "UserRank.update_user_ranks"
 end
 
-every 1.minute do
+every 1.minutes, first_at: 5.seconds do
   runner "Resources.new"
 end

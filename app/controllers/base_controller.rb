@@ -30,13 +30,17 @@ class BaseController < ApplicationController
 
   def info
     selectedBase = getBase(params[:actualBase]);
-    #Get entities
-    entities = selectedBase.getEntities
-    entityHash = entities.map{|entity| {type_id: entity.type_id, name: Cache.entity(entity.type_id)[:name], amount: entity.amount}}
-    #Get buildings
-    buildings = selectedBase.getBuildingAmounts
+    if(selectedBase == nil)
+      answerObject = {error: true, msg: "That base doesnt exists."}
+    else
+      #Get entities
+      entities = selectedBase.getEntities
+      entityHash = entities.map{|entity| {type_id: entity.type_id, name: Cache.entity(entity.type_id)[:name], amount: entity.amount}}
+      #Get buildings
+      buildings = selectedBase.getBuildingAmounts
 
-    answerObject = {entities: entityHash, buildings: buildings}
+      answerObject = {error: false, entities: entityHash, buildings: buildings}
+    end
     render :json => Packet.new(Opcode.BASE_INFO, answerObject)
   end
 
