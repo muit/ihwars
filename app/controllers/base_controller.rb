@@ -1,5 +1,6 @@
 class BaseController < ApplicationController
   before_action :authenticate_user!
+
   def index
     @bases = current_user.bases
     if mobile_device?
@@ -35,7 +36,7 @@ class BaseController < ApplicationController
     else
       #Get entities
       entities = selectedBase.getEntities
-      entityHash = entities.map{|entity| {type_id: entity.type_id, name: Cache.entity(entity.type_id)[:name], amount: entity.amount}}
+      entityHash = entities.map{|entity| {type_id: entity.type_id, name: EntityType.byTypeId(entity.type_id).name, amount: entity.amount}}
       #Get buildings
       buildings = selectedBase.getBuildingAmounts
 
@@ -46,7 +47,7 @@ class BaseController < ApplicationController
 
   def resources
     result = []
-    Cache.resources.each do |resource|
+    ResourceType.getAll.each do |resource|
       amount = 0
       current_user.bases.all.each do |base|
         amount += base.resource_stacks.where(type_id: resource[:type_id])
@@ -64,6 +65,6 @@ class BaseController < ApplicationController
     (name!="" && sameNameBase == nil)
   end
   def isValidBuildingId?(id)
-    Cache.building(id) != nil
+    BuildingType.byTypeId(id) != nil
   end
 end

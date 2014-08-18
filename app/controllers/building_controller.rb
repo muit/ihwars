@@ -1,10 +1,12 @@
 class BuildingController < ApplicationController
   before_action :authenticate_user!
   def new
-    if isValidBuildingId?(params[:type_id])
-      selectedBase = getBase(params[:actualBase])
+    typeId = params[:type_id]
+    baseName = params[:actualBase]
+    if isValidBuildingId?(id)
+      selectedBase = getBase(baseName)
 
-      finish_building = Time.now+Cache.building(0)[:construction_time].seconds
+      finish_building = Time.now+BuildingType.byTypeId(typeId).construction_time.seconds
       selectedBase.building_units.create(type_id: params[:type_id], finish_building: finish_building, level: 1)
       
       answerObject = {error: false, msg: "", finish_building: finish_building}
@@ -18,12 +20,14 @@ class BuildingController < ApplicationController
     selectedBase = getBase(params[:actualBase])
     building = selectedBase.building_units.find(params[:id])
 
-    seconds = Cache.building(0)[:construction_time].seconds
+    seconds = BuildingType.byTypeId(building.type_id).construction_time.seconds
     finish_building = Time.now+(seconds+seconds*building.level*Settings.coefPerLevel)
+    
     building.finish_building = finish_building
     building.level += 1
     building.save
     answerObject = {finish_building: finish_building}
+
     render :json => Packet.new(Opcode.BUILDING_UPDATE, answerObject)
   end
 

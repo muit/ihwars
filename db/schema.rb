@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140813085255) do
+ActiveRecord::Schema.define(version: 20140818160931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,16 +21,7 @@ ActiveRecord::Schema.define(version: 20140813085255) do
     t.string  "name"
   end
 
-  create_table "building_units", force: true do |t|
-    t.integer  "type_id"
-    t.integer  "level"
-    t.time     "finish_building"
-    t.integer  "base_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "buildings", force: true do |t|
+  create_table "building_types", force: true do |t|
     t.integer "type_id"
     t.string  "name"
     t.integer "construction_time"
@@ -39,12 +30,14 @@ ActiveRecord::Schema.define(version: 20140813085255) do
     t.integer "armor"
   end
 
-  create_table "entities", force: true do |t|
-    t.integer "type_id"
-    t.string  "name"
-    t.integer "damage"
-    t.integer "armor"
-    t.integer "range"
+  create_table "building_units", force: true do |t|
+    t.integer  "type_id"
+    t.integer  "level"
+    t.time     "finish_building"
+    t.integer  "base_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "type"
   end
 
   create_table "entity_stacks", force: true do |t|
@@ -53,13 +46,21 @@ ActiveRecord::Schema.define(version: 20140813085255) do
     t.integer "amount"
   end
 
+  create_table "entity_types", force: true do |t|
+    t.integer "type_id"
+    t.string  "name"
+    t.integer "damage"
+    t.integer "armor"
+    t.integer "range"
+  end
+
   create_table "resource_stacks", force: true do |t|
     t.integer "base_id"
     t.integer "type_id"
     t.integer "amount"
   end
 
-  create_table "resources", force: true do |t|
+  create_table "resource_types", force: true do |t|
     t.integer "type_id"
     t.string  "name"
   end

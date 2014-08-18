@@ -1,7 +1,7 @@
 class CombatSimulatorController < ApplicationController
 	def simulator
-		@ally_result = Array.new(Cache.entities.length, zeroed_unit_hash)
-		@enemy_result = Array.new(Cache.entities.length, zeroed_unit_hash)
+		@ally_result = Array.new(EntityType.getAll.length, zeroed_unit_hash)
+		@enemy_result = Array.new(EntityType.getAll.length, zeroed_unit_hash)
 
 		if mobile_device?
       render :mobile, layout: "mobile"
@@ -33,7 +33,7 @@ class CombatSimulatorController < ApplicationController
 	private
 	def get_units(team_string, params)
 		units = []
-		Cache.entities.each do |an_entity|
+		EntityType.getAll.each do |an_entity|
 			id = an_entity[:type_id]
 			name = "#{team_string}_#{id}"
 			if params[name].to_i > 0
@@ -46,7 +46,7 @@ class CombatSimulatorController < ApplicationController
 	end
 
 	def normalize_units(units)
-		new_units = Array.new(Cache.entities.length)
+		new_units = Array.new(EntityType.getAll.length)
 		new_units = new_units.map {zeroed_unit_hash_with_amount}
 		units.each do |an_old_unit|
 			id = an_old_unit[:type_id]

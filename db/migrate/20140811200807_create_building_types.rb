@@ -1,6 +1,6 @@
-class CreateBuildings < ActiveRecord::Migration
+class CreateBuildingTypes < ActiveRecord::Migration
   def change
-    create_table :buildings do |t|
+    create_table :building_types do |t|
       t.integer :type_id
       t.string :name
 

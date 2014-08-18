@@ -1,6 +1,6 @@
-class CreateEntities < ActiveRecord::Migration
+class CreateEntityTypes < ActiveRecord::Migration
   def change
-    create_table :entities do |t|
+    create_table :entity_types do |t|
       t.integer :type_id
       t.string :name
 

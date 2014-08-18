@@ -11,9 +11,6 @@ class LoadSys
     puts "***"
 
     puts "***Loading Cache:"
-    Cache.loadBuildings
-    Cache.loadEntities
-    Cache.loadResources
     Cache.loadLinks
     puts "***"
 
