@@ -17,8 +17,12 @@ class LoadSys
     Cache.loadLinks
     puts "***"
 
-    puts "***Loading Opcodes:"
+    puts "***Loading Opcodes..."
     Opcode.load
+
+    puts "***Loading Jobs..."
+    Jobs.new
+    
     puts "***"
   end
 end

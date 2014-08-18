@@ -30,14 +30,31 @@ class BaseController < ApplicationController
 
   def info
     selectedBase = getBase(params[:actualBase]);
-    #Get entities
-    entities = selectedBase.getEntities
-    entityHash = entities.map{|entity| {type_id: entity.type_id, name: Cache.entity(entity.type_id)[:name], amount: entity.amount}}
-    #Get buildings
-    buildings = selectedBase.getBuildingAmounts
+    if(selectedBase == nil)
+      answerObject = {error: true, msg: "That base doesnt exists."}
+    else
+      #Get entities
+      entities = selectedBase.getEntities
+      entityHash = entities.map{|entity| {type_id: entity.type_id, name: Cache.entity(entity.type_id)[:name], amount: entity.amount}}
+      #Get buildings
+      buildings = selectedBase.getBuildingAmounts
 
-    answerObject = {entities: entityHash, buildings: buildings}
+      answerObject = {error: false, entities: entityHash, buildings: buildings}
+    end
     render :json => Packet.new(Opcode.BASE_INFO, answerObject)
+  end
+
+  def resources
+    result = []
+    Cache.resources.each do |resource|
+      amount = 0
+      current_user.bases.all.each do |base|
+        amount += base.resource_stacks.where(type_id: resource[:type_id])
+      end
+      result[resource[:type_id]] = amount
+    end
+    answerObject = {error: false, resources: result}
+    render :json => Packet.new(Opcode.RESOURCE_INFO, answerObject)
   end
 
   private

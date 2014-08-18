@@ -25,8 +25,10 @@ var Base = {
                 console.log(packet);
                 if(packet.object.error == true)
                     Visual.showAlert(true, packet.object.msg, true);
-                else //If not error show the new Base
+                else{ //If not error show the new Base
                     Visual.createBase(name);
+                    Base.selectBase(this.size-1, name);
+                }
             }, "json"
         );
     },
@@ -44,7 +46,7 @@ var Base = {
         $.get('/base/amounts', {actualBase: baseName},
             function(packet){
                 if(packet.object.error == true)
-                    error(packet.object.msg);
+                    Visual.showAlert(true, packet.object.msg, true);
                 else{
                     entities = packet.object.entities;
                     buildings = packet.object.buildings;
@@ -60,7 +62,7 @@ var Base = {
                 {actualBase: baseName, type_id: type_id},
                 function(packet){
                     if(packet.object.error == true)
-                        error(packet.object.msg);
+                        Visual.showAlert(true, packet.object.msg, true);
                     else{
                         success(packet.object.buildings);
                     }
