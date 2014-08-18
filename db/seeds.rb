@@ -30,4 +30,4 @@ Entity.create(type_id: 2, name: "Mentor con Látigo", damage: 35, armor: 50, ran
 Entity.create(type_id: 3, name: "Mentor con Escopeta", damage: 10, armor: 5, range: 100)
 Entity.create(type_id: 4, name: "Profesor de Testing", damage: 45, armor: 60, range: 10)
 Entity.create(type_id: 5, name: "Profesor Trabuquero", damage: 30, armor: 40, range: 35)
-
+Entity.create(type_id: 6, name: "Lady Muriel", damage: 100, armor: 200, range: 5)

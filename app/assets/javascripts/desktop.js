@@ -155,7 +155,7 @@ $( document ).ready(function() {
                     buildingSelected = Base.building_types[i];
             }
 
-            Visual.showAllTypes(false);
+            Visual.showAllTypes(false, true);
             //getBuildingData
             Visual.showInfoPanel(true, buildingSelected.name);// , title);
         }
