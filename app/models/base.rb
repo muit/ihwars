@@ -15,19 +15,8 @@ class Base < ActiveRecord::Base
         base.entity_stacks.create(type_id: entity[:type_id], amount: 0)
       end
     end
+    base.building_units << Hub.create(level: 0)
     base
-  end
-
-  def getEntities
-    ActiveRecord::Base.transaction do
-      Cache.entities.each do |entity|
-        baseEntity = entity_stacks.where(type_id: entity[:type_id])[0]
-        if(baseEntity == nil)
-          entity_stacks.create(type_id: entity[:type_id], amount: 0)
-        end
-      end
-    end
-    entity_stacks
   end
 
   def getBuildingAmounts
