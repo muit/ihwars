@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :mobile_device?
+
+  # Devise method
+  
+
   private
 
   def mobile_device?

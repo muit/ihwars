@@ -9,6 +9,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="bck light">
+	<% if flash[:cookies].present? %>
+    <section id="flash_cookies" class="bck cookies padding">
+			<h6 class="notice inline"><%= flash[:cookies] %></h6>
+			<button id="remove_flash_cookies" class="transparent tiny on-right inline icon remove"></button>
+		</section>
+	<% end %>
+
 	<!-- Necessary for devise gem -->
 	<% if alert.present? %>
 		<section id="flash_alert" class="bck alert padding">

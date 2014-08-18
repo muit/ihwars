@@ -1,24 +1,38 @@
 <section class="column_12 padding">
-	<form action="/simulator/run" method="post" class="column_11 offset_1">
+	<%= form_tag('/simulator/', :class => "column_11 offset_1") do %>
 		<div class="column_5 padding-top padding-bottom">
-			<h3>Your units</h3>
+			<h3>Allies</h3>
 			<% Cache.entities.each do |an_entity| %>
-				<label for="ally_<%= an_entity[:type_id] %>"><%= an_entity[:name] %></label>
-				<input type="number" name="ally_<%= an_entity[:type_id] %>" value="0">
-				<br>
+				<% name = "ally_#{an_entity[:type_id]}" %>
+				<% amount = @ally_result[an_entity[:type_id]][:amount] %>
+				<%= label_tag name, an_entity[:name] %>
+				<% if amount.present? %>
+					(<span style="color: #0d0;">
+						<%= amount %>
+					</span>)
+					<br>
+				<% end %>
+				<%= number_field_tag name, @ally_result[an_entity[:type_id]][:old_amount], min: 0 %>
 			<% end %>
 		</div>
 		<div class="column_5 padding-top padding-bottom">
-			<h3>Enemy units</h3>
+			<h3>Enemies</h3>
 			<% Cache.entities.each do |an_entity| %>
-				<label for="enemy_<%= an_entity[:type_id] %>"><%= an_entity[:name] %></label>
-				<input type="number" name="enemy_<%= an_entity[:type_id] %>" value="0">
-				<br>
+				<% name = "enemy_#{an_entity[:type_id]}" %>
+				<% amount = @enemy_result[an_entity[:type_id]][:amount] %>
+				<%= label_tag name, an_entity[:name] %>
+				<% if amount.present? %>
+					(<span style="color: #0d0;">
+						<%= amount %>
+					</span>)
+					<br>
+				<% end %>
+				<%= number_field_tag name, @enemy_result[an_entity[:type_id]][:old_amount], min: 0 %>
 			<% end %>
 		</div>
 		<div>
-			<button class="column_2 button ligth" type="reset" value="Reset">Reset</button>
-			<button class="column_2 button theme" type="submit" value="Submit">Simulate</button>
+			<%= button_tag "Reset", type: :reset, class: "column_2 button ligth" %>
+			<%= submit_tag "Simulate", class: "column_2 button theme" %>
 		</div>
-	</form>
+	<% end %>
 </section>

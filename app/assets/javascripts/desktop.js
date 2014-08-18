@@ -146,6 +146,9 @@ $( document ).ready(function() {
         case "remove_flash_success":
             $("#flash_notice").remove()
             break;
+        case "remove_flash_cookies":
+            $("#flash_cookies").remove()
+            break;
         }
         if(target.hasClass("buildingList")){
             var type_id = parseInt(target.attr('id'));

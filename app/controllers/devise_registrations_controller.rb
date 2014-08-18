@@ -1,5 +1,7 @@
 class DeviseRegistrationsController < Devise::RegistrationsController
 	# Override the superclass's methods to add custom params
+	
+	
   private
  
   def sign_up_params
