@@ -8,12 +8,14 @@
 
 ## Resources
 # Three types of resources: money, materials, ping
+Resource.delete_all
 Resource.create(type_id: 0, name: "money")
 Resource.create(type_id: 1, name: "materials")
 Resource.create(type_id: 2, name: "ping")
 
 
 ## Buildings: 6 types
+Building.delete_all
 # Basic building. Appears by default when a base is created
 Building.create(type_id: 0, construction_time: 300, name: "Hub", armor: 10000, productsxMinute: 0) # Almost infinity. This cannot be destroyed
 # Resource-production Buildings
@@ -24,6 +26,7 @@ Building.create(type_id: 4, construction_time: 1800, name: "Barracks", armor: 20
 Building.create(type_id: 5, construction_time: 86400, name: "Laboratory", armor: 700, productsxMinute: 0)
 
 ##Entities: 7 types
+Entity.delete_all
 Entity.create(type_id: 0, name: "Alumno Básico", damage: 10, armor: 10, range: 5)
 Entity.create(type_id: 1, name: "Alumno Experimentado", damage: 15, armor: 30, range: 8)
 Entity.create(type_id: 2, name: "Mentor con Látigo", damage: 35, armor: 50, range: 10)
