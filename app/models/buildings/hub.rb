@@ -1,7 +1,9 @@
 class Hub < BuildingUnit
-  def self.create(arguments)
-    arguments[:type_id] = 0
-    arguments[:finish_building] = Time.now+Cache.building(0)[:construction_time].seconds
-    super(arguments)
+  before_create :set_building_type
+
+  private
+
+  def set_building_type
+    self.type_id = 0
   end
 end
