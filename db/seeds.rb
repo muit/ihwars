@@ -24,6 +24,7 @@ Building.create(type_id: 2, construction_time: 1800, name: "Bank", armor: 1000, 
 Building.create(type_id: 3, construction_time: 900, name: "Factory", armor: 1000, productsxMinute: 59)
 Building.create(type_id: 4, construction_time: 1800, name: "Barracks", armor: 2000, productsxMinute: 9)
 Building.create(type_id: 5, construction_time: 86400, name: "Laboratory", armor: 700, productsxMinute: 0)
+Building.create(type_id: 6, construction_time: 1800, name: "House", armor: 600, productsxMinute: 0)
 
 ##Entities: 7 types
 Entity.delete_all

@@ -41,8 +41,10 @@
             <div id="<%= entity[:type_id] %>" class="entityList baseData column_5 bck grey margin-bottom padding">
               <%= entity[:name] %>
               <div class="on-right">
-                <a class="entityAdd icon plus-sign"></a>
-                <a class="entityAdd icon minus-sign"></a>
+                <input type="number" class="small" min="1" max="199">
+                <a class="entityAdd color green icon plus-sign"></a>
+                <a class="entityRemove color red icon minus-sign "></a>
+                &nbsp
                 <% stack = @bases.first.entity_stacks.where(:type_id => entity[:type_id])[0] %>
                 <% if stack != nil %>
                   <%= stack.amount  %>
