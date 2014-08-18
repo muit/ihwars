@@ -20,8 +20,8 @@ Building.delete_all
 Building.create(type_id: 0, construction_time: 300, name: "Hub", armor: 10000, productsxMinute: 0) # Almost infinity. This cannot be destroyed
 # Resource-production Buildings
 Building.create(type_id: 1, construction_time: 86400, name: "Server", armor: 800, productsxMinute: 1)
-Building.create(type_id: 2, construction_time: 1800, name: "Bank", armor: 1000, productsxMinute: 245)
-Building.create(type_id: 3, construction_time: 900, name: "Factory", armor: 1000, productsxMinute: 67)
+Building.create(type_id: 2, construction_time: 1800, name: "Bank", armor: 1000, productsxMinute: 81)
+Building.create(type_id: 3, construction_time: 900, name: "Factory", armor: 1000, productsxMinute: 59)
 Building.create(type_id: 4, construction_time: 1800, name: "Barracks", armor: 2000, productsxMinute: 9)
 Building.create(type_id: 5, construction_time: 86400, name: "Laboratory", armor: 700, productsxMinute: 0)
 

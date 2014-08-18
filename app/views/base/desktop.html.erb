@@ -2,13 +2,13 @@
     <div class="row text center">
         <nav id="base_list" data-tuktuk="menu" class="column_12 padding text bold">
             <% if @bases.length <= 0 %>
-                <a id='create_base' class='baseName active' href="#"><span class='icon plus-sign'></span>Crea una base!</a>
+                <a id='create_base' class='baseName active' ><span class='icon plus-sign'></span>Crea una base!</a>
             <% else %>
                 <% @bases.each_with_index do |base, index| %>
-                    <a id='<%= index %>' class='baseName <%= "active" if index == 0 %>' href='#'><span class='icon building'></span><%= base.name %><small>(1)</small></a>
+                    <a id='<%= index %>' class='baseName <%= "active" if index == 0 %>'><span class='icon building'></span><%= base.name %><small>(1)</small></a>
                 <% end %>
                 <% if @bases.length < Settings.maxBases %>
-                  <a id='create_base' class='baseName' href='#'><span class='icon plus-sign'></span>Nueva Base</a>
+                  <a id='create_base' class='baseName'><span class='icon plus-sign'></span>Nueva Base</a>
                 <% end %>
             <% end %>
         </nav>
@@ -22,7 +22,7 @@
       <div class="dataColumn column_6 padding-top padding-bottom">
           <h4 class="baseDataTitle text italic bold color theme margin-left">Edificios:</h4>
           <% Cache.buildings.each do |building| %>
-            <a href="#" id="<%= building[:type_id] %>" class="buildingList baseData column_5 bck grey margin-bottom padding">
+            <div id="<%= building[:type_id] %>" class="buildingList baseData column_5 bck grey margin-bottom padding">
               <%= building[:name] %>
               <div class="on-right">
                 <% units = @bases.first.building_units.where(:type_id => building[:type_id]) %>
@@ -32,16 +32,17 @@
                   0
                 <% end %>
               </div>
-            </a>
+            </div>
           <% end %>
       </div>
       <div class="dataColumn column_6 padding-top padding-bottom">
           <h4 class="baseDataTitle text italic bold color theme margin-left">Unidades:</h4>
           <% Cache.entities.each do |entity| %>
-            <a href="#" id="<%= entity[:type_id] %>" class="entityList baseData column_5 bck grey margin-bottom padding">
+            <div id="<%= entity[:type_id] %>" class="entityList baseData column_5 bck grey margin-bottom padding">
               <%= entity[:name] %>
               <div class="on-right">
-                <span class="icon add"></span>
+                <a class="entityAdd icon plus-sign"></a>
+                <a class="entityAdd icon minus-sign"></a>
                 <% stack = @bases.first.entity_stacks.where(:type_id => entity[:type_id])[0] %>
                 <% if stack != nil %>
                   <%= stack.amount  %>
@@ -49,7 +50,7 @@
                   0
                 <% end %>
               </div>
-            </a>
+            </div>
           <% end %>
       </div>
       <% end %>

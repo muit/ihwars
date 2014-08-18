@@ -110,15 +110,15 @@ var Visual = {
     },
     createBuildingType: function(type_id, name, amount, hidden){
         hideClass = (hidden)? "hidden" : "";
-        $(".dataColumn")[0].innerHTML += "<a href='#'><div id='"+type_id+"' class='buildingList baseData "+hideClass+" column_5 bck grey margin-bottom padding'>"+name+"<div class='on-right'>"+amount+"</div></div></a>";
+        $(".dataColumn")[0].innerHTML += "<div id='"+type_id+"' class='buildingList baseData "+hideClass+" column_5 bck grey margin-bottom padding'>"+name+"<div class='on-right'>"+amount+"</div></div>";
     },
     createEntityType: function(type_id, name, amount, hidden){
         hideClass = (hidden)? "hidden" : "";
-        $(".dataColumn")[1].innerHTML += "<a href='#'><div id='"+type_id+"' class='entityList baseData "+hideClass+" column_5 bck grey margin-bottom padding'>"+name+"<div class='on-right'>"+amount+"</div></div></a>";
+        $(".dataColumn")[1].innerHTML += "<div id='"+type_id+"' class='entityList baseData "+hideClass+" column_5 bck grey margin-bottom padding'>"+name+"<div class='on-right'><a class='entityAdd icon plus-sign'></a><a class='entityAdd icon minus-sign'></a>"+amount+"</div></div>";
     },
     Menu: {
         addBase: function(name, id){
-            $("#base_list").prepend("<a href='#'><span id='"+id+"' class='baseName icon building'></span>"+name+"<small></small></a>");
+            $("#base_list").prepend("<a id='"+id+"' class='baseName'><span class='icon building'></span>"+name+"<small>(1)</small></a>");
         },
     }
 }
