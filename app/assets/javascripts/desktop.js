@@ -110,6 +110,7 @@ var Visual = {
     },
     createBuildingType: function(type_id, name, amount, hidden){
         hideClass = (hidden)? "hidden" : "";
+        if(amount == -1) amount = ""
         $(".dataColumn")[0].innerHTML += "<div id='"+type_id+"' class='buildingList baseData "+hideClass+" column_5 bck grey margin-bottom padding'>"+name+"<div class='on-right'>"+amount+"</div></div>";
     },
     createEntityType: function(type_id, name, amount, hidden){

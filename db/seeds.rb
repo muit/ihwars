@@ -7,26 +7,28 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 ## Resources
-# Three types of resources: money, materials, ping
+puts "Creating Resource Types"
 ResourceType.delete_all
 ResourceType.create(type_id: 0, name: "money")
 ResourceType.create(type_id: 1, name: "materials")
 ResourceType.create(type_id: 2, name: "ping")
 
 
-## Buildings: 6 types
+## Buildings: 7 types
+puts "Creating Building Types"
 BuildingType.delete_all
 # Basic building. Appears by default when a base is created
-BuildingType.create(type_id: 0, construction_time: 300, name: "Hub", armor: 10000, productsxMinute: 0) # Almost infinity. This cannot be destroyed
+BuildingType.create(type_id: 0, construction_time: 300, name: "Hub", armor: 10000, productsxMinute: 0, unique: true) # Almost infinity. This cannot be destroyed
 # Resource-production Buildings
-BuildingType.create(type_id: 1, construction_time: 86400, name: "Server", armor: 800, productsxMinute: 1)
-BuildingType.create(type_id: 2, construction_time: 1800, name: "Bank", armor: 1000, productsxMinute: 81)
-BuildingType.create(type_id: 3, construction_time: 900, name: "Factory", armor: 1000, productsxMinute: 59)
-BuildingType.create(type_id: 4, construction_time: 1800, name: "Barracks", armor: 2000, productsxMinute: 9)
-BuildingType.create(type_id: 5, construction_time: 86400, name: "Laboratory", armor: 700, productsxMinute: 0)
-BuildingType.create(type_id: 6, construction_time: 1800, name: "House", armor: 600, productsxMinute: 0)
+BuildingType.create(type_id: 1, construction_time: 86400, name: "Server", armor: 800, productsxMinute: 1, unique: false)
+BuildingType.create(type_id: 2, construction_time: 1800, name: "Bank", armor: 1000, productsxMinute: 81, unique: false)
+BuildingType.create(type_id: 3, construction_time: 900, name: "Factory", armor: 1000, productsxMinute: 59, unique: false)
+BuildingType.create(type_id: 4, construction_time: 1800, name: "Barracks", armor: 2000, productsxMinute: 9, unique: false)
+BuildingType.create(type_id: 5, construction_time: 86400, name: "Laboratory", armor: 700, productsxMinute: 0, unique: false)
+BuildingType.create(type_id: 6, construction_time: 1800, name: "House", armor: 600, productsxMinute: 0, unique: false)
 
 ##Entities: 7 types
+puts "Creating Entity Types"
 EntityType.delete_all
 EntityType.create(type_id: 0, name: "Alumno Básico", damage: 10, armor: 10, range: 5)
 EntityType.create(type_id: 1, name: "Alumno Experimentado", damage: 15, armor: 30, range: 8)
