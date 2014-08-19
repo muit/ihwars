@@ -1,3 +1,5 @@
 class Hub < BuildingUnit
-  @id = 0
+  def get_id
+    0
+  end
 end

@@ -17,7 +17,7 @@ RSpec.describe Base, :type => :model do
     it 'has a hub by default' do
       base = Base.create(name: "chompy")
 
-      expect(base.hub).not_to be_nil
+      expect(base.building_units.find_by_type("Hub")).not_to be_nil
     end
   end
 

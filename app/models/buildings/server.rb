@@ -1,3 +1,5 @@
 class Server < BuildingUnit
-  @id = 1
+  def get_id
+    1
+  end
 end
