@@ -12,8 +12,7 @@ class BaseController < ApplicationController
 
   def create
     puts "Creating a #{current_user.name}´s base"
-    #Settings.maxBases
-    if current_user.bases.count >= 5
+    if current_user.bases.count >= Settings::MAX_BASES
       answerObject = {error: true, msg: "Maximum bases reached."}
     elsif !isValidBaseName?(params[:name])
       answerObject = {error: true, msg: "That name may be repeated or is empty."}
@@ -38,7 +37,7 @@ class BaseController < ApplicationController
       entities = selectedBase.entity_stacks
       entityHash = entities.map{|entity| {type_id: entity.type_id, name: EntityType.byTypeId(entity.type_id).name, amount: entity.amount}}
       #Get buildings
-      buildings = selectedBase.getBuildingAmounts
+      buildings = selectedBase.get_building_info
 
       answerObject = {error: false, entities: entityHash, buildings: buildings}
     end

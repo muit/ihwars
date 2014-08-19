@@ -7,7 +7,7 @@
                 <% @bases.each_with_index do |base, index| %>
                     <a id='<%= index %>' class='baseName <%= "active" if index == 0 %>'><span class='icon building'></span><%= base.name %><small>(1)</small></a>
                 <% end %>
-                <% if @bases.length < Settings.maxBases %>
+                <% if @bases.length < Settings::MAX_BASES %>
                   <a id='create_base' class='baseName'><span class='icon plus-sign'></span>Nueva Base</a>
                 <% end %>
             <% end %>
@@ -22,14 +22,12 @@
       <div class="dataColumn column_6 padding-top padding-bottom">
           <h4 class="baseDataTitle text italic bold color theme margin-left">Edificios:</h4>
           <% BuildingType.getAll.each do |building| %>
-            <div id="<%= building[:type_id] %>" class="buildingList baseData column_5 bck grey margin-bottom padding">
-              <%= building[:name] %>
+            <div id="<%= building.type_id %>" class="buildingList baseData column_5 bck grey margin-bottom padding">
+              <%= building.name %>
               <div class="on-right">
-                <% units = @bases.first.building_units.where(:type_id => building[:type_id]) %>
-                <% if units != nil %>
+                <%if !building.unique %>
+                  <% units = @bases.first.building_units.where(type_id: building.type_id) %>
                   <%= units.length %>
-                <% else %>
-                  0
                 <% end %>
               </div>
             </div>

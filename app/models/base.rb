@@ -7,11 +7,15 @@ class Base < ActiveRecord::Base
 
   after_create :prepare
 
-  def getBuildingAmounts
+  def get_building_info
     amounts = []
     ActiveRecord::Base.transaction do
       BuildingType.getAll.each do |building|
-        amount = building_units.where(type_id: building.type_id).length
+        if(!building.unique)
+          amount = building_units.where(type_id: building.type_id).length
+        else
+          amount = -1
+        end
         amounts.push({type_id: building.type_id, name: building.name, amount: amount})
       end
     end

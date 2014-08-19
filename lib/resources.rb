@@ -15,7 +15,7 @@ class Resources
         productionSpeed = BuildingType.byTypeId(link[:building_id]).productsxMinute
 
         base.building_units.where(type_id: link[:building_id]).each do |building|
-          totalIncrement += productionSpeed+productionSpeed*building.level*Settings.coefPerLevel
+          totalIncrement += productionSpeed+productionSpeed*building.level*Settings::COEF_PER_LEVEL
         end
 
         resource_stack = base.resource_stacks.where(type_id: link[:resource_id])[0]
