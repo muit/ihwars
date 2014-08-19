@@ -5,7 +5,7 @@ class BuildingUnit < ActiveRecord::Base
   private
   def add_construction_time
     self.type_id = @id
-    self.finish_building = Time.now+Cache.building(@id)[:construction_time].seconds
+    self.finish_building = Time.now+BuildingType.byTypeId(@id)[:construction_time].seconds
     super(arguments)
   end
 
