@@ -35,7 +35,7 @@ class BaseController < ApplicationController
       answerObject = {error: true, msg: "That base doesnt exists."}
     else
       #Get entities
-      entities = selectedBase.getEntities
+      entities = selectedBase.entity_stacks
       entityHash = entities.map{|entity| {type_id: entity.type_id, name: EntityType.byTypeId(entity.type_id).name, amount: entity.amount}}
       #Get buildings
       buildings = selectedBase.getBuildingAmounts

@@ -9,6 +9,6 @@ class BuildingType < ActiveRecord::Base
 
   def self.by(argument, value)
     @buildingTypes ||= self.all
-    @buildingTypes.select{|buildingType| buildingType[argument] == value}
+    @buildingTypes.select{|buildingType| buildingType[argument] == value}.first
   end
 end

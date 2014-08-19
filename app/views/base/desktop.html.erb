@@ -41,7 +41,7 @@
             <div id="<%= entity[:type_id] %>" class="entityList baseData column_5 bck grey margin-bottom padding">
               <%= entity[:name] %>
               <div class="on-right">
-                <input type="number" class="entityInput small" min="1" max="199">
+                <input type="number" class="entityInput small" value="0" min="1" max="199">
                 <a class="entityAdd color green icon plus-sign"></a>
                 <a class="entityRemove color red icon minus-sign "></a>
                 &nbsp
@@ -92,16 +92,16 @@
     </button>
   </footer>
 </div>
-<div data-tuktuk="modal" data-modal="confirm" class="column_5">
+<div id="confirmModal" data-tuktuk="modal" data-modal="confirm" class="column_5">
   <header class="bck alert">
-    <h4 class="text thin inline">Confirm</h4>
+    <h4 id="confirmModal_title" class="text thin inline"></h4>
   </header>
-  <article id="text" class="text big"></article>
+  <article id="confirmModal_text" class="text big"></article>
   <footer>
-    <button class="button large alert on-right margin-bottom">
+    <button id="confirmModal_buttonNOT" class="button large alert on-right margin-bottom">
       <span class="icon remove"></span>
     </button>
-    <button class="button large success on-right margin-bottom margin-right">
+    <button id="confirmModal_buttonOK" class="button large success on-right margin-bottom margin-right">
       <span class="icon ok"></span>
     </button>
   </footer>

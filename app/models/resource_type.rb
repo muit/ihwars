@@ -9,6 +9,6 @@ class ResourceType < ActiveRecord::Base
 
   def self.by(argument, value)
     @resourceTypes ||= self.all
-    @resourceTypes.select{|resourceType| resourceType[argument] == value}
+    @resourceTypes.select{|resourceType| resourceType[argument] == value}.first
   end
 end

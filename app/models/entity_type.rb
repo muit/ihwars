@@ -11,7 +11,7 @@ class EntityType < ActiveRecord::Base
 
   def self.by(argument, value)
     @entityTypes ||= self.all
-    @entityTypes.select{|entityType| entityType[argument] == value}
+    @entityTypes.select{|entityType| entityType[argument] == value}.fisrt
   end
 
 end
