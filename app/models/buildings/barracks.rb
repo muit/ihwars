@@ -1,3 +1,5 @@
 class Barracks < BuildingUnit
-  @id = 4
+  def get_id
+    4
+  end
 end

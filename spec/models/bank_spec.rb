@@ -13,6 +13,7 @@ RSpec.describe Bank, :type => :model do
 
   it "can be asigned to a base" do
     base = Base.create(name: "chompy")
+    base.building_units.delete_all
     base.building_units << Bank.create(level: 1)
 
     expect(base.building_units.count).to eq(1)

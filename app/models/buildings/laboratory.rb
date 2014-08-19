@@ -1,3 +1,5 @@
 class Laboratory < BuildingUnit
-  @id = 5
+  def get_id
+    5
+  end
 end

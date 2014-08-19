@@ -1,3 +1,5 @@
 class Factory < BuildingUnit
-  @id = 3
+  def get_id
+    3
+  end
 end

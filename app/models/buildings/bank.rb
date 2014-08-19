@@ -1,3 +1,5 @@
 class Bank < BuildingUnit
-  @id = 2
+  def get_id
+    2
+  end
 end
