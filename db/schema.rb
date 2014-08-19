@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140819084845) do
+ActiveRecord::Schema.define(version: 20140819134558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20140819084845) do
     t.integer "total_money"
     t.integer "total_materials"
     t.integer "user_id"
+    t.integer "total_level"
   end
 
   add_index "user_ranks", ["total_materials"], name: "index_user_ranks_on_total_materials", using: :btree

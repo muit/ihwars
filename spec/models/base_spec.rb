@@ -21,6 +21,50 @@ RSpec.describe Base, :type => :model do
     end
   end
 
+  describe 'fighting!' do
+    it 'is a tie if both teams have the same (small) force' do
+      # This may not be true with a bigger force
+      ally_base = Base.new(entity_stacks: [EntityStack.new(type_id: 0, amount: 5)])
+      enemy_base = Base.new(entity_stacks: [EntityStack.new(type_id: 0, amount: 5)])
+
+      result = ally_base.attack_base(enemy_base)
+
+      expect(result[:remaining_ally_units]).to eq(result[:remaining_enemy_units])
+    end
+
+    it 'wins a team if its much more powerful' do
+      ally_base = Base.new(entity_stacks: [EntityStack.new(type_id: 6, amount: 5)])
+      enemy_base = Base.new(entity_stacks: [EntityStack.new(type_id: 0, amount: 5)])
+
+      result = ally_base.attack_base(enemy_base)
+
+      expect(result[:remaining_ally_units].length).to eq(1)
+      expect(result[:remaining_enemy_units].length).to eq(0)
+    end
+
+    it 'loses a team if its much less powerful' do
+      ally_base = Base.new(entity_stacks: [EntityStack.new(type_id: 0, amount: 5)])
+      enemy_base = Base.new(entity_stacks: [EntityStack.new(type_id: 6, amount: 5)])
+
+      result = ally_base.attack_base(enemy_base)
+
+      expect(result[:remaining_ally_units].length).to eq(0)
+      expect(result[:remaining_enemy_units].length).to eq(1)
+    end
+  end
+
+  describe 'has a punctuations depending of its level' do
+    it 'has only the Hub' do
+      base = Base.create(name: "Test")
+      expect(base.get_level_points).to eq(15)
+    end
+    
+    it 'has a couple of buildings with different levels' do
+      base = Base.create(name: "Test", building_units: [Bank.new(level: 3), Server.new(level: 4)])
+      expect(base.get_level_points).to eq(70)
+    end
+  end
+
   #it "adds entity_stacks when created" do
   #  base = Base.create(name: "chompy")
 

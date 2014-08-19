@@ -7,7 +7,8 @@ class UserRank < ActiveRecord::Base
 			userRank = UserRank.find_or_create_by(user: a_user)
 			userRank.reset
 			a_user.bases.each do |a_base|
-				userRank.add_resource_stacks(a_base.resource_stacks)
+				userRank.add_resource_stacks(a_base.resource_stacks) # This is not useful anymore because now the ranking is by level
+
 			end
 			userRank.save
 		end
@@ -23,5 +24,17 @@ class UserRank < ActiveRecord::Base
 		self.total_money += resource_stacks[0].amount
 		self.total_materials += resource_stacks[1].amount
 		self.total_resources += total_money + total_materials
+	end
+
+	def add_level_of_base(base)
+		
+	end
+
+	def set_properties
+		reset
+		a_user.bases.each do |a_base|
+				userRank.add_resource_stacks(a_base.resource_stacks) # This is not useful anymore because now the ranking is by level
+				userRank.add_level_of_base(a_base)
+			end
 	end
 end
