@@ -32,7 +32,7 @@ class BuildingController < ApplicationController
   end
 
   def info
-    selectedBase = getBase(params[:actualBase]);
+    selectedBase = getBase(params[:actualBase])
     building_units = selectedBase.building_units.where(type_id: params[:type_id])
     buildingHash = clearBuildings building_units
     answerObject = {error: false, msg: "", buildings: buildingHash}
