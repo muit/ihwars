@@ -13,7 +13,7 @@ class BuildingController < ApplicationController
     else
       answerObject = {error: true, msg: "There was an invalid type_id."}
     end
-    render :json => Packet.new(Opcode.BUILDING_CREATE, answerObject)
+    render :json => Packet.new(Opcode::BUILDING_CREATE, answerObject)
   end
 
   def update
@@ -28,7 +28,7 @@ class BuildingController < ApplicationController
     building.save
     answerObject = {finish_building: finish_building}
 
-    render :json => Packet.new(Opcode.BUILDING_UPDATE, answerObject)
+    render :json => Packet.new(Opcode::BUILDING_UPDATE, answerObject)
   end
 
   def info
@@ -37,7 +37,7 @@ class BuildingController < ApplicationController
     buildingHash = clearBuildings building_units
     answerObject = {error: false, msg: "", buildings: buildingHash}
 
-    render :json => Packet.new(Opcode.BUILDING_INFO, answerObject)
+    render :json => Packet.new(Opcode::BUILDING_INFO, answerObject)
   end
 
   private

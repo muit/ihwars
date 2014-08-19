@@ -21,12 +21,12 @@ class BaseController < ApplicationController
       current_user.bases << Base.create(name: params[:name]);
       answerObject = {error: false, msg: ""}
     end
-    render :json => Packet.new(Opcode.BASE_CREATE, answerObject)
+    render :json => Packet.new(Opcode::BASE_CREATE, answerObject)
   end
 
   def build
     
-    render :json => Packet.new(Opcode.BASE_CREATE, answerObject)
+    render :json => Packet.new(Opcode::BASE_CREATE, answerObject)
   end
 
   def info
@@ -42,7 +42,7 @@ class BaseController < ApplicationController
 
       answerObject = {error: false, entities: entityHash, buildings: buildings}
     end
-    render :json => Packet.new(Opcode.BASE_INFO, answerObject)
+    render :json => Packet.new(Opcode::BASE_INFO, answerObject)
   end
 
   def resources
@@ -55,7 +55,7 @@ class BaseController < ApplicationController
       result[resource[:type_id]] = amount
     end
     answerObject = {error: false, resources: result}
-    render :json => Packet.new(Opcode.RESOURCE_INFO, answerObject)
+    render :json => Packet.new(Opcode::RESOURCE_INFO, answerObject)
   end
 
   private

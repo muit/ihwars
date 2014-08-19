@@ -21,7 +21,7 @@
       <% if @bases.length > 0 %>
       <div class="dataColumn column_6 padding-top padding-bottom">
           <h4 class="baseDataTitle text italic bold color theme margin-left">Edificios:</h4>
-          <% Cache.buildings.each do |building| %>
+          <% BuildingType.getAll.each do |building| %>
             <div id="<%= building[:type_id] %>" class="buildingList baseData column_5 bck grey margin-bottom padding">
               <%= building[:name] %>
               <div class="on-right">
@@ -37,7 +37,7 @@
       </div>
       <div class="dataColumn column_6 padding-top padding-bottom">
           <h4 class="baseDataTitle text italic bold color theme margin-left">Unidades:</h4>
-          <% Cache.entities.each do |entity| %>
+          <% EntityType.getAll.each do |entity| %>
             <div id="<%= entity[:type_id] %>" class="entityList baseData column_5 bck grey margin-bottom padding">
               <%= entity[:name] %>
               <div class="on-right">
@@ -114,12 +114,12 @@
 <script>
   Base.size = <%= @bases.length%>
   Base.building_types = [
-  <% Cache.buildings.each do |building| %>
+  <% BuildingType.getAll.each do |building| %>
     {type_id: <%=building[:type_id]%>, name: "<%=building[:name]%>"},
   <% end %>
   ]
   Base.entity_types = [
-  <% Cache.entities.each do |entity| %>
+  <% EntityType.getAll.each do |entity| %>
     {type_id: <%=entity[:type_id]%>, name: "<%=entity[:name]%>"},
   <% end %>
   ]
