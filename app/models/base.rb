@@ -3,22 +3,9 @@ class Base < ActiveRecord::Base
   has_many :building_units
   has_many :resource_stacks
   belongs_to :user
+  validates :name, presence: true
 
-<<<<<<< HEAD
-  def self.create(arguments)
-    base = super(arguments)
-    puts "Creating base resources & entities"
-    ActiveRecord::Base.transaction do
-      ResourceType.getAll.each do |resource|
-        base.resource_stacks.create(type_id: resource.type_id, amount: 0)
-      end
-      EntityType.getAll.each do |entity|
-        base.entity_stacks.create(type_id: entity.type_id, amount: 0)
-      end
-    end
-    base.building_units << Hub.create(level: 0)
-    base
-  end
+  after_create :prepare
 
   def getBuildingAmounts
     amounts = []
@@ -29,20 +16,22 @@ class Base < ActiveRecord::Base
       end
     end
     amounts
-=======
-  after_create :create_hub
-
-  validates :name, presence: true
-
-  def hub
-    building_units.find_by_type_id(BuildingUnit::HUB_ID)
   end
 
-  private
 
-  def create_hub
-    building_units << Hub.create(level: 1)
->>>>>>> 90cc6f7ec9d786cbcba1cbb1c70cc898f7f34a0f
+  private
+  def prepare
+    ActiveRecord::Base.transaction do
+      #create 
+      ResourceType.getAll.each do |resource|
+        resource_stacks.create(type_id: resource.type_id, amount: 0)
+      end
+      EntityType.getAll.each do |entity|
+        entity_stacks.create(type_id: entity.type_id, amount: 0)
+      end
+      #create Hub
+      building_units << Hub.create(level: 1)
+    end
   end
 
 end
