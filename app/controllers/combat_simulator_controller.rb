@@ -17,7 +17,10 @@ class CombatSimulatorController < ApplicationController
 		@old_ally_units = normalize_units(get_units("ally", params))
 		@old_enemy_units = normalize_units(get_units("enemy", params))
 
-		result = Combat.new.simulate_combat(get_units("ally", params), get_units("enemy", params))
+		ally_base = Base.new(entity_stacks: get_units("ally", params))
+		enemy_base = Base.new(entity_stacks: get_units("enemy", params))
+
+		result = ally_base.attack_base(enemy_base)
 		
 		@ally_result = normalize_units(result[:remaining_ally_units])
 		@enemy_result = normalize_units(result[:remaining_enemy_units])

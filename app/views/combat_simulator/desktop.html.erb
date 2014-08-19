@@ -9,6 +9,9 @@
 				<% if amount.present? %>
 					(<span style="color: #0d0;">
 						<%= amount %>
+					</span> / 
+					<span style="color: #d00;">
+						<%= @old_ally_units[an_entity.type_id].amount - amount %>
 					</span>)
 					<br>
 				<% end %>
@@ -16,7 +19,7 @@
 			<% end %>
 		</div>
 		<div class="column_5 padding-top padding-bottom">
-			<h3>Allies</h3>
+			<h3>Enemies</h3>
 				<% EntityType.getAll.each do |an_entity| %>
 				<% name = "enemy_#{an_entity.type_id}" %>
 				<% amount = @enemy_result[an_entity.type_id].amount %>
@@ -24,6 +27,9 @@
 				<% if amount.present? %>
 					(<span style="color: #0d0;">
 						<%= amount %>
+					</span> / 
+					<span style="color: #d00;">
+						<%= @old_enemy_units[an_entity.type_id].amount - amount %>
 					</span>)
 					<br>
 				<% end %>
