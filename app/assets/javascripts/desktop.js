@@ -115,7 +115,7 @@ var Visual = {
     },
     createEntityType: function(type_id, name, amount, hidden){
         hideClass = (hidden)? "hidden" : "";
-        $(".dataColumn")[1].innerHTML += "<div id='"+type_id+"' class='entityList baseData "+hideClass+" column_5 bck grey margin-bottom padding'>"+name+"<div class='on-right'><input type='number' class='entityInput small' value='0' min='1' max='199'><a class='entityAdd color green icon plus-sign'></a><a class='entityRemove color red icon minus-sign'></a>&nbsp"+amount+"</div></div>";
+        $(".dataColumn")[1].innerHTML += "<div id='"+type_id+"' class='entityList baseData "+hideClass+" column_5 bck grey margin-bottom padding'>"+name+"<div class='on-right'><input type='number' class='entityInput small' value='0' min='0' max='199'><a class='entityAdd color green icon plus-sign'></a><a class='entityRemove color red icon minus-sign'></a>&nbsp"+amount+"</div></div>";
     },
     Menu: {
         addBase: function(name, id){

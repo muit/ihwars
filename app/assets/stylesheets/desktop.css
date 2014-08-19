@@ -76,11 +76,17 @@ body > footer img {
 .color.green{
     color: rgb(0,255,0);
 }
-.color.red:hover{
+.color.red:hover:not(.disabled){
     color: rgb(200,0,0);
 }
-.color.green:hover{
+.color.green:hover:not(.disabled){
     color: rgb(0,200,0);
+}
+.color.red.disabled{
+    color: rgb(160,0,0);
+}
+.color.green.disabled{
+    color: rgb(0,160,0);
 }
 
 input.small{
