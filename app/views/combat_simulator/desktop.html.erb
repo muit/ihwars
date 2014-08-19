@@ -2,32 +2,32 @@
 	<%= form_tag('/simulator/', :class => "column_11 offset_1") do %>
 		<div class="column_5 padding-top padding-bottom">
 			<h3>Allies</h3>
-			<% Cache.entities.each do |an_entity| %>
-				<% name = "ally_#{an_entity[:type_id]}" %>
-				<% amount = @ally_result[an_entity[:type_id]][:amount] %>
-				<%= label_tag name, an_entity[:name] %>
+				<% EntityType.getAll.each do |an_entity| %>
+				<% name = "ally_#{an_entity.type_id}" %>
+				<% amount = @ally_result[an_entity.type_id].amount %>
+				<%= label_tag name, an_entity.name %>
 				<% if amount.present? %>
 					(<span style="color: #0d0;">
 						<%= amount %>
 					</span>)
 					<br>
 				<% end %>
-				<%= number_field_tag name, @ally_result[an_entity[:type_id]][:old_amount], min: 0 %>
+				<%= number_field_tag name, @old_ally_units[an_entity.type_id].amount, min: 0 %>
 			<% end %>
 		</div>
 		<div class="column_5 padding-top padding-bottom">
-			<h3>Enemies</h3>
-			<% Cache.entities.each do |an_entity| %>
-				<% name = "enemy_#{an_entity[:type_id]}" %>
-				<% amount = @enemy_result[an_entity[:type_id]][:amount] %>
-				<%= label_tag name, an_entity[:name] %>
+			<h3>Allies</h3>
+				<% EntityType.getAll.each do |an_entity| %>
+				<% name = "enemy_#{an_entity.type_id}" %>
+				<% amount = @enemy_result[an_entity.type_id].amount %>
+				<%= label_tag name, an_entity.name %>
 				<% if amount.present? %>
 					(<span style="color: #0d0;">
 						<%= amount %>
 					</span>)
 					<br>
 				<% end %>
-				<%= number_field_tag name, @enemy_result[an_entity[:type_id]][:old_amount], min: 0 %>
+				<%= number_field_tag name, @old_enemy_units[an_entity.type_id].amount, min: 0 %>
 			<% end %>
 		</div>
 		<div>
