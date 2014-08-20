@@ -157,6 +157,7 @@ $( document ).ready(function() {
             $("#flash_cookies").remove()
             break;
         }
+
         if(target.hasClass("buildingList")){
             var type_id = parseInt(target.attr('id'));
             var buildingSelected = undefined;

@@ -30,6 +30,7 @@ body strong{font-weight:700 !important}
 .button:not(.transparent):not(:disabled).success,button:not(.transparent):not(:disabled).success{background-color:#2ecc71}
 .button:not(.transparent):not(:disabled).alert,button:not(.transparent):not(:disabled).alert{background-color:#e74c3c}
 .button:not(.transparent):not(:disabled).ligth,button:not(.transparent):not(:disabled).ligth{background-color:#eee; border: solid 1px #777; color: #444 !important}
+.button:not(.transparent):not(:disabled).destroy, button:not(.transparent):not(:disabled).destroy{background-color: #b00; color: white;}
 .button.transparent,button.transparent{background:none !important}
 .button[disabled=disabled],button[disabled=disabled],.button:disabled,button:disabled{background-color:#414141;color:#303030 !important;-webkit-border-radius:.2rem;-moz-border-radius:.2rem;-ms-border-radius:.2rem;-o-border-radius:.2rem;border-radius:.2rem;cursor:cursor}
 .button .icon,button .icon{opacity:.5}

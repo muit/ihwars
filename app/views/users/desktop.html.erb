@@ -1,0 +1,27 @@
+<div class="information column_8 offset_2 padding">
+	<% if @user.present? %>
+		<div class="user_info">
+			<div class="column_3 padding-bottom">
+				<h2 class="inline"><%= @user.name %></h2>
+				<span class='tag bck theme'>Rank: #0</span>
+			</div>
+			<div class="column_3 on-right text right">
+				<p>Total points: <%= @user.user_rank.total_level %></p>
+				<p>Number of bases: <%= @user.bases.length %></p>
+			</div>
+		</div>
+		<div class="bases_list margin-top padding-top">
+    <% @user.bases.each_with_index do |a_base, index| %>
+      <div class="bases_row column_8 bck grey margin-bottom padding-top padding-bottom">
+        <h5 class="text bold color theme margin-left inline"><%= a_base.name %></h5> <em>(<%= a_base.get_level_points %> points)</em>
+        <%= form_tag(request.path, {:class => 'inline on-right margin-right'}) do %>
+        	<%= hidden_field_tag 'index', index %>
+        	<%= submit_tag 'Attack this base!', class: 'small button destroy text bold' %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+	<% else %>
+		<h3 class="error">Sorry, the user you are looking for does not exist.</h3>
+	<% end %>
+</div>

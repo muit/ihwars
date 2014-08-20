@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :registrations => 'devise_registrations', :sessions => 'devise_sessions' }
+  get "/users/:id" => "users#profile"
+  post "/users/:id" => "users#attack"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

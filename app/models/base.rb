@@ -36,6 +36,15 @@ class Base < ActiveRecord::Base
     result
   end
 
+  def get_level_points
+    points = 0
+    building_units.each do |a_building_unit|
+      points += 10 # For being built
+      points += 5 * a_building_unit.level # 5 points per level
+    end
+    points
+  end
+
 
   private
   def prepare
