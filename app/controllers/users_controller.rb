@@ -10,8 +10,6 @@ class UsersController < ApplicationController
 	end
 
 	def attack
-<<<<<<< HEAD
-=======
 		enemy_base_index = params[:index].to_i
 		ally_base_id = params[:from_base].to_i
 		ally_base = Base.where('id = ?', ally_base_id).first
@@ -30,7 +28,5 @@ class UsersController < ApplicationController
 		else
 			@error = "Sorry, the user you are trying to attack does not exist."
 		end
->>>>>>> 0cf7698... Fixed
-
 	end
 end

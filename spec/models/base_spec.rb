@@ -23,8 +23,6 @@ RSpec.describe Base, :type => :model do
   end
 
   describe 'fighting!' do
-<<<<<<< HEAD
-=======
     context 'regression test' do
       before do
         @ally_base = Base.create!(name: 'Allies')
@@ -41,7 +39,7 @@ RSpec.describe Base, :type => :model do
         @ally_base.attack_base(@enemy_base)
       end
     end
->>>>>>> 0cf7698... Fixed
+
     it 'is a tie if both teams have the same (small) force' do
       # This may not be true with a bigger force
       ally_base = Base.new(entity_stacks: [EntityStack.new(type_id: 0, amount: 5)])
