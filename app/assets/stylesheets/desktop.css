@@ -71,9 +71,11 @@ body > footer img {
 }
 
 .color.red{
+    cursor: pointer;
     color: rgb(255,0,0);
 }
 .color.green{
+    cursor: pointer;
     color: rgb(0,255,0);
 }
 .color.red:hover:not(.disabled){
@@ -83,9 +85,11 @@ body > footer img {
     color: rgb(0,200,0);
 }
 .color.red.disabled{
+    cursor: default;
     color: rgb(160,0,0);
 }
 .color.green.disabled{
+    cursor: default;
     color: rgb(0,160,0);
 }
 
@@ -120,4 +124,10 @@ input.small{
     display: none;
     opacity: 0;
     margin-left: 0em;
+}
+.baseData {
+    height: 3em;
+    padding-bottom: 0.75em;
+    padding-top: 0.75em;
+    vertical-align: center;
 }
