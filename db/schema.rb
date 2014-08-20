@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140819134558) do
+ActiveRecord::Schema.define(version: 20140820085343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20140819134558) do
     t.integer "productsxMinute"
     t.integer "armor"
     t.boolean "unique"
+    t.integer "cost"
   end
 
   create_table "building_units", force: true do |t|
@@ -53,6 +54,7 @@ ActiveRecord::Schema.define(version: 20140819134558) do
     t.integer "damage"
     t.integer "armor"
     t.integer "range"
+    t.integer "cost"
   end
 
   create_table "resource_stacks", force: true do |t|
