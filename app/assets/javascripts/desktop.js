@@ -153,6 +153,12 @@ $( document ).ready(function() {
         case "remove_flash_cookies":
             $("#flash_cookies").remove()
             break;
+        case "prepare_attack_button":
+            $("#attack_alert").addClass("active")
+            break;
+        case "cancel_attack_alert":
+            $("#attack_alert").removeClass("active")
+            break;
         }
 
         if(target.hasClass("buildingList")){
