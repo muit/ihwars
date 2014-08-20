@@ -21,7 +21,7 @@ class BuildingController < ApplicationController
     building = selectedBase.building_units.find(params[:id])
 
     seconds = BuildingType.byTypeId(building.type_id).construction_time.seconds
-    finish_building = Time.now+(seconds+seconds*building.level*Settings::COEF_PER_LEVEL)
+    finish_building = Time.now+(seconds+seconds*(building.level+1)*Settings::COEF_PER_LEVEL)
     
     building.finish_building = finish_building
     building.level += 1

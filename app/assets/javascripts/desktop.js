@@ -38,8 +38,14 @@ var Visual = {
             success(formModal_text.value);
             $("#formModal_buttonOK").unbind("click");
         });
-        $("#formModal_buttonNOT").bind('click', function(event){
-            $("#formModal").removeClass("active");
+    },
+
+    createModalConfirm: function(msg, success){
+        $("#confirmModal").addClass("active");
+        $("#confirmModal_buttonOK").bind('click', function(event){
+            $("#confirmModal").removeClass("active");
+            success();
+            $("#confirmModal_buttonOK").unbind("click");
         });
     },
 
@@ -143,6 +149,9 @@ $( document ).ready(function() {
                 else
                     Base.createBase(name);
             });
+            break;
+        case "create_building":
+            
             break;
         case "remove_flash_alert":
             $("#flash_alert").remove()

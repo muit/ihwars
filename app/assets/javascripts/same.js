@@ -36,14 +36,32 @@ var Base = {
             }, "json"
         );
     },
-    createBuilding: function(building_tupe, base_id){
-        $.get('/base/building/create', {type_id: building_type, actualBase: base_id}, 
+    getCost: function(building_type, level, success){
+        $.get('/base/building/cost', {type: building_type, level: level},
             function(packet){
-                if(packet.object.error == true)
-                    Visual.showAlert(true, packer.object.msg, true);
-                else{} //If not error show the new Building Construction
+                if(packet.object.error != true){
+                    success(packet.object.cost);
+                }
             }, "json"
         );
+    },
+    createBuilding: function(building_tupe, base_id){
+        this.getCost(building_tupe, base_id, function(cost){
+
+            Visual.createModalConfirm("Nombre de la nueva base?", function(){
+                
+            });
+
+            $.get('/base/building/create', {type: building_type, actualBase: base_id}, 
+                function(packet){
+                    if(packet.object.error == true)
+                        Visual.showAlert(true, packer.object.msg, true);
+                    else{ //If not error show the new Building Construction
+                        console.log(packet.object.finish_building);
+                    }
+                }, "json"
+            );
+        });
     },
 
     getBaseAmounts: function(baseName, success, error){

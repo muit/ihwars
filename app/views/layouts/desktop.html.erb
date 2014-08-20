@@ -70,65 +70,50 @@
         </article>
     </section>
 
-    <aside id="alert" data-tuktuk="modal" data-modal="alert" class="column_5">
+    <div id="alert" data-tuktuk="modal" data-modal="alert" class="column_5">
         <header class="bck alert">
             <h4 class="text thin inline">Alert</h4>
         </header>
-        <div id="alert_text" class="text big">
-        </div>
+        <section id="alert_text" class="text big">
+        </section>
         <footer>
-            <button data-modal="close" class="button large success on-right margin-bottom">
+            <button data-modal="close" class="button theme on-right margin-bottom">
                 <span class="icon ok"></span>
             </button>
         </footer>
-    </aside>
+    </div>
 
-    <aside id="formModal" data-tuktuk="modal" data-modal="prompt" class="column_5">
+    <div id="formModal" data-tuktuk="modal" data-modal="prompt" class="column_5">
         <header class="bck notice color white">
             <h4 class="text inline">Name of the base?</h4>
         </header>
-        <div class="form">
+        <section class="form">
             <label id="text"></label>
             <input type="text" id="formModal_text">
-        </div>
+        </section>
         <footer>
-            <button id="formModal_buttonNOT" class="button alert on-right">
+            <button data-modal="close" class="button alert on-right">
             <span class="icon remove"></span>
             </button>
-            <button data-modal="close" class="button theme on-right margin-right">
+            <button id="formModal_buttonOK" class="button theme on-right margin-right">
             <span class="icon ok"></span>
             </button>
         </footer>
-    </aside>
+    </div>
 
-    <aside id="confirmModal" data-tuktuk="modal" data-modal="confirm" class="column_5">
+    <div id="confirmModal" data-tuktuk="modal" data-modal="confirm" class="column_5">
       <header class="bck alert">
         <h4 id="confirmModal_title" class="text thin inline"></h4>
       </header>
-      <div id="confirmModal_text" class="text big"></div>
+      <section id="confirmModal_text" class="text big">qeqwe</section>
       <footer>
-        <button id="confirmModal_buttonNOT" class="button large alert on-right margin-bottom">
+        <button data-modal="close" class="button alert on-right margin-bottom">
           <span class="icon remove"></span>
         </button>
-        <button data-modal="close" class="button large success on-right margin-bottom margin-right">
+        <button id="confirmModal_buttonOK" class="button theme on-right margin-bottom margin-right">
           <span class="icon ok"></span>
         </button>
       </footer>
-    </aside>
-
-    <aside id="confirmModal_transaction" data-tuktuk="modal" data-modal="confirm" class="column_5">
-        <header class="bck alert">
-            <h4 id="confirmModal_title" class="text thin inline"></h4>
-        </header>
-        <div id="confirmModal_text" class="text big"></div>
-        <footer>
-            <button data-modal="close" class="button large alert on-right margin-bottom">
-                <span class="icon remove"></span>
-            </button>
-            <button id="confirmModal_transactionOK" class="button large success on-right margin-bottom margin-right">
-                <span class="icon ok"></span>
-            </button>
-        </footer>
-    </aside>
+    </div>
 </body>
 </html>
