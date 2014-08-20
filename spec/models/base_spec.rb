@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'pry'
 
 RSpec.describe Base, :type => :model do
 
@@ -22,6 +23,23 @@ RSpec.describe Base, :type => :model do
   end
 
   describe 'fighting!' do
+    context 'regression test' do
+      before do
+        @ally_base = Base.create!(name: 'Allies')
+        @enemy_base = Base.create!(name: 'Nazis')
+      end
+
+      it 'fails' do
+        [@ally_base, @enemy_base].each { |b| b.entity_stacks.first.update_attribute(:amount, 100) }
+
+        @ally_base.attack_base(@enemy_base)
+      end
+
+      it 'zero units' do
+        @ally_base.attack_base(@enemy_base)
+      end
+    end
+
     it 'is a tie if both teams have the same (small) force' do
       # This may not be true with a bigger force
       ally_base = Base.new(entity_stacks: [EntityStack.new(type_id: 0, amount: 5)])
