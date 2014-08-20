@@ -16,33 +16,31 @@
 </section>
 
 
-<section id="mainSection" class="padding-left padding-right">
-    <div class="baseDataBox row ">
+<section id="mainSection" class="">
+    <div class="baseDataBox row">
       <% if @bases.length > 0 %>
       <div class="dataColumn column_6 padding-top padding-bottom">
-          <h4 class="baseDataTitle text italic bold color theme margin-left">Buildings:</h4>
+          <h4 class="baseDataTitle text italic bold color theme margin-left margin-bottom">Buildings:</h4>
           <% BuildingType.getAll.each do |building| %>
-            <div id="<%= building.type_id %>" class="buildingList baseData column_5 bck grey margin-bottom padding">
+            <div id="<%= building.type_id %>" class="buildingList baseData column_5 bck grey margin-bottom padding-left padding-right">
               <%= building.name %>
               <div class="on-right">
-                <%if !building.unique %>
-                  <% units = @bases.first.building_units.where(type_id: building.type_id) %>
-                  <%= units.length %>
-                <% end %>
+                <% unit = @bases.first.building_units.where(type_id: building.type_id).first %>
+                <%= (unit != nil)? "Level: #{unit.level}" : raw("<button class='success tiny'>Build it!</button>") %>
               </div>
             </div>
           <% end %>
       </div>
       <div class="dataColumn column_6 padding-top padding-bottom">
-          <h4 class="baseDataTitle text italic bold color theme margin-left">Units:</h4>
-          <% entityControlDisabled = !hasFactories? || is_entity_size_exceded?(0, @bases.first) %>
+          <h4 class="baseDataTitle text italic bold color theme margin-left margin-bottom">Units:</h4>
+          <% entityControlDisabled = !hasFactories?(@bases.first) || is_entity_size_exceded?(0, @bases.first) %>
           <% EntityType.getAll.each do |entity| %>
-            <div id="<%= entity[:type_id] %>" class="entityList baseData column_5 bck grey margin-bottom padding">
+            <div id="<%= entity[:type_id] %>" class="entityList baseData column_5 bck grey margin-bottom padding-left padding-right">
               <%= entity[:name] %>
               <div class="on-right">
                 <input type="number" class="entityInput small" value="0" min="0" max="199">
-                <a class="entityAdd color green icon plus-sign<%= "disabled" if entityControlDisabled %>"></a>
-                <a class="entityRemove color red icon minus-sign "></a>
+                <a class="entityAdd color green icon plus-sign <%= "disabled" if entityControlDisabled %>"></a>
+                <a class="entityRemove color red icon minus-sign <%= "disabled" if entityControlDisabled %>"></a>
                 &nbsp
                 <% stack = @bases.first.entity_stacks.where(:type_id => entity[:type_id])[0] %>
                 <% if stack != nil %>
