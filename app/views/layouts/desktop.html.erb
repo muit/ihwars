@@ -9,7 +9,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body data-tuktuk="boxes" class="bck light">
-    <section class="scroll">
+    <section>
     	<% if flash[:cookies].present? %>
     		<section id="flash_cookies" class="bck cookies flash padding">
     			<h6 class="notice inline"><%= flash[:cookies] %></h6>
@@ -61,16 +61,12 @@
 
         <article class="scroll">
             <%= yield %>
-
-
-
-            <div id="mainFooter" class="margin-top padding-left padding-right align center text small bck light">
-            Made by PixelDream (<a target="_blank" class="text bold color theme" href="https://github.com/muit">Muit</a>, <a class="text bold color theme" href="https://github.com/alvarorgtr">alvarorgtr</a>)
-            <br>
-            Report an issue <a target="_blank" class="text bold" href="https://bitbucket.org/ironhackproject/project/issues">here</a>!
-            </div>
-
             
+            <footer id="mainFooter" class="margin-top padding-left padding-right align center text small bck light">
+                Made by PixelDream (<a target="_blank" class="text bold color theme" href="https://github.com/muit">Muit</a>, <a class="text bold color theme" href="https://github.com/alvarorgtr">alvarorgtr</a>)
+                <br>
+                Report an issue <a target="_blank" class="text bold" href="https://bitbucket.org/ironhackproject/project/issues">here</a>!
+            </footer>
         </article>
     </section>
 

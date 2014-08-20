@@ -1,4 +1,5 @@
-<div class="column_8 offset_2 padding">
+<div id="mainSection" class="">
+    <div class="row">
 	<% if @user.present? && !@error.present? %>
 		<% if @result.present? %>
 			<div id="combat_result_alert" data-tuktuk="modal" data-modal="alert" class="column_6">
@@ -23,20 +24,21 @@
 			</div>
 		<% end %>
 
-		<div class="user_info">
-			<div class="column_3 padding-bottom">
-				<h2 class="inline"><%= @user.name %></h2>
-				<span class='tag bck theme'>Rank: #0</span>
+		<div class="user_info margin-top">
+			<div class="inline padding-bottom">
+				<h2 class=""><%= @user.name %>
+					<span class='tag bck theme'>Rank: #0</span>
+				</h2>
 			</div>
-			<div class="column_3 on-right text right">
+			<div class="on-right text right">
 				<p>Total points: <%= @user.user_rank.total_level %></p>
 				<p>Number of bases: <%= @user.bases.length %></p>
 			</div>
 		</div>
 
-		<div class="bases_list margin-top padding-top">
+		<div class="bases_list row margin-top padding-top">
 			<% @user.bases.each_with_index do |a_base, index| %>
-				<div class="bases_row column_8 bck grey margin-bottom padding-top padding-bottom">
+				<div class="column_8 bck grey margin-bottom padding-top padding-bottom">
 		        	<h5 class="text bold color theme margin-left inline"><%= a_base.name %></h5> <em>(<%= a_base.get_level_points %> points)</em>
 		        	<div id="prepare_attack_button" class="inline on-right margin-right small button destroy text bold">Prepare attack</div>
 		    		<div id="attack_alert" data-tuktuk="modal" data-modal="alert" class="column_5">
@@ -66,3 +68,6 @@
 		</h3>
 	<% end %>
 </div>
+</div>
+<!-- Auto Margin to the footer. Need to be implemented automatic with css or js! -->
+<div style="height: 298px !important;"></div>
