@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require_tree ./desktop
+ *= require ./users
  *= require_self
  */
  
@@ -92,6 +93,10 @@ body > footer img {
 input.small{
     width: 3em;
     border-radius: 2px;
+}
+
+input.small.destroy {
+    width: auto;
 }
 
 #mainSection{
