@@ -1,4 +1,4 @@
-<section class="bck grey margin-top margin-bottom">
+<div class="bck grey margin-top margin-bottom">
     <div class="row text center">
         <nav id="base_list" data-tuktuk="menu" class="column_12 padding text bold">
             <% if @bases.length <= 0 %>
@@ -13,10 +13,10 @@
             <% end %>
         </nav>
     </div>
-</section>
+</div>
 
 
-<section id="mainSection" class="">
+<div id="mainSection" class="">
     <div class="baseDataBox row">
       <% if @bases.length > 0 %>
       <div class="dataColumn column_6 padding-top padding-bottom">
@@ -60,55 +60,6 @@
         <h4 class="dataPanelTitle text italic bold color theme margin-left">Title:</h4>
       </div>
     </div>
-</section>
-
-<div id="alert" data-tuktuk="modal" data-modal="alert" class="column_5">
-  <header class="bck alert">
-    <h4 class="text thin inline">Alert</h4>
-  </header>
-  <article id="alert_text" class="text big"></article>
-  <footer>
-    <button id="alert_close" class="button large success on-right margin-bottom">
-      <span class="icon ok"></span>
-    </button>
-  </footer>
-</div>
-<div id="formModal" data-tuktuk="modal" data-modal="prompt" class="column_5">
-  <header class="bck notice color white">
-    <h4 class="text inline">Name of the base?</h4>
-  </header>
-  <article class="text big">
-    <form>
-      <label id="text"></label>
-      <input type="text" id="formModal_text">
-    </form>
-  </article>
-  <footer>
-    <button id="formModal_buttonNOT" class="button alert on-right margin-bottom">
-      <span class="icon remove"></span>
-    </button>
-    <button id="formModal_buttonOK" class="button theme on-right margin-bottom margin-right">
-      <span class="icon ok"></span>
-    </button>
-  </footer>
-</div>
-<div id="confirmModal" data-tuktuk="modal" data-modal="confirm" class="column_5">
-  <header class="bck alert">
-    <h4 id="confirmModal_title" class="text thin inline"></h4>
-  </header>
-  <article id="confirmModal_text" class="text big"></article>
-  <footer>
-    <button id="confirmModal_buttonNOT" class="button large alert on-right margin-bottom">
-      <span class="icon remove"></span>
-    </button>
-    <button id="confirmModal_buttonOK" class="button large success on-right margin-bottom margin-right">
-      <span class="icon ok"></span>
-    </button>
-  </footer>
-</div>
-
-<div data-tuktuk="lock" data-loading="false">
-  <div class="loading"></div>
 </div>
 
 <script>

@@ -8,72 +8,127 @@
   <%= javascript_include_tag 'desktop' %>
   <%= csrf_meta_tags %>
 </head>
-<body class="bck light">
-	<% if flash[:cookies].present? %>
-		<section id="flash_cookies" class="bck cookies padding">
-			<h6 class="notice inline"><%= flash[:cookies] %></h6>
-			<button id="remove_flash_cookies" class="transparent tiny on-right inline icon remove"></button>
-		</section>
-	<% end %>
+<body data-tuktuk="boxes" class="bck light">
+    <section class="scroll">
+    	<% if flash[:cookies].present? %>
+    		<section id="flash_cookies" class="bck cookies padding">
+    			<h6 class="notice inline"><%= flash[:cookies] %></h6>
+    			<button id="remove_flash_cookies" class="transparent tiny on-right inline icon remove"></button>
+    		</section>
+    	<% end %>
 
-	<!-- Necessary for devise gem -->
-	<% if alert.present? %>
-		<section id="flash_alert" class="bck alert padding">
-			<h6 class="alert inline"><%= alert %></h6>
-			<button id="remove_flash_alert" class="transparent tiny on-right inline icon remove"></button>
-		</section>
-	<% end %>
+    	<!-- Necessary for devise gem -->
+    	<% if alert.present? %>
+    		<section id="flash_alert" class="bck alert padding">
+    			<h6 class="alert inline"><%= alert %></h6>
+    			<button id="remove_flash_alert" class="transparent tiny on-right inline icon remove"></button>
+    		</section>
+    	<% end %>
 
-	<% if notice.present? %>
-		<section id="flash_notice" class="bck success padding">
-			<h6 class="notice inline"><%= notice %></h6>
-			<button id="remove_flash_success" class="transparent tiny on-right inline icon remove"></button>
-		</section>
-	<% end %>
+    	<% if notice.present? %>
+    		<section id="flash_notice" class="bck success padding">
+    			<h6 class="notice inline"><%= notice %></h6>
+    			<button id="remove_flash_success" class="transparent tiny on-right inline icon remove"></button>
+    		</section>
+    	<% end %>
 
-	<header class="padding-top padding-bottom bck dark">
-		<% if user_signed_in? %>
-	    <div class="row">
-	      <div class="column_6">
-	        <h3 class="text italic bold"><%= link_to raw("#{current_user.name}&nbsp<span class='tag bck theme'>Rank: #0</span>"), "/base" %>
-	        </h3>
-	      </div>
-	      <div class="column_4">
-	        <h6 class="text italic">
-	          <span id="total_resources_money" class="margin-right icon money text center"> <%= get_current_user_resource(0) %></span>
-	          <span id="total_resources_materials" class="margin-right icon tint text center"> <%= get_current_user_resource(1) %></span>
-	          <span id="total_resources_ping" class="icon tasks text center"> <%= get_current_user_resource(2) %></span>
-	        </h6>
-	    	</div>
-	      <nav class="column_2 text right bold">
-	        <a data-method='delete' href="/users/sign_out" class="button small dark">Log Out</a>
-	      </nav>
-	    </div>
-    <% else %>
-    	<div class="row">
-	      <div class="column_8">
-	        <h4 class="text bold">You are not logged in</h4>
-	      </div>
-	      <nav class="access_account_buttons column_4 text right bold">
-	        <a href="/users/sign_in" class="button small dark">Log in</a>
-	        <a href="/users/sign_up" class="button small theme">Register</a>
-	      </nav>
-	    </div>
-    <% end %>
-	</header>
+    	<header id="mainHeader" class="header bck dark">
+    		<% if user_signed_in? %>
+    	      <div class="column_6">
+    	        <h3 class="text italic bold"><%= link_to raw("#{current_user.name}&nbsp<span class='tag bck theme'>Rank: #0</span>"), "/base" %>
+    	        </h3>
+    	      </div>
+    	      <div class="column_4">
+    	        <h6 class="text italic">
+    	          <span id="total_resources_money" class="margin-right icon money text center"> <%= get_current_user_resource(0) %></span>
+    	          <span id="total_resources_materials" class="margin-right icon tint text center"> <%= get_current_user_resource(1) %></span>
+    	          <span id="total_resources_ping" class="icon tasks text center"> <%= get_current_user_resource(2) %></span>
+    	        </h6>
+    	    	</div>
+    	      <nav class="column_2 text right bold">
+    	        <a data-method='delete' href="/users/sign_out" class="button small dark">Log Out</a>
+    	      </nav>
+        <% else %>
+            <div class="column_8">
+                <h4 class="text bold">You are not logged in</h4>
+            </div>
+            <nav class="access_account_buttons column_4 text right bold">
+                <a href="/users/sign_in" class="button small dark">Log in</a>
+                <a href="/users/sign_up" class="button small theme">Register</a>
+            </nav>
+        <% end %>
+    	</header>
 
-	<article>
-		<%= yield %>
-	</article>
+        <article class="scroll">
+            <%= yield %>
 
-	<footer id="mainFooter" class="padding align center text small">
-	  <div class="row">
-      <div class="offset_3 column_6">
-        <p>Made by PixelDream (<a target="_blank" class="text bold color theme" href="https://github.com/muit">Muit</a>, <a class="text bold color theme" href="https://github.com/alvarorgtr">alvarorgtr</a>)
-        </p>
-        <small>Report an issue <a target="_blank" class="text bold" href="https://bitbucket.org/ironhackproject/project/issues">here</a>!</small>
-      </div>
-	  </div>
-</footer>
+            <div id="mainFooter" class="margin-top padding-left padding-right align center text small bck light">
+            Made by PixelDream (<a target="_blank" class="text bold color theme" href="https://github.com/muit">Muit</a>, <a class="text bold color theme" href="https://github.com/alvarorgtr">alvarorgtr</a>)
+            <br>
+            Report an issue <a target="_blank" class="text bold" href="https://bitbucket.org/ironhackproject/project/issues">here</a>!
+            </div>
+        </article>
+    </section>
+
+    <aside id="alert" data-tuktuk="modal" data-modal="alert" class="column_5">
+        <header class="bck alert">
+            <h4 class="text thin inline">Alert</h4>
+        </header>
+        <div id="alert_text" class="text big">
+        </div>
+        <footer>
+            <button data-modal="close" class="button large success on-right margin-bottom">
+                <span class="icon ok"></span>
+            </button>
+        </footer>
+    </aside>
+
+    <aside id="formModal" data-tuktuk="modal" data-modal="prompt" class="column_5">
+        <header class="bck notice color white">
+            <h4 class="text inline">Name of the base?</h4>
+        </header>
+        <div class="form">
+            <label id="text"></label>
+            <input type="text" id="formModal_text">
+        </div>
+        <footer>
+            <button id="formModal_buttonNOT" class="button alert on-right">
+            <span class="icon remove"></span>
+            </button>
+            <button data-modal="close" class="button theme on-right margin-right">
+            <span class="icon ok"></span>
+            </button>
+        </footer>
+    </aside>
+
+    <aside id="confirmModal" data-tuktuk="modal" data-modal="confirm" class="column_5">
+      <header class="bck alert">
+        <h4 id="confirmModal_title" class="text thin inline"></h4>
+      </header>
+      <div id="confirmModal_text" class="text big"></div>
+      <footer>
+        <button id="confirmModal_buttonNOT" class="button large alert on-right margin-bottom">
+          <span class="icon remove"></span>
+        </button>
+        <button data-modal="close" class="button large success on-right margin-bottom margin-right">
+          <span class="icon ok"></span>
+        </button>
+      </footer>
+    </aside>
+
+    <aside id="confirmModal_transaction" data-tuktuk="modal" data-modal="confirm" class="column_5">
+        <header class="bck alert">
+            <h4 id="confirmModal_title" class="text thin inline"></h4>
+        </header>
+        <div id="confirmModal_text" class="text big"></div>
+        <footer>
+            <button data-modal="close" class="button large alert on-right margin-bottom">
+                <span class="icon remove"></span>
+            </button>
+            <button id="confirmModal_transactionOK" class="button large success on-right margin-bottom margin-right">
+                <span class="icon ok"></span>
+            </button>
+        </footer>
+    </aside>
 </body>
 </html>

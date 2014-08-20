@@ -27,6 +27,14 @@ body > footer img {
     top: 5px;
     left: 2px; 
 }
+aside {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+.header{
+    height: auto !important;
+}
+
 .baseName {
     cursor: pointer;
 }

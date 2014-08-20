@@ -135,9 +135,6 @@ $( document ).ready(function() {
     $("body").bind('click', function(event) {
         var target = $(event.target);
         switch(target.attr('id')){
-        case "alert_close":
-            Visual.showAlert(false);
-            break;
         case "create_base":
             Visual.createModalForm("Nombre de la nueva base?", function(name){
                 console.log(name);
