@@ -67,14 +67,19 @@ class Base < ActiveRecord::Base
     # In each step, the damage produced by the units in range is added, and multiplied by a factor (<=1) due to bad aiming
     # The enemy units die when the damage received is greater than their armor
     # Which unit suffers the damage is determined randomly
-
     distance = 100
+    ally_accumulated_damage = 0
+    enemy_accumulated_damage = 0
+
+    ally_units = ally_units.select{|a_unit| a_unit.amount > 0}
+    enemy_units = enemy_units.select{|a_unit| a_unit.amount > 0}
+
     while ally_units.length > 0 && enemy_units.length > 0
       ally_damage_dealt = damage_dealt_by_units(ally_units, distance)
       enemy_damage_dealt = damage_dealt_by_units(enemy_units, distance)
 
-      ally_units = kill_units(ally_units, enemy_damage_dealt)
-      enemy_units = kill_units(enemy_units, ally_damage_dealt)
+      enemy_accumulated_damage = kill_units(ally_units, enemy_damage_dealt + enemy_accumulated_damage)
+      ally_accumulated_damage = kill_units(enemy_units, ally_damage_dealt + ally_accumulated_damage)
 
       distance -= 10 if distance > 0
     end
@@ -101,15 +106,17 @@ class Base < ActiveRecord::Base
       if damage_dealt >= entity_type.armor && units[index].amount > 0
         units[index].amount -= 1
         damage_dealt -= entity_type.armor
+
         if units[index].amount <= 0
-          # units.delete_at(index)
+        # units.delete_at(index)
           units.delete(units[index])
           break
         end
       end
+
       max -= 1
     end
-    units
+    damage_dealt
   end
 
   def precision_factor(distance)
