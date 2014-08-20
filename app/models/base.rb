@@ -8,18 +8,19 @@ class Base < ActiveRecord::Base
   after_create :prepare
 
   def get_building_info
-    amounts = []
+    info = []
     ActiveRecord::Base.transaction do
       BuildingType.getAll.each do |building|
-        if(!building.unique)
-          amount = building_units.where(type_id: building.type_id).length
+        buildingUnit = building_units.where(type_id: building.type_id).first
+        if(buildingUnit != nil)
+          buildingLevel = buildingUnit.level
         else
-          amount = -1
+          buildingLevel = 0
         end
-        amounts.push({type_id: building.type_id, name: building.name, amount: amount})
+        info.push({type_id: building.type_id, name: building.name, level: buildingLevel})
       end
     end
-    amounts
+    info
   end
 
   def attack_base(enemy_base)

@@ -26,7 +26,11 @@
               <%= building.name %>
               <div class="on-right">
                 <% unit = @bases.first.building_units.where(type_id: building.type_id).first %>
-                <%= (unit != nil)? "Level: #{unit.level}" : raw("<button class='success tiny'>Build it!</button>") %>
+                <% if unit != nil %>
+                  Level: <%= unit.level %>  <button class='addBuildingLevel_button success tiny icon arrow-up'></button>
+                <% else %>
+                  <button class='createBuilding_button success tiny'>Build it!</button>
+                <% end %>
               </div>
             </div>
           <% end %>
@@ -39,10 +43,11 @@
               <%= entity[:name] %>
               <div class="on-right">
                 <input type="number" class="entityInput small" value="0" min="0" max="199">
-                <a class="entityAdd color green icon plus-sign <%= "disabled" if entityControlDisabled %>"></a>
-                <a class="entityRemove color red icon minus-sign <%= "disabled" if entityControlDisabled %>"></a>
-                &nbsp
-                <% stack = @bases.first.entity_stacks.where(:type_id => entity[:type_id])[0] %>
+                <a class="entityAdd color green icon plus-sign <%= "disabled" if entityControlDisabled %>">
+                </a>
+                <a class="entityRemove color red icon minus-sign <%= "disabled" if entityControlDisabled %>">
+                </a>
+                &nbsp<% stack = @bases.first.entity_stacks.where(:type_id => entity[:type_id])[0] %>
                 <% if stack != nil %>
                   <%= stack.amount  %>
                 <% else %>

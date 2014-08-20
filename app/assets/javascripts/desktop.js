@@ -108,14 +108,20 @@ var Visual = {
         $(".buildingList").remove();
         $(".entityList").remove();
     },
-    createBuildingType: function(type_id, name, amount, hidden){
-        hideClass = (hidden)? "hidden" : "";
-        if(amount == -1) amount = ""
-        $(".dataColumn")[0].innerHTML += "<div id='"+type_id+"' class='buildingList baseData "+hideClass+" column_5 bck grey margin-bottom padding'>"+name+"<div class='on-right'>"+amount+"</div></div>";
+    createBuildingType: function(type_id, name, level, hidden){
+        var hideClass = (hidden)? "hidden" : "";
+        if(level != 0)
+            var levelOrCreate = "Level: "+level+"  <button class='addBuildingLevel_button success tiny icon arrow-up'></button>";
+        else
+            var levelOrCreate = "<button class='createBuilding_button success tiny'>Build it!</button>";
+
+        $(".dataColumn")[0].innerHTML += "<div id='"+type_id+"' class='buildingList baseData "+hideClass+" column_5 bck grey margin-bottom padding-left padding-right'>"+name+"<div class='on-right'>"+levelOrCreate+"</div></div>";
     },
-    createEntityType: function(type_id, name, amount, hidden){
-        hideClass = (hidden)? "hidden" : "";
-        $(".dataColumn")[1].innerHTML += "<div id='"+type_id+"' class='entityList baseData "+hideClass+" column_5 bck grey margin-bottom padding'>"+name+"<div class='on-right'><input type='number' class='entityInput small' value='0' min='0' max='199'><a class='entityAdd color green icon plus-sign'></a><a class='entityRemove color red icon minus-sign'></a>&nbsp"+amount+"</div></div>";
+    createEntityType: function(type_id, name, amount, hidden, disabled){
+        var hideClass = (hidden)? "hidden" : "";
+        var disabledClass = (disabled)? "disabled" : "";
+
+        $(".dataColumn")[1].innerHTML += "<div id='"+type_id+"' class='entityList baseData "+hideClass+" column_5 bck grey margin-bottom padding-left padding-right'>"+name+"<div class='on-right'><input type='number' class='entityInput small' value='0' min='0' max='199'><a class='entityAdd color green icon plus-sign "+disabledClass+"'></a><a class='entityRemove color red icon minus-sign "+disabled+"'></a>&nbsp"+amount+"</div></div>";
     },
     Menu: {
         addBase: function(name, id){

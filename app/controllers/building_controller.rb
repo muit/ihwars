@@ -1,6 +1,6 @@
 class BuildingController < ApplicationController
   before_action :authenticate_user!
-  def new
+  def create
     typeId = params[:type_id]
     baseName = params[:actualBase]
     if isValidBuildingId?(id)

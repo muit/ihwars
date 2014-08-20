@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "/base/create" => "base#create"
   get "/base/amounts" => "base#info"
   get "/base/building/info" => "building#info"
+  get "/base/building/create" => "building#create"
 
   get "/rank" => "rank#rank"
 

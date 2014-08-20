@@ -7,10 +7,14 @@ var Base = {
         this.getBaseAmounts(name, 
             function(entities, buildings){
                 Visual.deleteTypes();
-                for(var i = 0, len = entities.length; i < len; i++)
+                var entityControlDisabled = false;
+                for(var i = 0, len = entities.length; i < len; i++){
                     Visual.createEntityType(entities[i].type_id, entities[i].name, entities[i].amount, true);
+                    if(entities[i].name == "Barracks" && entities[i].level == 0)
+                        entityControlDisabled = true;
+                }
                 for(var i = 0, len = buildings.length; i < len; i++)
-                    Visual.createBuildingType(buildings[i].type_id, buildings[i].name, buildings[i].amount, true);
+                    Visual.createBuildingType(buildings[i].type_id, buildings[i].name, buildings[i].level, true, entityControlDisabled);
                 
                 Visual.showAllTypes(true);
             }, 
@@ -33,7 +37,7 @@ var Base = {
         );
     },
     createBuilding: function(building_tupe, base_id){
-        $.get('/base/build', {type_id: building_type, actualBase: base_id}, 
+        $.get('/base/building/create', {type_id: building_type, actualBase: base_id}, 
             function(packet){
                 if(packet.object.error == true)
                     Visual.showAlert(true, packer.object.msg, true);
