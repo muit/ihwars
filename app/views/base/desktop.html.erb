@@ -18,8 +18,8 @@
 
 <div id="mainSection" class="">
     <div class="baseDataBox row">
-      <% if @bases.length > 0 %>
       <div class="dataColumn column_6 padding-top padding-bottom">
+        <% if @bases.length > 0 %>
           <h4 class="baseDataTitle text italic bold color theme margin-left margin-bottom">Buildings:</h4>
           <% BuildingType.getAll.each do |building| %>
             <div id="<%= building.type_id %>" class="buildingList baseData column_5 bck grey margin-bottom padding-left padding-right">
@@ -34,8 +34,10 @@
               </div>
             </div>
           <% end %>
+        <% end %>
       </div>
       <div class="dataColumn column_6 padding-top padding-bottom">
+        <% if @bases.length > 0 %>
           <h4 class="baseDataTitle text italic bold color theme margin-left margin-bottom">Units:</h4>
           <% entityControlDisabled = !hasFactories?(@bases.first) || is_entity_size_exceded?(0, @bases.first) %>
           <% EntityType.getAll.each do |entity| %>
@@ -54,8 +56,8 @@
               </div>
             </div>
           <% end %>
+        <% end %>
       </div>
-      <% end %>
       <div class="dataPanel hidden column_10 bck grey margin padding">
         <h4 class="dataPanelTitle text italic bold color theme margin-left">Title:</h4>
       </div>

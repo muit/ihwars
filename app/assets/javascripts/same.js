@@ -19,7 +19,7 @@ var Base = {
                 Visual.showAllTypes(true);
             }, 
             function(msg){
-                Visual.showAlert(msg);
+                Visual.showAlert(true, msg, true);
             }
         );
     },
