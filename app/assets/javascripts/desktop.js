@@ -169,8 +169,8 @@ var Visual = {
 }
 
 $( document ).ready(function() {
-    $("#combat_result_alert").addClass("active");
-    
+    $("#combat_results_alert").addClass("active");
+
     $("body").bind('click', function(event) {
         var target = $(event.target);
         switch(target.attr('id')){
