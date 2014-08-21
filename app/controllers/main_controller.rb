@@ -1,9 +1,9 @@
 class MainController < ApplicationController
 	def index
-		if mobile_device?
-      render :mobile, layout: "mobile"
-    else
-      render :desktop, layout: "desktop"
-    end
+		if user_signed_in?
+			redirect_to base_path
+		else
+			redirect_to new_user_session_path
+		end
 	end
 end
