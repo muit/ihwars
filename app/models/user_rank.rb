@@ -10,7 +10,7 @@ class UserRank < ActiveRecord::Base
 		end
 
 		order("total_level DESC").each_with_index do |a_rank, index|
-			a_rank.position = index + 1
+			a_rank.update_attribute(:position, index + 1)
 		end
 	end
 
@@ -20,21 +20,20 @@ class UserRank < ActiveRecord::Base
 	end
 
 	def reset
-		self.total_resources = 0
-		self.total_materials = 0
-		self.total_money = 0
-		self.total_level = 0
+		update_attribute(:total_resources, 0)
+		update_attribute(:total_materials, 0)
+		update_attribute(:total_money, 0)
+		update_attribute(:total_level, 0)
 	end
 
 	def add_resource_stacks(resource_stacks)
-
-		self.total_money += resource_stacks[0].amount
-		self.total_materials += resource_stacks[1].amount
-		self.total_resources += total_money + total_materials
+		update_attribute(:total_resources, resource_stacks[0].amount)
+		update_attribute(:total_materials, resource_stacks[1].amount)
+		update_attribute(:total_money, total_money + total_materials)
 	end
 
 	def add_level_of_base(base)
-		self.total_level += base.get_level_points
+		update_attribute(:total_level, base.get_level_points)
 	end
 
 	def set_properties
