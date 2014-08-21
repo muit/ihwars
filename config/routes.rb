@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :registrations => 'devise_registrations', :sessions => 'devise_sessions' }
-  get "/users/:id" => "users#profile"
+  get "/users/:id" => "users#profile", as: :user_profile
   post "/users/:id" => "users#attack"
 
   # The priority is based upon order of creation: first created -> highest priority.
