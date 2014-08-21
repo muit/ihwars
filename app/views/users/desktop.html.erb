@@ -2,7 +2,7 @@
     <div class="row">
 	<% if @user.present? && !@error.present? %>
 		<% if @ally_base.present? %>
-			<div id="combat_result_alert" data-tuktuk="modal" data-modal="alert" class="column_6">
+			<div id="combat_results_alert" data-tuktuk="modal" data-modal="alert" class="column_6">
 				<header class="bck alert attack">
 					<h4 class="text inline">Combat result</h4>
 				</header>
@@ -24,7 +24,7 @@
 					<% end %>
 				</section>
 				<footer id="combat_alert_footer">
-					<button id="combat_result_alert_buttonOK" class="on-middle margin-top margin-bottom small button ligth text bold">Done</button>
+					<button id="combat_results_alert_done" class="on-middle margin-top margin-bottom small button ligth text bold">Done</button>
 				</footer>
 			</div>
 		<% end %>
