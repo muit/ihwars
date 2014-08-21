@@ -8,6 +8,15 @@ class UserRank < ActiveRecord::Base
 			userRank.set_properties
 			userRank.save
 		end
+
+		order("total_level DESC").each_with_index do |a_rank, index|
+			a_rank.position = index + 1
+		end
+	end
+
+	def self.default(user)
+		user = create(user: user)
+		user.reset
 	end
 
 	def reset
