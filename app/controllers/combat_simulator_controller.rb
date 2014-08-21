@@ -14,19 +14,21 @@ class CombatSimulatorController < ApplicationController
 	end
 
 	def run
-		@old_ally_units = normalize_units(get_units("ally", params))
-		@old_enemy_units = normalize_units(get_units("enemy", params))
+		@old_ally_units = get_units("ally", params)
+		@old_enemy_units = get_units("enemy", params)
 
-		ally_base = Base.new(name: "Ally base", entity_stacks: get_units("ally", params))
-		enemy_base = Base.new(name: "Enemy base", entity_stacks: get_units("enemy", params))
+		ally_base = Base.create(name: "Ally base")
+		enemy_base = Base.create(name: "Enemy base")
+		populate_base(ally_base, get_units("ally", params))
+		populate_base(enemy_base, get_units("enemy", params))
 
 		result = ally_base.attack_base(enemy_base)
-		
+
+		@ally_result = normalize_units(ally_base.entity_stacks)
+		@enemy_result = normalize_units(enemy_base.entity_stacks)
+
 		ally_base.destroy
 		enemy_base.destroy
-
-		@ally_result = normalize_units(result[:remaining_ally_units])
-		@enemy_result = normalize_units(result[:remaining_enemy_units])
 
 		if mobile_device?
       render :mobile, layout: "mobile"
@@ -37,15 +39,18 @@ class CombatSimulatorController < ApplicationController
 
 
 	private
+	def populate_base(base, units)
+		units.each_with_index do |a_unit, index|
+			base.entity_stacks[index].update_attribute(:amount, a_unit)
+		end
+	end
+
 	def get_units(team_string, params)
 		units = []
 		EntityType.getAll.each do |an_entity|
 			id = an_entity[:type_id]
 			name = "#{team_string}_#{id}"
-			if params[name].to_i >= 0
-				unit = EntityStack.new(amount: params[name].to_i, type_id: id)
-				units << unit
-			end
+			units[id] = params[name].to_i
 		end
 		units
 	end

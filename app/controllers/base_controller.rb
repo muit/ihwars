@@ -51,6 +51,5 @@ class BaseController < ApplicationController
     answerObject = {error: false, resources: result}
     render :json => Packet.new(Opcode::RESOURCE_INFO, answerObject)
   end
-
   private
 end
