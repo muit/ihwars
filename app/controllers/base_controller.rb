@@ -51,7 +51,6 @@ class BaseController < ApplicationController
     answerObject = {error: false, resources: result}
     render :json => Packet.new(Opcode::RESOURCE_INFO, answerObject)
   end
-
   private
   def isValidBaseName?(name)
     sameNameBase = getBase(name)

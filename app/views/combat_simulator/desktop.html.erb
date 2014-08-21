@@ -11,11 +11,11 @@
 						<%= amount %>
 					</span> / 
 					<span style="color: #d00;">
-						<%= @old_ally_units[an_entity.type_id].amount - amount %>
+						<%= @old_ally_units[an_entity.type_id] - amount %>
 					</span>)
 					<br>
 				<% end %>
-				<%= number_field_tag name, @old_ally_units[an_entity.type_id].amount, min: 0 %>
+				<%= number_field_tag name, @old_ally_units[an_entity.type_id], min: 0 %>
 			<% end %>
 		</div>
 		<div class="column_5 padding-top padding-bottom">
@@ -29,11 +29,11 @@
 						<%= amount %>
 					</span> / 
 					<span style="color: #d00;">
-						<%= @old_enemy_units[an_entity.type_id].amount - amount %>
+						<%= @old_enemy_units[an_entity.type_id] - amount %>
 					</span>)
 					<br>
 				<% end %>
-				<%= number_field_tag name, @old_enemy_units[an_entity.type_id].amount, min: 0 %>
+				<%= number_field_tag name, @old_enemy_units[an_entity.type_id], min: 0 %>
 			<% end %>
 		</div>
 		<div>
