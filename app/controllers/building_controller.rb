@@ -12,11 +12,18 @@ class BuildingController < ApplicationController
     return if watch_error(opcode, selectedBase.building_units.where(type_id: typeId).length >= 1, "You can´t build same building two times!")
 
     
-    return if watch_error(opcode, selectedBase == nil, "This base does not exist!")
+    return if watch_error(opcode, selectedBase == nil, "The selected base does not exist!")
 
     puts typeId
+
+    cost = BuildingType.byTypeId(typeId).cost
+    baseMaterials = selectedBase.resource_stacks.find_by_type_id(1)
+    return if watch_error(opcode, cost > baseMaterials.amount, "You dont have enought materials!")
+
+    baseMaterials.amount -= cost
+    baseMaterials.save
+
     finish_building = Time.now+BuildingType.byTypeId(typeId).construction_time.seconds
-    
 
     selectedBase.building_units.create(type: BuildingType.byTypeId(typeId).name, type_id: typeId, finish_building: finish_building, level: 1)
     

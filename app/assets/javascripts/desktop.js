@@ -29,6 +29,10 @@ var Visual = {
                 $("#alert").removeClass("active");
             }, 4000);
         }
+        $("#alert_buttonNOT").bind('click', function(event){
+            $("#alert").removeClass("active");
+            $("#alert_buttonNOT").unbind("click");
+        });
     },
 
     createModalForm: function(msg, success){

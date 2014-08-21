@@ -110,6 +110,20 @@ var Base = {
     getBuildingCostById: function(type_id){
         return this.building_types.filter(function(x){ return x.type_id == type_id})[0].cost;
     },
+
+    getResources: function(baseName, success){
+        $.get('/user/resources', 
+                {actualBase: baseName},
+                function(packet){
+                    if(packet.object.error == true)
+                        Visual.showAlert(true, packet.object.msg, true);
+                    else{
+                        //return an array of each base hash recourses 
+                        success(packet.object.resources);
+                    }
+                }, "json"
+            );
+    }
 }
 
 var Util = {
@@ -153,3 +167,9 @@ var Util = {
         }
     },
 }
+//Update Resources Aproximation
+setInterval(function(){
+    //Base.updateResources(function(baseResources){
+
+    //});
+}, 10000);
