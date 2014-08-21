@@ -30,21 +30,21 @@ var Visual = {
             }, 4000);
         }
         $("#alert_buttonNOT").bind('click', function(event){
-            $("#alert").removeClass("active");
             $("#alert_buttonNOT").unbind("click");
+            $("#alert").removeClass("active");
         });
     },
 
     createModalForm: function(msg, success){
         $("#formModal").addClass("active");
         $("#formModal_buttonOK").bind('click', function(event){
+            $("#formModal_buttonOK").unbind("click");
             $("#formModal").removeClass("active");
             success(formModal_text.value);
-            $("#formModal_buttonOK").unbind("click");
         });
         $("#formModal_buttonNOT").bind('click', function(event){
-            $("#formModal").removeClass("active");
             $("#formModal_buttonNOT").unbind("click");
+            $("#formModal").removeClass("active");
         });
     },
 
@@ -53,13 +53,13 @@ var Visual = {
         $("#confirmModal_text").html(msg);
         $("#confirmModal").addClass("active");
         $("#confirmModal_buttonOK").bind('click', function(event){
+            $("#confirmModal_buttonOK").unbind("click");
             $("#confirmModal").removeClass("active");
             success();
-            $("#confirmModal_buttonOK").unbind("click");
         });
         $("#confirmModal_buttonNOT").bind('click', function(event){
-            $("#confirmModal").removeClass("active");
             $("#confirmModal_buttonNOT").unbind("click");
+            $("#confirmModal").removeClass("active");
         });
     },
 
@@ -157,6 +157,14 @@ var Visual = {
         getBaseName: function(id){
             return $(".baseName#"+id).text().replace(/\(.*?\)/, '');
         },
+    },
+    updateBaseResource: function(baseResource){
+
+    },
+    showTotalResources: function(totalResources){
+        $(".resource")[0].innerHTML = "  "+totalResources.money;
+        $(".resource")[1].innerHTML = "  "+totalResources.materials;
+        $(".resource")[2].innerHTML = "  "+totalResources.ping;
     }
 }
 

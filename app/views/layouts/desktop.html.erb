@@ -11,7 +11,7 @@
 <body data-tuktuk="boxes" class="bck light">
     <section>
     	<% if flash[:cookies].present? %>
-    		<section id="flash_cookies" class="bck cookies flash padding">
+    		<section id="flash_cookies" class="bck cookies flash padding-left padding-right">
     			<h6 class="notice inline"><%= flash[:cookies] %></h6>
     			<button id="remove_flash_cookies" class="transparent tiny on-right inline icon remove"></button>
     		</section>
@@ -19,14 +19,14 @@
 
     	<!-- Necessary for devise gem -->
     	<% if alert.present? %>
-    		<section id="flash_alert" class="bck alert flash padding">
+    		<section id="flash_alert" class="bck alert flash padding-left padding-right">
     			<h6 class="alert inline"><%= alert %></h6>
     			<button id="remove_flash_alert" class="transparent tiny on-right inline icon remove"></button>
     		</section>
     	<% end %>
 
     	<% if notice.present? %>
-    		<section id="flash_notice" class="bck success flash padding">
+    		<section id="flash_notice" class="bck success flash padding-left padding-right">
     			<h6 class="notice inline"><%= notice %></h6>
     			<button id="remove_flash_success" class="transparent tiny on-right inline icon remove"></button>
     		</section>

@@ -58,6 +58,18 @@ class Base < ActiveRecord::Base
       end
       #create Hub
       building_units << Hub.create(level: 1)
+
+      money = resource_stacks.find_by_type_id(0)
+      money.amount = Settings::INITIAL_RESOURCE_MONEY
+      money.save
+
+      materials = resource_stacks.find_by_type_id(1)
+      materials.amount = Settings::INITIAL_RESOURCE_MATERIALS
+      materials.save
+
+      ping = resource_stacks.find_by_type_id(2)
+      ping.amount = Settings::INITIAL_RESOURCE_PING
+      ping.save
     end
   end
 

@@ -1,13 +1,12 @@
 class Resources
   def initialize
     #Disable ActiveRecord Log
-    old_logger = ActiveRecord::Base.logger
-    ActiveRecord::Base.logger = nil
+    Settings.enable_AR_log(false);
 
     Base.all.each do |base|
       addResources(base)
     end
-    ActiveRecord::Base.logger = old_logger
+    Settings.enable_AR_log(true);
     puts "Resources updated successfully."
   end
 

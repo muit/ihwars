@@ -128,16 +128,34 @@ var Base = {
 
     getResources: function(baseName, success){
         $.get('/user/resources', 
-                {actualBase: baseName},
-                function(packet){
-                    if(packet.object.error == true)
-                        Visual.showAlert(true, packet.object.msg, true);
-                    else{
-                        //return an array of each base hash recourses 
-                        success(packet.object.resources);
-                    }
-                }, "json"
-            );
+            {actualBase: baseName},
+            function(packet){
+                if(packet.object.error == true)
+                    Visual.showAlert(true, packet.object.msg, true);
+                else{
+                    //return an array of each base hash recourses 
+                    success(packet.object.resources);
+                }
+            }, "json"
+        );
+    },
+
+    updateResources: function(){
+        var baseName = Visual.Menu.getBaseName(Visual.baseSelected());
+        
+        this.getResources(baseName, function(baseResources){
+            totalResources = {money: 0, materials: 0, ping: 0};
+
+            baseResources.forEach(function(baseResource) {
+                Visual.updateBaseResource(baseResource);
+
+                totalResources.money += baseResource.money;
+                totalResources.materials += baseResource.materials;
+                totalResources.ping += baseResource.ping;
+            });
+
+            Visual.showTotalResources(totalResources);
+        });
     }
 }
 
@@ -184,12 +202,8 @@ var Util = {
 }
 //Update Resources Aproximation
 setTimeout(function(){
-    //Base.updateResources(function(baseResources){
-
-    //});
+    Base.updateResources();
     setInterval(function(){
-        //Base.updateResources(function(baseResources){
-
-        //});
+        Base.updateResources();
     }, 10000);
 },1000);

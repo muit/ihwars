@@ -34,7 +34,7 @@ class BuildingController < ApplicationController
 
   def update
     selectedBase = getBase(params[:actualBase])
-    building = selectedBase.building_units.find(params[:type_id].to_i)
+    building = selectedBase.building_units.find_by_type_id(params[:type_id].to_i)
 
     seconds = BuildingType.byTypeId(building.type_id).construction_time.seconds
     finish_building = Time.now+(seconds+seconds*(building.level+1)*Settings::COEF_PER_LEVEL)

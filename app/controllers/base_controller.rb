@@ -40,14 +40,21 @@ class BaseController < ApplicationController
   end
 
   def resources
+    Settings.enable_AR_log(false);
     result = []
-    current_user.bases.all.each do |base|
-      ResourceType.getAll.each do |resource|
-        amount = 0
-          amount += base.resource_stacks.where(type_id: resource[:type_id])
-        result[resource[:type_id]] = amount
+
+    ActiveRecord::Base.transaction do
+      current_user.bases.all.each do |base|
+        baseResources = {}
+
+        ResourceType.getAll.each do |resource|
+          amount = base.resource_stacks.find_by_type_id(resource.type_id).amount
+          baseResources[resource.name.to_sym] = amount
+        end
+        result.push(baseResources)
       end
     end
+    Settings.enable_AR_log(true);
     answerObject = {error: false, resources: result}
     render :json => Packet.new(Opcode::RESOURCE_INFO, answerObject)
   end
