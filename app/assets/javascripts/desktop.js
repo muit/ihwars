@@ -131,9 +131,9 @@ var Visual = {
     createBuildingType: function(type_id, name, level, hidden){
         var hideClass = (hidden)? "hidden" : "";
         if(level != 0)
-            var levelOrCreate = "Level: "+level+"  <button class='addBuildingLevel_button success tiny icon arrow-up'></button>";
+            var levelOrCreate = "Level: "+level+"  <button class='addBuildingLevel success tiny icon arrow-up'></button>";
         else
-            var levelOrCreate = "<button class='createBuilding_button success tiny'>Build it!</button>";
+            var levelOrCreate = "<button class='createBuilding success tiny'>Build it!</button>";
 
         $(".dataColumn")[0].innerHTML += "<div id='"+type_id+"' class='buildingList baseData "+hideClass+" column_5 bck grey margin-bottom padding-left padding-right'>"+name+"<div class='on-right'>"+levelOrCreate+"</div></div>";
     },
@@ -175,9 +175,6 @@ $( document ).ready(function() {
                     Base.createBase(name);
             });
             break;
-        case "create_building":
-            
-            break;
         case "remove_flash_alert":
             $("#flash_alert").remove()
             break;
@@ -207,7 +204,11 @@ $( document ).ready(function() {
             return;
         }
         else if(target.hasClass("addBuildingLevel")){
+            var name = Visual.Menu.getBaseName(Visual.baseSelected());
+            var type_id = parseInt(target.parent()[0].parentElement.id);
+            var level = parseInt($(".buildingList#"+type_id+" >> .building_level").html());
 
+            Base.updateBuilding(type_id, name, level);
             return;
         }
         else if(target.hasClass("createBuilding")){

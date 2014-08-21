@@ -40,9 +40,15 @@
     	      </div>
     	      <div class="column_4">
     	        <h6 class="text italic">
-    	          <span id="total_resources_money" class="margin-right icon money text center"> <%= get_current_user_resource(0) %></span>
-    	          <span id="total_resources_materials" class="margin-right icon tint text center"> <%= get_current_user_resource(1) %></span>
-    	          <span id="total_resources_ping" class="icon tasks text center"> <%= get_current_user_resource(2) %></span>
+    	          <a class="tip-bottom" data-tip="money">
+                    <span id="total_resources_money" class="resource margin-right icon money text center"> <%= get_current_user_resource(0) %></span>
+                  </a>
+    	          <a class="tip-bottom" data-tip="materials">
+                    <span id="total_resources_materials" class="resource margin-right icon tint text center"> <%= get_current_user_resource(1) %></span>
+                  </a>
+    	          <a class="tip-bottom" data-tip="ping">
+                    <span id="total_resources_ping" class="resource icon tasks text center"> <%= get_current_user_resource(2) %></span>
+                  </a>
     	        </h6>
     	    	</div>
     	      <nav class="column_2 text right bold">
@@ -71,13 +77,13 @@
     </section>
 
     <div id="alert" data-tuktuk="modal" data-modal="alert" class="column_5">
-        <header class="bck alert">
+        <header class="bck alert attack">
             <h4 class="text thin inline">Alert</h4>
         </header>
-        <section id="alert_text" class="text big">
+        <section id="alert_text" class="text big margin">
         </section>
         <footer>
-            <button id="alert_buttonNOT" class="button theme on-right margin-bottom">
+            <button id="alert_buttonNOT" class="button attack on-right margin-bottom">
                 <span class="icon ok"></span>
             </button>
         </footer>

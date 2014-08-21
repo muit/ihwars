@@ -77,7 +77,7 @@ class BuildingController < ApplicationController
     if level == 1
       return cost
     else
-      return (cost*0.5*level*(1+Settings::COEF_PER_LEVEL)).round
+      return (cost*0.5*(level-1)*(1+Settings::COEF_PER_LEVEL)).round
     end
   end
 
@@ -89,7 +89,7 @@ class BuildingController < ApplicationController
     if level == 1
       return cost
     else
-      return (cost*0.5*level*(1+Settings::COEF_PER_LEVEL)).round
+      return (cost*0.5*(level-1)*(1+Settings::COEF_PER_LEVEL)).round
     end
   end
 
