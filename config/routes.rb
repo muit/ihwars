@@ -21,7 +21,8 @@ Rails.application.routes.draw do
   get "/base/building/cost"   => "building#cost"
 
   get "/base/entity/info"     => "entity#info"
-  get "/base/entity/create"   => "entity#create"
+  get "/base/entity/add"      => "entity#add"
+  get "/base/entity/remove"   => "entity#remove"
   get "/base/entity/cost"     => "entity#cost"
 
   get "/rank" => "rank#rank"

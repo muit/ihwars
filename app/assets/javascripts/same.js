@@ -83,6 +83,39 @@ var Base = {
         });
     },
 
+    addEntities: function(entityType, amount, base_name){
+        var self = this;
+        cost = this.getEntityCostByIdentityType)*amount;
+        Visual.createModalConfirm("Add entities", "Adding "+amount+" '"+self.getEntityNameById(entityType)+"' units will cost "+cost+"<span class='icon money'></span><br> Continue?", 
+        function(){
+            $.get('/base/entity/add', {type_id: entityType, amount: amount, actualBase: base_name}, 
+                function(packet){
+                    if(packet.object.error == true)
+                        Visual.showAlert(true, packet.object.msg, true);
+                    else{ //If not error show the new Building Construction
+                        //Visual.setEntityType(packet.object.amount);
+                    }
+                }, "json"
+            );
+        });
+    },
+    removeEntities: function(entityType, amount, base_name){
+        var self = this;var self = this;
+        cost = this.getEntityCostByIdentityType)*amount*0.75;
+        Visual.createModalConfirm("Remove entities", "Removing "+amount+" '"+self.getEntityNameById(entityType)+"' units will return only 75% of the original price ("+cost+"<span class='icon money'></span>)<br> Continue?", 
+        function(){
+            $.get('/base/entity/remove', {type_id: entityType, amount: amount, actualBase: base_name}, 
+                function(packet){
+                    if(packet.object.error == true)
+                        Visual.showAlert(true, packet.object.msg, true);
+                    else{ //If not error show the new Building Construction
+                        //Visual.setEntityType(packet.object.amount);
+                    }
+                }, "json"
+            );
+        });
+    },
+
     getBaseAmounts: function(baseName, success, error){
         $.get('/base/info', {actualBase: baseName},
             function(packet){

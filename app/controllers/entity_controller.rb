@@ -1,5 +1,5 @@
 class EntityController < ApplicationController
-  def create
+  def add
     base = params[:selectedBase]
     opcode = Opcode::ENTITY_CREATE
 
