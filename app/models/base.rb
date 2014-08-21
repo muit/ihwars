@@ -25,15 +25,15 @@ class Base < ActiveRecord::Base
 
   def attack_base(enemy_base)
     # For simplicity, all the units in the base figth
-    ally_units = entity_stacks
-    enemy_units = enemy_base.entity_stacks
+    ally_units = r_generate_array(entity_stacks)
+    enemy_units = r_generate_array(enemy_base.entity_stacks)
 
-    result = simulate_combat(ally_units, enemy_units)
-    
-    entity_stacks = result[:remaining_ally_units]
-    enemy_base.entity_stacks = result[:remaining_enemy_units]
+    r_simulate_combat(ally_units, enemy_units)
 
-    result
+    r_fill_base(self, ally_units)
+    r_fill_base(enemy_base, enemy_units)
+
+    {remaining_ally_units: entity_stacks, remaining_enemy_units: enemy_base.entity_stacks}
   end
 
   def get_level_points
@@ -62,6 +62,70 @@ class Base < ActiveRecord::Base
   end
 
   ##### COMBAT SIMULATION #####
+  def r_simulate_combat(ally_units, enemy_units)
+    distance = 100
+    ally_accumulated_damage = 0
+    enemy_accumulated_damage = 0
+
+    while r_array_has_units(ally_units) && r_array_has_units(enemy_units)
+      ally_damage = r_damage_dealt_by_units(ally_units, distance)
+      enemy_damage = r_damage_dealt_by_units(enemy_units, distance)
+
+      enemy_accumulated_damage = r_kill_units(ally_units, enemy_damage + enemy_accumulated_damage)
+      ally_accumulated_damage = r_kill_units(enemy_units, ally_damage + ally_accumulated_damage)
+
+      distance -= 10 if distance > 0   
+    end
+  end
+
+  def r_generate_array(entity_stacks)
+    new_array = Array.new(EntityType.count, 0)
+    entity_stacks.each do |a_stack|
+      new_array[a_stack.type_id] = a_stack.amount
+    end
+    new_array
+  end
+
+  def r_damage_dealt_by_units(units, distance)
+    damage = 0
+    units.each_with_index do |a_unit, index|
+      entity_type = EntityType.by(:type_id, index)
+      if entity_type.range >= distance
+        damage += a_unit * entity_type.damage
+      end
+    end
+    damage * precision_factor(distance)
+  end
+
+  def r_kill_units(units, damage)
+    max = 20 # prevent infinite loop
+    while damage >= 10 && max > 0
+      index = rand(units.length)
+      entity_type = EntityType.by(:type_id, index)
+      if damage >= entity_type.armor && units[index] > 0
+        units[index] -= 1
+        damage -= entity_type.armor
+      end
+
+      max -= 1
+    end
+    damage
+  end
+
+  def r_fill_base(base, units)
+    base.entity_stacks.each do |a_stack|
+      a_stack.update_attribute(:amount, units[a_stack.type_id])
+    end
+  end
+
+  def r_array_has_units(array)
+    result = false
+    array.each do |a_unit|
+      result = true if a_unit != 0
+    end
+    result
+  end
+
   def simulate_combat(ally_units, enemy_units)
     # The units start in a certain range (100) and they will get closer 10 by 10
     # In each step, the damage produced by the units in range is added, and multiplied by a factor (<=1) due to bad aiming
@@ -121,6 +185,20 @@ class Base < ActiveRecord::Base
 
   def precision_factor(distance)
     Math::exp(-(distance / 100.0))
+  end
+
+  def fill_spaces(entity_stacks)
+    new_entity_stacks = []
+    for i in 0...EntityType.count
+      old_stack = entity_stacks.select { |stack| stack.type_id == i }.first
+      if old_stack.present?
+        old_stack.save
+        new_entity_stacks << old_stack
+      else
+        new_entity_stacks << EntityStack.create(type_id: i, amount: 0)
+      end
+    end
+    new_entity_stacks
   end
   ##########
 end
