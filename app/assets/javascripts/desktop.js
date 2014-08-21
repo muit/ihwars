@@ -168,6 +168,9 @@ $( document ).ready(function() {
         case "cancel_attack_alert":
             $("#attack_alert").removeClass("active")
             break;
+        case "combat_results_alert_done":
+            $("#combat_results_alert").removeClass("active")
+            break;
         }
 
         if(target.hasClass("buildingList")){

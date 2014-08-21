@@ -64,6 +64,7 @@ ul ul li,ol ul li,ul ol li,ol ol li{margin:0 0 .3em 0}
 
 [data-tuktuk="modal"]{background:#fff;-webkit-transition:all 250ms;-moz-transition:all 250ms;-ms-transition:all 250ms;-o-transition:all 250ms;transition:all 250ms;}
 [data-tuktuk="modal"] header{background:#4bc613 !important;color:#fff}
+[data-tuktuk="modal"] header.attack{background:#c00 !important;color:#fff}
 [data-tuktuk="lock"]{opacity:0;-webkit-transition:all 250ms;-moz-transition:all 250ms;-ms-transition:all 250ms;-o-transition:all 250ms;transition:all 250ms;}
 [data-tuktuk="lock"].active{opacity:1;}
 [data-tuktuk="lock"].active:not([data-active=true]){background-color:rgba(0,0,0,0.8)}

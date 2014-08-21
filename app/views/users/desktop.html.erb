@@ -1,12 +1,12 @@
 <div id="mainSection" class="">
     <div class="row">
 	<% if @user.present? && !@error.present? %>
-		<% if @result.present? %>
-			<div id="combat_result_alert" data-tuktuk="modal" data-modal="alert" class="column_6">
+		<% unless @result.nil? %>
+			<div id="combat_result_alert" data-tuktuk="modal" data-modal="alert" class="column_6 active">
 				<header class="bck alert attack">
 					<h4 class="text inline">Combat result</h4>
 				</header>
-				<section id="alert_text" class="text big">
+				<section id="alert_text" class="text big padding">
 					<% if @result[:remaining_ally_units].length > 0 %>
 						<span class="victory">Victory!</span>
 						<p>The following units have survived to the battle:</p>
@@ -21,42 +21,46 @@
 						<p>No units survived the battle!</p>
 					<% end %>
 				</section>
+				<footer id="combat_alert_footer">
+					<button id="combat_results_alert_done" class="small button ligth on-right text bold inline">Done</button>
+				</footer>
 			</div>
 		<% end %>
-
-		<div class="user_info margin-top">
-			<div class="inline padding-bottom">
-				<h2 class=""><%= @user.name %>
-					<span class='tag bck theme'>Rank: #0</span>
-				</h2>
-			</div>
-			<div class="on-right text right">
-				<p>Total points: <%= @user.user_rank.total_level %></p>
-				<p>Number of bases: <%= @user.bases.length %></p>
-			</div>
-		</div>
-
-		<div class="bases_list row margin-top padding-top">
-			<% @user.bases.each_with_index do |a_base, index| %>
-				<div class="column_8 bck grey margin-bottom padding-top padding-bottom">
-		        	<h5 class="text bold color theme margin-left inline"><%= a_base.name %></h5> <em>(<%= a_base.get_level_points %> points)</em>
-		        	<div id="prepare_attack_button" class="inline on-right margin-right small button destroy text bold">Prepare attack</div>
-		    		<div id="attack_alert" data-tuktuk="modal" data-modal="alert" class="column_5">
-						<header class="bck alert attack">
-							<h4 class="text inline">Attack!</h4>
-						</header>
-						<section id="alert_text" class="text big">
-							<p>From which base do you want to attack?</p>
-							<%= form_tag(request.path, {class: "attack_alert_form"}) do %>
-								<%= hidden_field_tag 'index', index %>
-								<%= select_tag 'from_base', options_from_collection_for_select(@user.bases, "id", "name"), class: 'base_from_select' %>
-								<%= submit_tag 'Attack!', class: 'small button destroy text bold inline' %>
-							<% end %>
-							<button id="cancel_attack_alert" class="small button ligth text bold inline">Cancel</button>
-						</section>
-					</div>
+		<div class="column_8 offset_2">
+			<div class="user_info margin-top">
+				<div class="inline padding-bottom">
+					<h2 class=""><%= @user.name %>
+						<span class='tag bck theme'>Rank: #0</span>
+					</h2>
 				</div>
-			<% end %>
+				<div class="on-right text right">
+					<p>Total points: <%= @user.user_rank.total_level %></p>
+					<p>Number of bases: <%= @user.bases.length %></p>
+				</div>
+			</div>
+
+			<div class="bases_list row margin-top padding-top">
+				<% @user.bases.each_with_index do |a_base, index| %>
+					<div class="column_8 bck grey margin-bottom padding-top padding-bottom">
+			     	<h5 class="text bold color theme margin-left inline"><%= a_base.name %></h5> <em>(<%= a_base.get_level_points %> points)</em>
+			      <div id="prepare_attack_button" class="inline on-right margin-right small button destroy text bold">Prepare attack</div>
+			    	<div id="attack_alert" data-tuktuk="modal" data-modal="alert" class="column_5">
+							<header class="bck alert attack">
+								<h4 class="text inline">Attack!</h4>
+							</header>
+							<section id="alert_text" class="text big padding">
+								<p>From which base do you want to attack?</p>
+								<%= form_tag(request.path, {class: "attack_alert_form"}) do %>
+									<%= hidden_field_tag 'index', index %>
+									<%= select_tag 'from_base', options_from_collection_for_select(@user.bases, "id", "name"), class: 'base_from_select' %>
+									<%= submit_tag 'Attack!', class: 'small button destroy text bold inline' %>
+								<% end %>
+								<button id="cancel_attack_alert" class="small button ligth text bold inline">Cancel</button>
+							</section>
+						</div>
+					</div>
+				<% end %>
+			</div>
 		</div>
 	<% else %>
 		<h3 class="error">

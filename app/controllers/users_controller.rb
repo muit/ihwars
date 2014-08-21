@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 			if enemy_base.present?
 				if ally_base.present?
 					@result = ally_base.attack_base(enemy_base)
+					binding.pry
 				else
 					@error = "Sorry, you do not have that base."
 				end
@@ -30,5 +31,11 @@ class UsersController < ApplicationController
 		else
 			@error = "Sorry, the user you are trying to attack does not exist."
 		end
+
+		if mobile_device?
+      render :mobile, layout: "mobile"
+    else
+      render :desktop, layout: "desktop"
+    end
 	end
 end
