@@ -390,6 +390,7 @@ table th,table td.highlight{font-weight:bold}
 .clear{clear:both}
 .on-left{float:left}
 .on-right{float:right}
+.on-middle{display: table !important; margin: 0 auto;}
 .block{display:block}
 .inline{display:inline-block}
 .none{display:none}

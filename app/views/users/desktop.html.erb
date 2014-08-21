@@ -1,28 +1,30 @@
 <div id="mainSection" class="">
     <div class="row">
 	<% if @user.present? && !@error.present? %>
-		<% unless @result.nil? %>
-			<div id="combat_result_alert" data-tuktuk="modal" data-modal="alert" class="column_6 active">
+		<% if @ally_base.present? %>
+			<div id="combat_result_alert" data-tuktuk="modal" data-modal="alert" class="column_6">
 				<header class="bck alert attack">
 					<h4 class="text inline">Combat result</h4>
 				</header>
-				<section id="alert_text" class="text big padding">
-					<% if @result[:remaining_ally_units].length > 0 %>
-						<span class="victory">Victory!</span>
+				<section id="alert_text" class="text big padding-left padding-rigth padding-top">
+					<% if entity_stacks_has_units(@ally_base.entity_stacks) %>
+						<span class="victory"><strong>Victory!</strong></span>
 						<p>The following units have survived to the battle:</p>
-						<ul>
-							<% @result[:remaining_ally_units].each do |an_ally_unit| %>
-								<% unit_type = EntityType.byTypeId(an_ally_unit.type_id) %>
-								<li><%= unit_type.name %>: <%= an_ally_unit.amount %></li>
+						<ul class="empty">
+							<% @ally_base.entity_stacks.order('id DESC').each do |an_ally_unit| %>
+								<% if an_ally_unit.amount > 0 %>
+									<% unit_type = EntityType.byTypeId(an_ally_unit.type_id) %>
+									<li><%= unit_type.name %>: <%= an_ally_unit.amount %></li>
+								<% end %>
 							<% end %>
 						</ul>
 					<% else %>
-						<span class="defeat">Defeat</span>
+						<span class="defeat"><strong>Defeat</strong></span>
 						<p>No units survived the battle!</p>
 					<% end %>
 				</section>
 				<footer id="combat_alert_footer">
-					<button id="combat_results_alert_done" class="small button ligth on-right text bold inline">Done</button>
+					<button id="combat_results_alert_done" class="on-middle margin-top margin-bottom small button ligth text bold">Done</button>
 				</footer>
 			</div>
 		<% end %>
@@ -52,7 +54,7 @@
 								<p>From which base do you want to attack?</p>
 								<%= form_tag(request.path, {class: "attack_alert_form"}) do %>
 									<%= hidden_field_tag 'index', index %>
-									<%= select_tag 'from_base', options_from_collection_for_select(@user.bases, "id", "name"), class: 'base_from_select' %>
+									<%= select_tag 'from_base', options_from_collection_for_select(current_user.bases, "id", "name"), class: 'base_from_select' %>
 									<%= submit_tag 'Attack!', class: 'small button destroy text bold inline' %>
 								<% end %>
 								<button id="cancel_attack_alert" class="small button ligth text bold inline">Cancel</button>
