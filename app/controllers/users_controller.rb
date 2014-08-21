@@ -21,7 +21,6 @@ class UsersController < ApplicationController
 			if enemy_base.present?
 				if ally_base.present?
 					@result = ally_base.attack_base(enemy_base)
-					binding.pry
 				else
 					@error = "Sorry, you do not have that base."
 				end

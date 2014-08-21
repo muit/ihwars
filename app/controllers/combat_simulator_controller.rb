@@ -22,6 +22,9 @@ class CombatSimulatorController < ApplicationController
 
 		result = ally_base.attack_base(enemy_base)
 		
+		ally_base.destroy
+		enemy_base.destroy
+
 		@ally_result = normalize_units(result[:remaining_ally_units])
 		@enemy_result = normalize_units(result[:remaining_enemy_units])
 
@@ -48,7 +51,6 @@ class CombatSimulatorController < ApplicationController
 	end
 
 	def normalize_units(units)
-		binding.pry
 		new_units = Array.new(EntityType.getAll.length)
 		units.each do |an_old_unit|
 			id = an_old_unit.type_id
@@ -56,16 +58,6 @@ class CombatSimulatorController < ApplicationController
 		end
 		new_units
 	end
-
-	#def add_old_values(units, old_units)
-	#	old_units.each do |an_old_unit|
-	#		id = an_old_unit.type_id
-	#		unit = units[id]
-	#		unit[:old_amount] = an_old_unit[:amount]
-	#		unit[:type_id] = an_old_unit[:type_id]
-	#	end
-	#	units
-	#end
 
 	def zeroed_unit()
 		EntityStack.new(amount: 0)
