@@ -42,32 +42,52 @@ RSpec.describe Base, :type => :model do
 
     it 'is a tie if both teams have the same (small) force' do
       # This may not be true with a bigger force
-      ally_base = Base.new(entity_stacks: [EntityStack.new(type_id: 0, amount: 5)])
-      enemy_base = Base.new(entity_stacks: [EntityStack.new(type_id: 0, amount: 5)])
+      ally_base = Base.create(name: 'A')
+      enemy_base = Base.create(name: 'B')
+      ally_base.entity_stacks.first.update_attribute(:amount, 10)
+      enemy_base.entity_stacks.first.update_attribute(:amount, 10)
 
       result = ally_base.attack_base(enemy_base)
 
-      expect(result[:remaining_ally_units]).to eq(result[:remaining_enemy_units])
+      expect(ally_base.entity_stacks.first.amount).to eq(0)
+      expect(enemy_base.entity_stacks.first.amount).to eq(0)
     end
 
     it 'wins a team if its much more powerful' do
-      ally_base = Base.new(entity_stacks: [EntityStack.new(type_id: 6, amount: 5)])
-      enemy_base = Base.new(entity_stacks: [EntityStack.new(type_id: 0, amount: 5)])
+      ally_base = Base.create(name: 'A')
+      enemy_base = Base.create(name: 'B')
+      ally_base.entity_stacks.last.update_attribute(:amount, 10)
+      enemy_base.entity_stacks.first.update_attribute(:amount, 10)
 
       result = ally_base.attack_base(enemy_base)
 
-      expect(result[:remaining_ally_units].length).to eq(1)
-      expect(result[:remaining_enemy_units].length).to eq(0)
+      expect(ally_base.entity_stacks.last.amount).to be > 0
+      expect(enemy_base.entity_stacks.first.amount).to eq(0)
     end
 
     it 'loses a team if its much less powerful' do
-      ally_base = Base.new(entity_stacks: [EntityStack.new(type_id: 0, amount: 5)])
-      enemy_base = Base.new(entity_stacks: [EntityStack.new(type_id: 6, amount: 5)])
+      ally_base = Base.create(name: 'A')
+      enemy_base = Base.create(name: 'B')
+      ally_base.entity_stacks.first.update_attribute(:amount, 10)
+      enemy_base.entity_stacks.last.update_attribute(:amount, 10)
 
       result = ally_base.attack_base(enemy_base)
 
-      expect(result[:remaining_ally_units].length).to eq(0)
-      expect(result[:remaining_enemy_units].length).to eq(1)
+      expect(ally_base.entity_stacks.first.amount).to eq(0)
+      expect(enemy_base.entity_stacks.last.amount).to be > 0
+    end
+
+    it 'both bases should end with all entity stacks, which can be empty or not' do
+      ally_base = Base.create(name: 'A')
+      enemy_base = Base.create(name: 'B')
+      ally_base.entity_stacks.first.update_attribute(:amount, 10)
+      enemy_base.entity_stacks.last.update_attribute(:amount, 10)
+
+      expected_stacks = EntityType.count
+      result = ally_base.attack_base(enemy_base)
+
+      expect(ally_base.entity_stacks.count).to eq(expected_stacks)
+      expect(enemy_base.entity_stacks.count).to eq(expected_stacks)
     end
   end
 
