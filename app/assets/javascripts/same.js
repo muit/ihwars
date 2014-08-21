@@ -26,7 +26,6 @@ var Base = {
     createBase: function(name){
         $.get('/base/create', {name: name}, 
             function(packet){
-                console.log(packet);
                 if(packet.object.error == true)
                     Visual.showAlert(true, packet.object.msg, true);
                 else{ //If not error show the new Base
@@ -58,7 +57,6 @@ var Base = {
                         if(packet.object.error == true)
                             Visual.showAlert(true, packet.object.msg, true);
                         else{ //If not error show the new Building Construction
-                            console.log(packet.object.finish_building);
                             Visual.setBuildingStatus(buildingType, 1);
                         }
                     }, "json"

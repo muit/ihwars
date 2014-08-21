@@ -8,8 +8,8 @@ class Jobs
       UserRank.update_user_ranks
     end
 
-    @scheduler.every "1m" do
-      Resources.new
+    @scheduler.every "10s" do
+      Resources.new 6
     end
   end
 end
