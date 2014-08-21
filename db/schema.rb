@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140821154555) do
+ActiveRecord::Schema.define(version: 20140821162816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,11 +69,11 @@ ActiveRecord::Schema.define(version: 20140821154555) do
   end
 
   create_table "user_ranks", force: true do |t|
-    t.integer "total_resources"
-    t.integer "total_money"
-    t.integer "total_materials"
+    t.integer "total_resources", default: 0
+    t.integer "total_money",     default: 0
+    t.integer "total_materials", default: 0
     t.integer "user_id"
-    t.integer "total_level"
+    t.integer "total_level",     default: 0
     t.integer "position",        default: 0
   end
 
