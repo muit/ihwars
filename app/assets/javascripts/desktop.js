@@ -38,14 +38,24 @@ var Visual = {
             success(formModal_text.value);
             $("#formModal_buttonOK").unbind("click");
         });
+        $("#formModal_buttonNOT").bind('click', function(event){
+            $("#formModal").removeClass("active");
+            $("#formModal_buttonNOT").unbind("click");
+        });
     },
 
-    createModalConfirm: function(msg, success){
+    createModalConfirm: function(title, msg, success){
+        $("#confirmModal_title").html(title);
+        $("#confirmModal_text").html(msg);
         $("#confirmModal").addClass("active");
         $("#confirmModal_buttonOK").bind('click', function(event){
             $("#confirmModal").removeClass("active");
             success();
             $("#confirmModal_buttonOK").unbind("click");
+        });
+        $("#confirmModal_buttonNOT").bind('click', function(event){
+            $("#confirmModal").removeClass("active");
+            $("#confirmModal_buttonNOT").unbind("click");
         });
     },
 
@@ -129,9 +139,19 @@ var Visual = {
 
         $(".dataColumn")[1].innerHTML += "<div id='"+type_id+"' class='entityList baseData "+hideClass+" column_5 bck grey margin-bottom padding-left padding-right'>"+name+"<div class='on-right'><a class='entityAdd color green icon plus-sign "+disabledClass+"'></a><a class='entityRemove color red icon minus-sign "+disabled+"'></a><input type='number' class='entityInput small' value='0' min='0' max='199'>&nbsp<span class='amountType text italic bold color success'>"+amount+"</span></div></div>";
     },
+    setBuildingStatus: function(type_id, level){
+        if(level != 0)
+            $(".buildingList#"+type_id).html(Base.getBuildingNameById(type_id)+"<div class='on-right'>Level: "+level+"  <button class='addBuildingLevel success tiny icon arrow-up'></button></div>");
+        else
+            $(".buildingList#"+type_id).html(Base.getBuildingNameById(type_id)+"<div class='on-right'><button class='createBuilding success tiny'>Build it!</button></div>");
+    },
+
     Menu: {
         addBase: function(name, id){
             $("#base_list").prepend("<a id='"+id+"' class='baseName'><span class='icon building'></span>"+name+"<small>(1)</small></a>");
+        },
+        getBaseName: function(id){
+            return $(".baseName#"+id).text().replace(/\(.*?\)/, '');
         },
     }
 }
@@ -174,6 +194,25 @@ $( document ).ready(function() {
             break;
         }
 
+        if(target.hasClass("entityAdd")){
+
+            return;
+        }
+        else if(target.hasClass("entityRemove")){
+
+            return;
+        }
+        else if(target.hasClass("addBuildingLevel")){
+
+            return;
+        }
+        else if(target.hasClass("createBuilding")){
+            var name = Visual.Menu.getBaseName(Visual.baseSelected());
+            var type_id = parseInt(target.parent()[0].parentElement.id);
+            Base.createBuilding(type_id, name);
+            return;
+        }
+
         if(target.hasClass("buildingList")){
             var type_id = parseInt(target.attr('id'));
             var buildingSelected = undefined;
@@ -184,7 +223,8 @@ $( document ).ready(function() {
 
             Visual.showAllTypes(false, true);
             //getBuildingData
-            Visual.showInfoPanel(true, buildingSelected.name);// , title);
+            Visual.showInfoPanel(true, buildingSelected.name);
+            return;
         }
         else if(target.hasClass("entityList")){
             var type_id = parseInt(target.attr('id'));
@@ -196,12 +236,15 @@ $( document ).ready(function() {
 
             Visual.showAllTypes(false, true);
             //getBuildingData
-            Visual.showInfoPanel(true, entitySelected.name);// , title);
+            Visual.showInfoPanel(true, entitySelected.name);
+            return;
         }
         else if(target.hasClass("baseName") && target.attr('id') != "create_base"){
             var id = parseInt(target.attr('id'));
-            var name = target.context.innerText.replace(/\(.*?\)/, '');
+            var name = Visual.Menu.getBaseName(id);
+
             Base.selectBase(id, name);
+            return;
         }
     });
     $("body").bind('mouseover', function(event) {

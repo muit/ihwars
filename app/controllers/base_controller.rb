@@ -52,16 +52,5 @@ class BaseController < ApplicationController
     render :json => Packet.new(Opcode::RESOURCE_INFO, answerObject)
   end
 
-  
-
   private
-  def isValidBaseName?(name)
-    sameNameBase = getBase(name)
-    puts sameNameBase == nil
-    (name!="" && sameNameBase == nil)
-  end
-
-  def isValidBuildingId?(id)
-    BuildingType.byTypeId(id) != nil
-  end
 end

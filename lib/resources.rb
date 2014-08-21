@@ -1,10 +1,13 @@
 class Resources
   def initialize
-    puts "Updating Resources..."
+    #Disable ActiveRecord Log
+    old_logger = ActiveRecord::Base.logger
+    ActiveRecord::Base.logger = nil
+
     Base.all.each do |base|
-      puts "    #{base.user.name}..."
       addResources(base)
     end
+    ActiveRecord::Base.logger = old_logger
     puts "Resources updated successfully."
   end
 

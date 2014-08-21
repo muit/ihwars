@@ -3,8 +3,8 @@ class BuildingUnit < ActiveRecord::Base
 
   private
   def add_construction_time
-    self.type_id = get_id
-    self.finish_building = Time.now+BuildingType.byTypeId(get_id).construction_time.seconds
+    self.type_id = get_id if get_id != -1
+    self.finish_building ||= Time.now+BuildingType.byTypeId(get_id).construction_time.seconds
   end
   def get_id
     -1

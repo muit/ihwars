@@ -1,9 +1,9 @@
 var Base = {
     size: 0,
     selectBase: function(id, name){
-        Visual.baseSelect(id);
         Visual.showInfoPanel(false);
         Visual.showAllTypes(false);
+        Visual.baseSelect(id);
         this.getBaseAmounts(name, 
             function(entities, buildings){
                 Visual.deleteTypes();
@@ -31,13 +31,15 @@ var Base = {
                     Visual.showAlert(true, packet.object.msg, true);
                 else{ //If not error show the new Base
                     Visual.createBase(name);
-                    Base.selectBase(this.size-1, name);
+                    setTimeout(function(){
+                        Base.selectBase(this.size-1, name);
+                    },500);
                 }
             }, "json"
         );
     },
-    getCost: function(building_type, level, success){
-        $.get('/base/building/cost', {type: building_type, level: level},
+    getBuildingCost: function(buildingType, level, success){
+        $.get('/base/building/cost', {type_id: buildingType, level: level},
             function(packet){
                 if(packet.object.error != true){
                     success(packet.object.cost);
@@ -45,27 +47,31 @@ var Base = {
             }, "json"
         );
     },
-    createBuilding: function(building_tupe, base_id){
-        this.getCost(building_tupe, base_id, function(cost){
-
-            Visual.createModalConfirm("Nombre de la nueva base?", function(){
-                
+    createBuilding: function(buildingType, base_name){
+        var self = this;
+        //this.getBuildingCost(buildingType, 1, function(cost){
+            cost = this.getBuildingCostById(buildingType);
+            Visual.createModalConfirm("Building construction", "Build the "+self.getBuildingNameById(buildingType)+" will cost "+cost+"<span class='icon tint'></span><br> Continue?", 
+            function(){
+                $.get('/base/building/create', {type_id: buildingType, actualBase: base_name}, 
+                    function(packet){
+                        if(packet.object.error == true)
+                            Visual.showAlert(true, packet.object.msg, true);
+                        else{ //If not error show the new Building Construction
+                            console.log(packet.object.finish_building);
+                            Visual.setBuildingStatus(buildingType, 1);
+                        }
+                    }, "json"
+                );
             });
+        //});
+    },
+    updateBuilding: function(buildingType, base_name){
 
-            $.get('/base/building/create', {type: building_type, actualBase: base_id}, 
-                function(packet){
-                    if(packet.object.error == true)
-                        Visual.showAlert(true, packer.object.msg, true);
-                    else{ //If not error show the new Building Construction
-                        console.log(packet.object.finish_building);
-                    }
-                }, "json"
-            );
-        });
     },
 
     getBaseAmounts: function(baseName, success, error){
-        $.get('/base/amounts', {actualBase: baseName},
+        $.get('/base/info', {actualBase: baseName},
             function(packet){
                 if(packet.object.error == true)
                     Visual.showAlert(true, packet.object.msg, true);
@@ -91,6 +97,18 @@ var Base = {
                 }, "json"
             );
         },
+    },
+    getEntityNameById: function(type_id){
+        return this.entity_types.filter(function(x){ return x.type_id == type_id})[0].name;
+    },
+    getBuildingNameById: function(type_id){
+        return this.building_types.filter(function(x){ return x.type_id == type_id})[0].name;
+    },
+    getEntityCostById: function(type_id){
+        return this.entity_types.filter(function(x){ return x.type_id == type_id})[0].cost;
+    },
+    getBuildingCostById: function(type_id){
+        return this.building_types.filter(function(x){ return x.type_id == type_id})[0].cost;
     },
 }
 

@@ -30,10 +30,10 @@ BuildingType.create(type_id: 6, name: "House",      cost: 9855,   construction_t
 ##Entities: 7 types
 puts "Creating Entity Types"
 EntityType.delete_all
-EntityType.create(type_id: 0, name: "Alumno Básico",        damage: 10,  armor: 10,  range: 5)
-EntityType.create(type_id: 1, name: "Alumno Experimentado", damage: 15,  armor: 30,  range: 8)
-EntityType.create(type_id: 2, name: "Mentor con Látigo",    damage: 35,  armor: 50,  range: 10)
-EntityType.create(type_id: 3, name: "Mentor con Escopeta",  damage: 10,  armor: 5,   range: 100)
-EntityType.create(type_id: 4, name: "Profesor de Testing",  damage: 45,  armor: 60,  range: 10)
-EntityType.create(type_id: 5, name: "Profesor Trabuquero",  damage: 30,  armor: 40,  range: 35)
-EntityType.create(type_id: 6, name: "Lady Muriel",          damage: 100, armor: 200, range: 5)
+EntityType.create(type_id: 0, name: "Alumno Básico",        cost: 0, damage: 10,  armor: 10,  range: 5)
+EntityType.create(type_id: 1, name: "Alumno Experimentado", cost: 0, damage: 15,  armor: 30,  range: 8)
+EntityType.create(type_id: 2, name: "Mentor con Látigo",    cost: 0, damage: 35,  armor: 50,  range: 10)
+EntityType.create(type_id: 3, name: "Mentor con Escopeta",  cost: 0, damage: 10,  armor: 5,   range: 100)
+EntityType.create(type_id: 4, name: "Profesor de Testing",  cost: 0, damage: 45,  armor: 60,  range: 10)
+EntityType.create(type_id: 5, name: "Profesor Trabuquero",  cost: 0, damage: 30,  armor: 40,  range: 35)
+EntityType.create(type_id: 6, name: "Lady Muriel",          cost: 0, damage: 100, armor: 200, range: 5)
