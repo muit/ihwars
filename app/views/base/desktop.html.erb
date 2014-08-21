@@ -27,9 +27,9 @@
               <div class="on-right">
                 <% unit = @bases.first.building_units.where(type_id: building.type_id).first %>
                 <% if unit != nil %>
-                  Level: <%= unit.level %>  <button class='addBuildingLevel_button success tiny icon arrow-up'></button>
+                  Level: <%= unit.level %>  <button class='addBuildingLevel success tiny icon arrow-up'></button>
                 <% else %>
-                  <button class='createBuilding_button success tiny'>Build it!</button>
+                  <button class='createBuilding success tiny'>Build it!</button>
                 <% end %>
               </div>
             </div>
@@ -66,12 +66,12 @@
   Base.size = <%= @bases.length%>
   Base.building_types = [
   <% BuildingType.getAll.each do |building| %>
-    {type_id: <%=building[:type_id]%>, name: "<%=building[:name]%>"},
+    {type_id: <%=building[:type_id]%>, name: "<%=building[:name]%>", cost: <%=building[:cost]%>},
   <% end %>
   ]
   Base.entity_types = [
   <% EntityType.getAll.each do |entity| %>
-    {type_id: <%=entity[:type_id]%>, name: "<%=entity[:name]%>"},
+    {type_id: <%=entity[:type_id]%>, name: "<%=entity[:name]%>", cost: <%=entity[:cost]%>},
   <% end %>
   ]
 </script>

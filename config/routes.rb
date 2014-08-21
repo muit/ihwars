@@ -9,11 +9,18 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'main#index'
 
-  get "/base" => "base#index"
-  get "/base/create" => "base#create"
-  get "/base/amounts" => "base#info"
-  get "/base/building/info" => "building#info"
+  get "/base"                 => "base#index"
+  get "/base/create"          => "base#create"
+  get "/base/info"            => "base#info"
+  
+  get "/base/building/info"   => "building#info"
   get "/base/building/create" => "building#create"
+  get "/base/building/update" => "building#update"
+  get "/base/building/cost"   => "building#cost"
+
+  get "/base/entity/info"     => "entity#info"
+  get "/base/entity/create"   => "entity#create"
+  get "/base/entity/cost"     => "entity#cost"
 
   get "/rank" => "rank#rank"
 
