@@ -31,8 +31,12 @@ aside {
     margin-left: auto !important;
     margin-right: auto !important;
 }
-.header{
+.header {
     height: auto !important;
+}
+
+.resource {
+    cursor: default;
 }
 
 .baseName {

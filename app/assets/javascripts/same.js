@@ -66,8 +66,23 @@ var Base = {
             });
         //});
     },
-    updateBuilding: function(buildingType, base_name){
-
+    updateBuilding: function(buildingType, base_name, level){
+        var self = this;
+        this.getBuildingCost(buildingType, level+1, function(cost){
+            Visual.createModalConfirm("Building update", "Updating the "+self.getBuildingNameById(buildingType)+" will cost "+cost+"<span class='icon tint'></span><br> Continue?", 
+            function(){
+                $.get('/base/building/update', {type_id: buildingType, actualBase: base_name}, 
+                    function(packet){
+                        if(packet.object.error == true)
+                            Visual.showAlert(true, packet.object.msg, true);
+                        else{ //If not error show the new Building Construction
+                            console.log(packet.object.finish_building);
+                            Visual.setBuildingStatus(buildingType, level+1);
+                        }
+                    }, "json"
+                );
+            });
+        });
     },
 
     getBaseAmounts: function(baseName, success, error){
@@ -168,8 +183,13 @@ var Util = {
     },
 }
 //Update Resources Aproximation
-setInterval(function(){
+setTimeout(function(){
     //Base.updateResources(function(baseResources){
 
     //});
-}, 10000);
+    setInterval(function(){
+        //Base.updateResources(function(baseResources){
+
+        //});
+    }, 10000);
+},1000);

@@ -41,16 +41,21 @@ class BaseController < ApplicationController
 
   def resources
     result = []
-    ResourceType.getAll.each do |resource|
-      amount = 0
-      current_user.bases.all.each do |base|
-        amount += base.resource_stacks.where(type_id: resource[:type_id])
+    current_user.bases.all.each do |base|
+      ResourceType.getAll.each do |resource|
+        amount = 0
+          amount += base.resource_stacks.where(type_id: resource[:type_id])
+        result[resource[:type_id]] = amount
       end
-      result[resource[:type_id]] = amount
     end
     answerObject = {error: false, resources: result}
     render :json => Packet.new(Opcode::RESOURCE_INFO, answerObject)
   end
 
   private
+  def isValidBaseName?(name)
+    sameNameBase = getBase(name)
+    puts sameNameBase == nil
+    (name!="" && sameNameBase == nil)
+  end 
 end

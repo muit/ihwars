@@ -27,7 +27,7 @@
               <div class="on-right">
                 <% unit = @bases.first.building_units.where(type_id: building.type_id).first %>
                 <% if unit != nil %>
-                  Level: <%= unit.level %>  <button class='addBuildingLevel success tiny icon arrow-up'></button>
+                  Level: <span class="building_level"><%= unit.level %></span>  <button class='addBuildingLevel success tiny icon arrow-up'></button>
                 <% else %>
                   <button class='createBuilding success tiny'>Build it!</button>
                 <% end %>
