@@ -81,7 +81,7 @@ var Base = {
                         else{ //If not error show the new Building Construction
                             console.log(packet.object.finish_building);
                             Visual.setBuildingStatus(buildingType, level+1);
-                            this.updateResources();
+                            self.updateResources();
                         }
                     }, "json"
                 );

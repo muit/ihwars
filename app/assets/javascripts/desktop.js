@@ -127,7 +127,7 @@ var Visual = {
     createBuildingType: function(type_id, name, level, hidden){
         var hideClass = (hidden)? "hidden" : "";
         if(level != 0)
-            var levelOrCreate = "Level: "+level+"  <button class='addBuildingLevel success tiny icon arrow-up'></button>";
+            var levelOrCreate = "Level: <span class='building_level'>"+level+"</span>  <button class='addBuildingLevel success tiny icon arrow-up'></button>";
         else
             var levelOrCreate = "<button class='createBuilding success tiny'>Build it!</button>";
 
@@ -141,7 +141,7 @@ var Visual = {
     },
     setBuildingStatus: function(type_id, level){
         if(level != 0)
-            $(".buildingList#"+type_id).html(Base.getBuildingNameById(type_id)+"<div class='on-right'>Level: "+level+"  <button class='addBuildingLevel success tiny icon arrow-up'></button></div>");
+            $(".buildingList#"+type_id).html(Base.getBuildingNameById(type_id)+"<div class='on-right'>Level: <span class='building_level'>"+level+"</span>  <button class='addBuildingLevel success tiny icon arrow-up'></button></div>");
         else
             $(".buildingList#"+type_id).html(Base.getBuildingNameById(type_id)+"<div class='on-right'><button class='createBuilding success tiny'>Build it!</button></div>");
     },
@@ -237,7 +237,7 @@ $( document ).ready(function() {
         else if(target.hasClass("addBuildingLevel")){
             var name = Visual.Menu.getBaseName(Visual.baseSelected());
             var type_id = parseInt(target.parent()[0].parentElement.id);
-            var level = parseInt($(".buildingList#"+type_id+" >> .buildingAdd").html());
+            var level = parseInt($(".buildingList#"+type_id+" >> .building_level").html());
 
             Base.updateBuilding(type_id, name, level);
             return;
