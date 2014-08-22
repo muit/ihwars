@@ -152,14 +152,26 @@ var Visual = {
 
     Menu: {
         addBase: function(name, id){
-            $("#base_list").prepend("<a id='"+id+"' class='baseName'><span class='icon building'></span>"+name+"<small>(1)</small></a>");
+            $("#base_list").prepend("<a id='"+id+"' class='baseName tip-bottom' data-tip=''><span class='icon building'></span>"+name+"<small>(1)</small></a>");
         },
         getBaseName: function(id){
             return $(".baseName#"+id).text().replace(/\(.*?\)/, '');
         },
+        getBaseId: function(name){
+            for(var i = 0, len = Base.size; i<len; i++){
+                var baseName = this.getBaseName(i);
+                if(baseName == name)
+                    return i;
+            }
+            return null;
+        },
+        setDataTip: function(id, message){
+            $(".baseName#"+id).attr("data-tip", message);
+        },
     },
     updateBaseResource: function(baseResource){
-
+        var id = Visual.Menu.getBaseId(baseResource.name);
+        this.Menu.setDataTip(id, "Money "+baseResource.money+" - Materials "+baseResource.materials)
     },
     showTotalResources: function(totalResources){
         $(".resource")[0].innerHTML = "  "+totalResources.money;
