@@ -3,7 +3,6 @@ var Base = {
     selectBase: function(id, name){
         Visual.showInfoPanel(false);
         Visual.showAllTypes(false);
-        Visual.baseSelect(id);
         this.getBaseAmounts(name, 
             function(entities, buildings){
                 Visual.deleteTypes();
@@ -17,6 +16,7 @@ var Base = {
                     Visual.createBuildingType(buildings[i].type_id, buildings[i].name, buildings[i].level, true, entityControlDisabled);
                 
                 Visual.showAllTypes(true);
+                Visual.baseSelect(id);
             }, 
             function(msg){
                 Visual.showAlert(true, msg, true);
@@ -24,6 +24,7 @@ var Base = {
         );
     },
     createBase: function(name){
+        var self = this;
         $.get('/base/create', {name: name}, 
             function(packet){
                 if(packet.object.error == true)
@@ -31,7 +32,7 @@ var Base = {
                 else{ //If not error show the new Base
                     Visual.createBase(name);
                     setTimeout(function(){
-                        Base.selectBase(this.size-1, name);
+                        Base.selectBase(self.size-1, name);
                     },500);
                 }
             }, "json"
