@@ -29,21 +29,18 @@ var Visual = {
                 $("#alert").removeClass("active");
             }, 4000);
         }
-        $("#alert_buttonNOT").bind('click', function(event){
-            $("#alert_buttonNOT").unbind("click");
+        $("#alert_buttonNOT").unbind("click").bind('click', function(event){
             $("#alert").removeClass("active");
         });
     },
 
     createModalForm: function(msg, success){
         $("#formModal").addClass("active");
-        $("#formModal_buttonOK").bind('click', function(event){
-            $("#formModal_buttonOK").unbind("click");
+        $("#formModal_buttonOK").unbind("click").bind('click', function(event){
             $("#formModal").removeClass("active");
             success(formModal_text.value);
         });
-        $("#formModal_buttonNOT").bind('click', function(event){
-            $("#formModal_buttonNOT").unbind("click");
+        $("#formModal_buttonNOT").unbind("click").bind('click', function(event){
             $("#formModal").removeClass("active");
         });
     },
@@ -52,13 +49,11 @@ var Visual = {
         $("#confirmModal_title").html(title);
         $("#confirmModal_text").html(msg);
         $("#confirmModal").addClass("active");
-        $("#confirmModal_buttonOK").bind('click', function(event){
-            $("#confirmModal_buttonOK").unbind("click");
+        $("#confirmModal_buttonOK").unbind("click").bind('click', function(event){
             $("#confirmModal").removeClass("active");
             success();
         });
-        $("#confirmModal_buttonNOT").bind('click', function(event){
-            $("#confirmModal_buttonNOT").unbind("click");
+        $("#confirmModal_buttonNOT").unbind("click").bind('click', function(event){
             $("#confirmModal").removeClass("active");
         });
     },
