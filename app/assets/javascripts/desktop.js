@@ -204,7 +204,11 @@ $( document ).ready(function() {
         }
 
         if(target.hasClass("entityAdd")){
+            var name = Visual.Menu.getBaseName(Visual.baseSelected());
+            var type_id = parseInt(target.parent()[0].parentElement.id);
+            var amount = parseInt($(".entityList#" + type_id + " >> .entityInput").val());
 
+            Base.addEntities(type_id, amount, name)
             return;
         }
         else if(target.hasClass("entityRemove")){
@@ -214,7 +218,7 @@ $( document ).ready(function() {
         else if(target.hasClass("addBuildingLevel")){
             var name = Visual.Menu.getBaseName(Visual.baseSelected());
             var type_id = parseInt(target.parent()[0].parentElement.id);
-            var level = parseInt($(".buildingList#"+type_id+" >> .building_level").html());
+            var level = parseInt($(".buildingList#"+type_id+" >> .buildingAdd").html());
 
             Base.updateBuilding(type_id, name, level);
             return;

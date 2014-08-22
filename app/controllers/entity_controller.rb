@@ -6,6 +6,12 @@ class EntityController < ApplicationController
     return_error opcode, "Can't create entities without factories!" unless hasFactories?
     return_error opcode, "Not enought space in the base. Build houses!" if is_entity_size_exceded?(amount, base)
 
+    cost = EntityType.byTypeId(typeId).cost
+    baseMaterials = selectedBase.resource_stacks.find_by_type_id(0)
+    return if watch_error(opcode, cost > baseMaterials.amount, "You dont have enought materials!")
+    baseMaterials.amount -= cost
+    baseMaterials.save
+
     stack = base.entity_stacks.where(type_id: params[:type_id]).first
     stack.amount += params[:amount]
     stack.save
