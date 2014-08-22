@@ -4,7 +4,7 @@ class Jobs
     load
   end
   def load
-    @scheduler.every "1d", :at => '8:00 am' do
+    @scheduler.every "1h" do
       UserRank.reload
     end
 
