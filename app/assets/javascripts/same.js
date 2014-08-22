@@ -3,6 +3,7 @@ var Base = {
     selectBase: function(id, name){
         Visual.showInfoPanel(false);
         Visual.showAllTypes(false);
+        Visual.baseSelect(id);
         this.getBaseAmounts(name, 
             function(entities, buildings){
                 Visual.deleteTypes();
@@ -16,7 +17,6 @@ var Base = {
                     Visual.createBuildingType(buildings[i].type_id, buildings[i].name, buildings[i].level, true, entityControlDisabled);
                 
                 Visual.showAllTypes(true);
-                Visual.baseSelect(id);
             }, 
             function(msg){
                 Visual.showAlert(true, msg, true);
@@ -95,14 +95,14 @@ var Base = {
                     if(packet.object.error == true)
                         Visual.showAlert(true, packet.object.msg, true);
                     else{ //If not error show the new Building Construction
-                        //Visual.setEntityType(packet.object.amount);
+                        Visual.showEntityAmount(entityType, packet.object.amount);
                     }
                 }, "json"
             );
         });
     },
     removeEntities: function(entityType, amount, base_name){
-        var self = this;var self = this;
+        var self = this;
         var cost = this.getEntityCostById(entityType)*amount*0.75;
         Visual.createModalConfirm("Remove entities", "Removing "+amount+" '"+self.getEntityNameById(entityType)+"' units will return only 75% of the original price ("+cost+"<span class='icon money'></span>)<br> Continue?", 
         function(){

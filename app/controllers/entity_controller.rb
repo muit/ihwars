@@ -1,22 +1,26 @@
 class EntityController < ApplicationController
+  include ApplicationHelper
   def add
-    base = params[:selectedBase]
+    base = getBase(params[:actualBase])
+    amount = params[:amount].to_i
+    typeId = params[:type_id].to_i
     opcode = Opcode::ENTITY_CREATE
 
-    return_error opcode, "Can't create entities without factories!" unless hasFactories?
-    return_error opcode, "Not enought space in the base. Build houses!" if is_entity_size_exceded?(amount, base)
+    return if watch_error(opcode, !hasFactories?(base), "Can't create entities without factories!")
+    return if watch_error(opcode, is_entity_size_exceded?(amount, base), "Not enought space in the base. Build houses!")
 
-    cost = EntityType.byTypeId(typeId).cost
-    baseMaterials = selectedBase.resource_stacks.find_by_type_id(0)
+    cost = EntityType.byTypeId(typeId).cost*amount
+    baseMaterials = base.resource_stacks.find_by_type_id(0)
     return if watch_error(opcode, cost > baseMaterials.amount, "You dont have enought materials!")
     baseMaterials.amount -= cost
     baseMaterials.save
 
-    stack = base.entity_stacks.where(type_id: params[:type_id]).first
-    stack.amount += params[:amount]
+    stack = base.entity_stacks.where(type_id: typeId).first
+    stack.amount += amount
     stack.save
-
-    return_success opcode, amount: stack.amount
+    
+    answerObject = {error: false}
+    render :json => Packet.new(Opcode::ENTITY_CREATE, answerObject)
   end
 
   def remove
@@ -32,5 +36,4 @@ class EntityController < ApplicationController
   def return_error(opcode, message)
     render :json => Packet.new(opcode, {error: true, msg: message})
   end
-
 end

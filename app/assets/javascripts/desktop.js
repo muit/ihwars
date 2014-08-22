@@ -177,7 +177,11 @@ var Visual = {
         $(".resource")[0].innerHTML = "  "+totalResources.money;
         $(".resource")[1].innerHTML = "  "+totalResources.materials;
         $(".resource")[2].innerHTML = "  "+totalResources.ping;
-    }
+    },
+
+    showEntityAmount: function(id, amount){
+        $(".entityList#"+id+" >>  .amountType").html(amount);
+    },
 }
 
 $( document ).ready(function() {
@@ -220,7 +224,10 @@ $( document ).ready(function() {
             var type_id = parseInt(target.parent()[0].parentElement.id);
             var amount = parseInt($(".entityList#" + type_id + " >> .entityInput").val());
 
-            Base.addEntities(type_id, amount, name)
+            if(amount <= 0)
+                Visual.showAlert(true, "Every time you add 0 entities god kills a kitten.");
+            else
+                Base.addEntities(type_id, amount, name);
             return;
         }
         else if(target.hasClass("entityRemove")){
