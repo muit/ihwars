@@ -7,7 +7,7 @@
                 <% @bases.each_with_index do |base, index| %>
                 <% money = base.resource_stacks.find_by_type_id(0).amount%>
                 <% materials = base.resource_stacks.find_by_type_id(1).amount%>
-                  <a id='<%= index %>' class='baseName <%= "active" if index == 0 %> tip-bottom' data-tip="Money <%=money%> - Materials <%=materials%>"><span class='icon building'></span><%= base.name %><small>(1)</small></a>
+                  <a id='<%= index %>' class='baseName <%= "active" if index == 0 %> tip-bottom' data-tip="Money <%=money%> - Materials <%=materials%>"><span class='icon building'></span><%= base.name %></a>
                 <% end %>
                 <% if @bases.length < Settings::MAX_BASES %>
                   <a id='create_base' class='baseName'><span class='icon plus-sign'></span>New Base</a>

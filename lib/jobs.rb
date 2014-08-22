@@ -5,7 +5,7 @@ class Jobs
   end
   def load
     @scheduler.every "1d", :at => '8:00 am' do
-      UserRank.update_user_ranks
+      UserRank.reload
     end
 
     @scheduler.every "10s" do
