@@ -20,6 +20,7 @@ var Base = {
                 }
                 
                 Visual.showAllTypes(true);
+                Util.saveSelectedBase(name);
             }, 
             function(msg){
                 Visual.showAlert(true, msg, true);
@@ -194,8 +195,14 @@ var Base = {
         });
     }
 }
-
 var Util = {
+
+    loadSelectedBase: function(){
+        return this.loadObject("selectedBase");
+    },
+    saveSelectedBase: function(name){
+        this.saveObject("selectedBase", name);
+    },
     createNotification: function (img, title, content){
 
         if (Notification.permission == "granted") {
@@ -221,10 +228,7 @@ var Util = {
     },
 
     loadObject: function(name){
-        var object = JSON.parse(localStorage.getItem(name));
-        if(object == null)
-            return "";
-        return object;
+        return JSON.parse(localStorage.getItem(name));
     },
 
     Trigger: function(){

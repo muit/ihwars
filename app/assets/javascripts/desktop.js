@@ -187,6 +187,10 @@ var Visual = {
 
 $( document ).ready(function() {
     $("#combat_results_alert").addClass("active");
+    //Show last selected base
+    var name = Util.loadSelectedBase();
+    var id = Visual.Menu.getBaseId(name);
+    if(id != null) Base.selectBase(id, name);
 
     $("body").bind('click', function(event) {
         var target = $(event.target);
