@@ -3,8 +3,8 @@ class CombatSimulatorController < ApplicationController
 		@ally_result = Array.new(EntityType.getAll.length, zeroed_unit)
 		@enemy_result = Array.new(EntityType.getAll.length, zeroed_unit)
 
-		@old_ally_units = Array.new(EntityType.getAll.length, zeroed_unit)
-		@old_enemy_units = Array.new(EntityType.getAll.length, zeroed_unit)
+		@old_ally_units = Array.new(EntityType.getAll.length, 0)
+		@old_enemy_units = Array.new(EntityType.getAll.length, 0)
 
 		if mobile_device?
       render :mobile, layout: "mobile"

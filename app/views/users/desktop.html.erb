@@ -65,6 +65,13 @@
 					</div>
 				<% end %>
 			</div>
+
+			<% if @user.bases.length == 0 %>
+				<div class="no_bases_warning margin-top">
+					<div class="column_8 bck grey margin-bottom padding-top padding-bottom">
+			     	<h5 class="text bold color alert margin-left inline">This user has no bases available.</em>
+				</div>
+			<% end %>
 		</div>
 	<% else %>
 		<h3 class="error">
