@@ -1,11 +1,13 @@
-<div class="bck grey margin-top margin-bottom">
-    <div class="row text center">
+<div class="baseListContainer bck grey">
+    <div class="row text center padding-bottom">
         <nav id="base_list" data-tuktuk="menu" class="column_12 padding text bold">
             <% if @bases.length <= 0 %>
                 <a id='create_base' class='baseName active' ><span class='icon plus-sign'></span>Create a Base!</a>
             <% else %>
                 <% @bases.each_with_index do |base, index| %>
-                    <a id='<%= index %>' class='baseName <%= "active" if index == 0 %>'><span class='icon building'></span><%= base.name %><small>(1)</small></a>
+                <% money = base.resource_stacks.find_by_type_id(0).amount%>
+                <% materials = base.resource_stacks.find_by_type_id(1).amount%>
+                  <a id='<%= index %>' class='baseName <%= "active" if index == 0 %> tip-bottom' data-tip="Money <%=money%> - Materials <%=materials%>"><span class='icon building'></span><%= base.name %><small>(1)</small></a>
                 <% end %>
                 <% if @bases.length < Settings::MAX_BASES %>
                   <a id='create_base' class='baseName'><span class='icon plus-sign'></span>New Base</a>

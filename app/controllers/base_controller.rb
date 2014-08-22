@@ -45,8 +45,7 @@ class BaseController < ApplicationController
 
     ActiveRecord::Base.transaction do
       current_user.bases.all.each do |base|
-        baseResources = {}
-
+        baseResources = {name: base.name}
         ResourceType.getAll.each do |resource|
           amount = base.resource_stacks.find_by_type_id(resource.type_id).amount
           baseResources[resource.name.to_sym] = amount
