@@ -2,9 +2,10 @@
 body{color:#222;background:#fff;font-size:16px;font-family:"Roboto","Helvetica Neue",Helvetica,sans-serif;font-weight:300;}
 body a{color:#222;}
 body a:not(.button):hover,body a:not(.button):active{color:#4bc613}
-body .bck.light{background-color:#ddd}
-body .bck.dark{background-color:#222}
-body .bck.theme{background-color:#4bc613}
+body .bck.light{background-color:#ddd;}
+body .bck.dark{background-color:#222;}
+body .bck.theme{background-color:#4bc613;}
+body .bck.red{background-color: #D8000C;}
 body .bck.success.flash{color: #4F8A10; background-color: #DFF2BF;}
 body .bck.alert.flash{color: #D8000C; background-color: #FFBABA;}
 body .bck.cookies.flash{color: #C60; background-color: #FFB;}

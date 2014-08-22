@@ -105,7 +105,7 @@ var Visual = {
         }
     },
 
-    showInfoPanel: function(value, title){
+    showInfoPanel: function(value, title, content){
         if(!value){
             $(".dataPanelTitle").addClass("hidden");
             $(".dataPanel").addClass("hidden");
@@ -118,6 +118,7 @@ var Visual = {
             $(".dataPanelTitle").css("display", "block");
             $(".dataPanel").css("display", "block");
             $(".dataPanelTitle").html(title);
+            $(".dataPanelContent").html(content);
             setTimeout(function(){
                 $(".dataPanelTitle").removeClass("hidden");
                 $(".dataPanel").removeClass("hidden");
@@ -259,7 +260,8 @@ $( document ).ready(function() {
 
             Visual.showAllTypes(false, true);
             //getBuildingData
-            Visual.showInfoPanel(true, buildingSelected.name);
+            var content = "<p class=\"padding\">" + buildingSelected.description + "</p> <p class=\"padding\">The materials needed to build this the first time are: " + buildingSelected.cost + "</p>";
+            Visual.showInfoPanel(true, buildingSelected.name, content);
             return;
         }
         else if(target.hasClass("entityList")){
@@ -272,7 +274,8 @@ $( document ).ready(function() {
 
             Visual.showAllTypes(false, true);
             //getBuildingData
-            Visual.showInfoPanel(true, entitySelected.name);
+            var content = "<p class=\"padding\">" + entitySelected.description + "</p> <ul class=\"padding\"><li>Money: " + entitySelected.cost + "</li><li>Damage: " + entitySelected.damage + "</li><li>Armor: " + entitySelected.armor + "</li><li>Range: " + entitySelected.range + "</li></ul>";
+            Visual.showInfoPanel(true, entitySelected.name, content);
             return;
         }
         else if(target.hasClass("baseName") && target.attr('id') != "create_base"){

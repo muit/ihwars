@@ -41,7 +41,7 @@ class UserRank < ActiveRecord::Base
 		user.bases.each do |a_base|
 			add_resource_stacks(a_base.resource_stacks) # This is not useful anymore because now the ranking is by level
 			add_level_of_base(a_base)
-			save
 		end
+		save
 	end
 end
