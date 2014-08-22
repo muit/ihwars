@@ -1,25 +1,19 @@
 class BuildingController < ApplicationController
   before_action :authenticate_user!
+
   def create
     typeId = params[:type_id].to_i
     baseName = params[:actualBase]
     opcode = Opcode::BUILDING_CREATE
 
-
     return if watch_error(opcode, !isValidBuildingId?(typeId), "There was an invalid type_id.")
-    
     selectedBase = getBase(baseName)
     return if watch_error(opcode, selectedBase.building_units.where(type_id: typeId).length >= 1, "You can´t build same building two times!")
-
-    
     return if watch_error(opcode, selectedBase == nil, "The selected base does not exist!")
-
-    puts typeId
 
     cost = BuildingType.byTypeId(typeId).cost
     baseMaterials = selectedBase.resource_stacks.find_by_type_id(1)
     return if watch_error(opcode, cost > baseMaterials.amount, "You dont have enought materials!")
-
     baseMaterials.amount -= cost
     baseMaterials.save
 
@@ -27,24 +21,31 @@ class BuildingController < ApplicationController
 
     selectedBase.building_units.create(type: BuildingType.byTypeId(typeId).name, type_id: typeId, finish_building: finish_building, level: 1)
     
-
     answerObject = {error: false, msg: "", finish_building: finish_building}
     render :json => Packet.new(opcode, answerObject)
   end
 
   def update
     selectedBase = getBase(params[:actualBase])
+    opcode = Opcode::BUILDING_UPDATE
     building = selectedBase.building_units.find_by_type_id(params[:type_id].to_i)
 
     seconds = BuildingType.byTypeId(building.type_id).construction_time.seconds
     finish_building = Time.now+(seconds+seconds*(building.level+1)*Settings::COEF_PER_LEVEL)
     
+    cost = get_level_cost_by_type(params[:type_id].to_i, building.level+1)
+
+    baseMaterials = selectedBase.resource_stacks.find_by_type_id(1)
+    return if watch_error(opcode, cost > baseMaterials.amount, "You dont have enought materials!")
+    baseMaterials.amount -= cost
+    baseMaterials.save
+
     building.finish_building = finish_building
     building.level += 1
     building.save
     answerObject = {finish_building: finish_building}
 
-    render :json => Packet.new(Opcode::BUILDING_UPDATE, answerObject)
+    render :json => Packet.new(opcode, answerObject)
   end
 
   def info
