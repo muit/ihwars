@@ -34,4 +34,4 @@ EntityType.create(type_id: 2, name: "Mentor con Látigo",    cost: 4500, damage:
 EntityType.create(type_id: 3, name: "Mentor con Escopeta",  cost: 3500, damage: 10,  armor: 5,   range: 100, description: "This unit compensates his weak armor and damage with a extremely high range, which allows them to attack several times before their enemies approach them.")
 EntityType.create(type_id: 4, name: "Profesor de Testing",  cost: 10000, damage: 45,  armor: 60,  range: 10, description: "The beta testers have lots of experience finding the weaknesses of a website, and they apply it to destroy their enemy.")
 EntityType.create(type_id: 5, name: "Profesor Trabuquero",  cost: 9000, damage: 30,  armor: 40,  range: 35,  description: "One of the two only units able to attack from a distance, they have a moderate range.")
-EntityType.create(type_id: 6, name: "Lady Muriel",          cost: 20000, damage: 170, armor: 340, range: 5,  description: )
+EntityType.create(type_id: 6, name: "Lady Muriel",          cost: 20000, damage: 170, armor: 340, range: 5,  description: "Lady Muriel is the boss of this game. She is able to kill any other unit in a face to face combat.")

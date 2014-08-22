@@ -62,6 +62,7 @@
       </div>
       <div class="dataPanel hidden column_10 bck grey margin padding">
         <h4 class="dataPanelTitle text italic bold color theme margin-left">Title:</h4>
+        <div class="dataPanelContent text">The content</div>
       </div>
     </div>
 </div>
@@ -70,12 +71,12 @@
   Base.size = <%= @bases.length%>
   Base.building_types = [
   <% BuildingType.getAll.each do |building| %>
-    {type_id: <%=building[:type_id]%>, name: "<%=building[:name]%>", cost: <%=building[:cost]%>},
+    {type_id: <%=building[:type_id]%>, name: "<%=building[:name]%>", cost: <%=building[:cost]%>, description: "<%= building[:description] %>"},
   <% end %>
   ]
   Base.entity_types = [
   <% EntityType.getAll.each do |entity| %>
-    {type_id: <%=entity[:type_id]%>, name: "<%=entity[:name]%>", cost: <%=entity[:cost]%>},
+    {type_id: <%=entity[:type_id]%>, name: "<%=entity[:name]%>", cost: <%=entity[:cost]%>, description: "<%= entity[:description] %>", damage: <%= entity[:damage] %>, armor: <%= entity[:armor] %>, range: <%= entity[:range] %>},
   <% end %>
   ]
 </script>
