@@ -1,7 +1,7 @@
 class UserRank < ActiveRecord::Base
 	belongs_to :user
 
-	def self.update_user_ranks
+	def self.reload
 		users = User.all
 		users.each do |a_user|
 			userRank = UserRank.find_or_create_by(user: a_user)
