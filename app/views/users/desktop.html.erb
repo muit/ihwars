@@ -45,21 +45,23 @@
 				<% @user.bases.each_with_index do |a_base, index| %>
 					<div class="column_8 bck grey margin-bottom padding-top padding-bottom">
 			     	<h5 class="text bold color theme margin-left inline"><%= a_base.name %></h5> <em>(<%= a_base.get_level_points %> points)</em>
-			      <div id="prepare_attack_button" class="inline on-right margin-right small button destroy text bold">Prepare attack</div>
-			    	<div id="attack_alert" data-tuktuk="modal" data-modal="alert" class="column_5">
-							<header class="bck alert attack">
-								<h4 class="text inline">Attack!</h4>
-							</header>
-							<section id="alert_text" class="text big padding">
-								<p>From which base do you want to attack?</p>
-								<%= form_tag(request.path, {class: "attack_alert_form"}) do %>
-									<%= hidden_field_tag 'index', index %>
-									<%= select_tag 'from_base', options_from_collection_for_select(current_user.bases, "id", "name"), class: 'base_from_select' %>
-									<%= submit_tag 'Attack!', class: 'small button destroy text bold inline' %>
-								<% end %>
-								<button id="cancel_attack_alert" class="small button ligth text bold inline">Cancel</button>
-							</section>
-						</div>
+			     	<% if current_user != @user %>
+				      <div id="prepare_attack_button" class="inline on-right margin-right small button destroy text bold">Prepare attack</div>
+							<div id="attack_alert" data-tuktuk="modal" data-modal="alert" class="column_5">
+								<header class="bck alert attack">
+									<h4 class="text inline">Attack!</h4>
+								</header>
+								<section id="alert_text" class="text big padding">
+									<p>From which base do you want to attack?</p>
+									<%= form_tag(request.path, {class: "attack_alert_form"}) do %>
+										<%= hidden_field_tag 'index', index %>
+										<%= select_tag 'from_base', options_from_collection_for_select(current_user.bases, "id", "name"), class: 'base_from_select' %>
+										<%= submit_tag 'Attack!', class: 'small button destroy text bold inline' %>
+									<% end %>
+									<button id="cancel_attack_alert" class="small button ligth text bold inline">Cancel</button>
+								</section>
+							</div>
+						<% end %>
 					</div>
 				<% end %>
 			</div>
