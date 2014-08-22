@@ -35,7 +35,9 @@
     	<header id="mainHeader" class="header bck dark">
     		<% if user_signed_in? %>
     	      <div class="column_6">
-    	        <h3 class="text italic bold"><%= link_to raw("#{current_user.name}&nbsp<span class='tag bck theme'>Rank: ##{current_user.user_rank.position}</span>"), "/base" %>
+    	        <h3 class="text italic bold">
+                <%= link_to raw("#{current_user.name}&nbsp"), "/base" %>
+                    <%= link_to raw("<span class='tag bck theme'>Rank: ##{current_user.user_rank.position}</span>"), "/rank" %>
     	        </h3>
     	      </div>
     	      <div class="column_4">
