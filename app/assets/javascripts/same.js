@@ -8,13 +8,16 @@ var Base = {
             function(entities, buildings){
                 Visual.deleteTypes();
                 var entityControlDisabled = false;
-                for(var i = 0, len = entities.length; i < len; i++){
-                    Visual.createEntityType(entities[i].type_id, entities[i].name, entities[i].amount, true);
-                    if(entities[i].name == "Barracks" && entities[i].level == 0)
+
+                for(var i = 0, len = buildings.length; i < len; i++){
+                    if(buildings[i].name == "Barracks" && buildings[i].level == 0)
                         entityControlDisabled = true;
+                    Visual.createBuildingType(buildings[i].type_id, buildings[i].name, buildings[i].level, true);
                 }
-                for(var i = 0, len = buildings.length; i < len; i++)
-                    Visual.createBuildingType(buildings[i].type_id, buildings[i].name, buildings[i].level, true, entityControlDisabled);
+
+                for(var i = 0, len = entities.length; i < len; i++){
+                    Visual.createEntityType(entities[i].type_id, entities[i].name, entities[i].amount, true, entityControlDisabled);
+                }
                 
                 Visual.showAllTypes(true);
             }, 
