@@ -33,6 +33,8 @@ class Base < ActiveRecord::Base
     fill_base(self, ally_units)
     fill_base(enemy_base, enemy_units)
 
+
+
     {remaining_ally_units: entity_stacks, remaining_enemy_units: enemy_base.entity_stacks}
   end
 
@@ -141,4 +143,25 @@ class Base < ActiveRecord::Base
     Math::exp(-(distance / 100.0))
   end
   ##########
+
+  def steal_resources(ally_base, enemy_base)
+    if entity_stacks_has_units(ally_base.entity_stacks)
+      factor = (rand(11) + 25) / 10 
+      stolen_money = enemy_base.resource_stacks[0].amount * factor
+      stolen_materials = enemy_base.resource_stacks[1].amount * factor
+
+      ally_base.resource_stacks[0].amount += stolen_money
+      ally_base.resource_stacks[1].amount += stolen_materials
+      enemy_base.resource_stacks[0].amount -= stolen_money
+      enemy_base.resource_stacks[1].amount -= stolen_materials
+    end
+  end
+
+  def entity_stacks_has_units(entity_stacks)
+    result = false
+    entity_stacks.each do |a_stack|
+      result = true unless a_stack.amount == 0
+    end
+    result
+  end
 end

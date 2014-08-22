@@ -33,7 +33,7 @@ class UserRank < ActiveRecord::Base
 	end
 
 	def add_level_of_base(base)
-		update_attribute(:total_level, base.get_level_points)
+		self.total_level += base.get_level_points
 	end
 
 	def set_properties
@@ -41,6 +41,7 @@ class UserRank < ActiveRecord::Base
 		user.bases.each do |a_base|
 			add_resource_stacks(a_base.resource_stacks) # This is not useful anymore because now the ranking is by level
 			add_level_of_base(a_base)
+			save
 		end
 	end
 end
