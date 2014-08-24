@@ -32,4 +32,7 @@ module ApplicationHelper
   def hasFactories?(base)
     base.building_units.where(type: "Factory").count >= 1
   end
+  def hasBarracks?(base)
+    base.building_units.where(type: "Barracks").count >= 1
+  end
 end

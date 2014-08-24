@@ -5,8 +5,7 @@ class EntityController < ApplicationController
     amount = params[:amount].to_i
     typeId = params[:type_id].to_i
     opcode = Opcode::ENTITY_CREATE
-
-    return if watch_error(opcode, !hasFactories?(base), "Can't create entities without factories!")
+    return if watch_error(opcode, !hasBarracks?(base), "You can´t create units until you build the barracks!")
     return if watch_error(opcode, is_entity_size_exceded?(amount, base), "Not enought space in the base. Build houses!")
 
     cost = EntityType.byTypeId(typeId).cost*amount
