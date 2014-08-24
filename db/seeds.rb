@@ -28,10 +28,10 @@ BuildingType.create(type_id: 6, name: "House",      cost: 9855,   construction_t
 ##Entities: 7 types
 puts "Creating Entity Types"
 EntityType.delete_all
-EntityType.create(type_id: 0, name: "Alumno Básico",        cost: 700, damage: 10,  armor: 10,  range: 5,    description: "The most basic unit, but also the cheaper. This students win battles by outnumbering their enemies.")
-EntityType.create(type_id: 1, name: "Alumno Experimentado", cost: 2000, damage: 15,  armor: 30,  range: 8,   description: "This units have more experience in battle than their basic counterpart, and thus are better in battle.")
-EntityType.create(type_id: 2, name: "Mentor con Látigo",    cost: 4500, damage: 35,  armor: 50,  range: 10,  description: "The whip allows this unit to attack from a moderate distance.")
-EntityType.create(type_id: 3, name: "Mentor con Escopeta",  cost: 3500, damage: 10,  armor: 5,   range: 100, description: "This unit compensates his weak armor and damage with a extremely high range, which allows them to attack several times before their enemies approach them.")
-EntityType.create(type_id: 4, name: "Profesor de Testing",  cost: 10000, damage: 45,  armor: 60,  range: 10, description: "The beta testers have lots of experience finding the weaknesses of a website, and they apply it to destroy their enemy.")
-EntityType.create(type_id: 5, name: "Profesor Trabuquero",  cost: 9000, damage: 30,  armor: 40,  range: 35,  description: "One of the two only units able to attack from a distance, they have a moderate range.")
-EntityType.create(type_id: 6, name: "Lady Muriel",          cost: 20000, damage: 170, armor: 340, range: 5,  description: "Lady Muriel is the boss of this game. She is able to kill any other unit in a face to face combat.")
+EntityType.create(type_id: 0, name: "Alumno Básico",        cost: 786,   damage: 10,  armor: 10,  range: 5,   description: "The most basic unit, but also the cheaper. This students win battles by outnumbering their enemies.")
+EntityType.create(type_id: 1, name: "Alumno Experimentado", cost: 2133,  damage: 15,  armor: 30,  range: 8,   description: "This units have more experience in battle than their basic counterpart, and thus are better in battle.")
+EntityType.create(type_id: 2, name: "Mentor con Látigo",    cost: 8455,  damage: 35,  armor: 50,  range: 20,  description: "The whip allows this unit to attack from a moderate distance.")
+EntityType.create(type_id: 3, name: "Mentor con Escopeta",  cost: 6712,  damage: 10,  armor: 5,   range: 100, description: "This unit compensates his weak armor and damage with a extremely high range, which allows them to attack several times before their enemies approach them.")
+EntityType.create(type_id: 4, name: "Profesor de Testing",  cost: 26355, damage: 54,  armor: 82,  range: 10,  description: "The beta testers have lots of experience finding the weaknesses of a website, and they apply it to destroy their enemy.")
+EntityType.create(type_id: 5, name: "Profesor Trabuquero",  cost: 9145,  damage: 35,  armor: 70,  range: 35,  description: "One of the two only units able to attack from a distance, they have a moderate range.")
+EntityType.create(type_id: 6, name: "Lady Muriel",          cost: 45575, damage: 170, armor: 340, range: 5,   description: "Lady Muriel is the boss of this game. She is able to kill any other unit in a face to face combat.")
