@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20140825190648) do
 
   create_table "battles", force: true do |t|
     t.integer  "attacker_id"
-    t.integer  "defensor_id"
+    t.integer  "defender_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
