@@ -6,20 +6,23 @@ class Battle < ActiveRecord::Base
 
   after_create :prepare
 
-  def indexResults
+  def storeResults(attacker_entity_stacks, defender_entity_stacks, resource_stacks)
+    ActiveRecord::Base.transaction do
+      ResourceType.getAll.each do |resource|
+        battle_resource_stacks.create(type_id: resource.type_id, attackers: true, amount: 0)
+      end
+      ResourceType.getAll.each do |resource|
+        battle_resource_stacks.create(type_id: resource.type_id, attackers: false, amount: 0)
+      end
 
+      EntityType.getAll.each do |entity|
+        battle_entity_stacks.create(type_id: entity.type_id, amount: 0)
+      end
+    end
     save
   end
 
   private
   def prepare
-    ActiveRecord::Base.transaction do
-      ResourceType.getAll.each do |resource|
-        battle_resource_stacks.create(type_id: resource.type_id, amount: 0)
-      end
-      EntityType.getAll.each do |entity|
-        battle_entity_stacks.create(type_id: entity.type_id, amount: 0)
-      end
-    end
   end
 end

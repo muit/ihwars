@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20140825190648) do
   create_table "battle_entity_stacks", force: true do |t|
     t.integer  "battle_id"
     t.integer  "type_id"
+    t.boolean  "attackers"
     t.integer  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
