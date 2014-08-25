@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-	has_many :bases
 	has_one :user_rank
 
 	after_create :prepare

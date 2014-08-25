@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140822133246) do
+ActiveRecord::Schema.define(version: 20140825190648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,29 @@ ActiveRecord::Schema.define(version: 20140822133246) do
   create_table "bases", force: true do |t|
     t.integer "user_id"
     t.string  "name"
+  end
+
+  create_table "battle_entity_stacks", force: true do |t|
+    t.integer  "battle_id"
+    t.integer  "type_id"
+    t.integer  "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "battle_resource_stacks", force: true do |t|
+    t.integer  "battle_id"
+    t.integer  "type_id"
+    t.integer  "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "battles", force: true do |t|
+    t.integer  "attacker_id"
+    t.integer  "defensor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "building_types", force: true do |t|
@@ -57,6 +80,13 @@ ActiveRecord::Schema.define(version: 20140822133246) do
     t.integer "range"
     t.integer "cost"
     t.text    "description"
+  end
+
+  create_table "notices", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "resource_stacks", force: true do |t|
