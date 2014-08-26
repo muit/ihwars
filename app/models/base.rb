@@ -30,9 +30,8 @@ class Base < ActiveRecord::Base
 
     simulate_combat(ally_units, enemy_units)
 
-    battle = Battle.new(attacker_id: id, defender_id: enemy_base.id)
+    battle = Battle.create(attacker_id: user.id, defender_id: enemy_base.user.id)
     battle.storeResults(ally_units, enemy_units, nil)
-
 
     fill_base(self, ally_units)
     fill_base(enemy_base, enemy_units)

@@ -4,25 +4,26 @@ class Battle < ActiveRecord::Base
   has_many :battle_entity_stacks
   has_many :battle_resource_stacks
 
-  after_create :prepare
-
   def storeResults(attacker_entity_stacks, defender_entity_stacks, resource_stacks)
     ActiveRecord::Base.transaction do
-      ResourceType.getAll.each do |resource|
-        battle_resource_stacks.create(type_id: resource.type_id, attackers: true, amount: 0)
+      EntityType.getAll.each_with_index do |entity, index|
+        #Attacker Final Units
+        add_entity_stack(entity.type_id, true, attacker_entity_stacks[index])
+        #Attacker Final Units
+        add_entity_stack(entity.type_id, false, defender_entity_stacks[index])
       end
-      ResourceType.getAll.each do |resource|
-        battle_resource_stacks.create(type_id: resource.type_id, attackers: false, amount: 0)
+      if resource_stacks != nil
+        ResourceType.getAll.each do |resource|
+          #money stealed
+          battle_resource_stacks.create(type_id: resource.type_id, amount: resource_stacks[index].amount)
+        end
       end
-
-      EntityType.getAll.each do |entity|
-        battle_entity_stacks.create(type_id: entity.type_id, amount: 0)
-      end
+      save
     end
-    save
   end
 
   private
-  def prepare
+  def add_entity_stack(type_id, attackers, amount)
+    battle_entity_stacks.create(type_id: type_id, attackers: attackers, amount: amount)
   end
 end
