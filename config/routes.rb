@@ -27,6 +27,9 @@ Rails.application.routes.draw do
 
   get "/rank" => "rank#rank"
 
+  get "/battles" => "battle#index"
+  get "/battles/:name" => "battle#show"
+
   get "/simulator" => "combat_simulator#simulator"
   post "/simulator/" => "combat_simulator#run"
 
