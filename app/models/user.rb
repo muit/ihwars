@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :attacks, :class_name => "Battle", :foreign_key => "attacker_id"
   has_many :defenses, :class_name => "Battle", :foreign_key => "defender_id"
+  has_many :bases
 	has_one :user_rank
 
 	after_create :prepare
